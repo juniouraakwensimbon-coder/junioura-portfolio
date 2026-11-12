@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1080x1080">
+<title>Not everything you see online deserves your attention — Junioura Creative WebDev</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  :root { --ink: #16181D; --paper: #F3EFE6; --teal: #1F6F6A; --muted: #575B63; --line: #D6D0C3; --yellow: #F4C21B; }
+  .artboard { width: 1080px; height: 1080px; background: var(--paper); color: var(--ink); }
+
+  .top { position: absolute; left: 80px; right: 80px; top: 72px; display: flex; justify-content: space-between; align-items: center; }
+  .tag { font: 700 15px/1 'Inter'; letter-spacing: .18em; text-transform: uppercase; background: var(--teal); color: #fff; padding: 10px 14px; }
+  .jcw-mark { background: var(--ink); color: var(--yellow); }
+  .jcw-sub { color: var(--muted); }
+
+  h1 { position: absolute; left: 76px; top: 160px; width: 930px; font: 800 118px/0.9 'Barlow Condensed'; text-transform: uppercase; letter-spacing: -0.005em; }
+  h1 .small { display: block; font-size: 70px; line-height: 1; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+  h1 .mark { background: linear-gradient(transparent 62%, var(--yellow) 62% 92%, transparent 92%); }
+
+  .claims { position: absolute; left: 80px; top: 552px; width: 920px; }
+  .claims li { display: grid; grid-template-columns: 190px 1fr 46px; align-items: center; padding: 20px 0; border-top: 1.5px solid var(--line); }
+  .claims li:last-child { border-bottom: 1.5px solid var(--line); }
+  .claims .k { font: 700 15px/1 'Inter'; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+  .claims .v { font: 500 32px/1.15 'Inter'; letter-spacing: -0.015em; }
+  .claims .q { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; font: 800 21px/1 'Manrope'; }
+
+  .verify { position: absolute; left: 80px; top: 878px; display: flex; gap: 0; }
+  .verify span { font: 800 46px/1 'Barlow Condensed'; text-transform: uppercase; letter-spacing: .02em; padding: 16px 22px 14px; }
+  .verify span:nth-child(1) { background: var(--ink); color: #fff; }
+  .verify span:nth-child(2) { background: var(--teal); color: #fff; }
+  .verify span:nth-child(3) { background: var(--yellow); color: var(--ink); }
+  .end { position: absolute; left: 80px; top: 966px; font: 600 24px/1.2 'Inter'; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="top">
+    <span class="tag">We keep learning</span>
+    <div class="jcw">
+      <div class="jcw-mark">JA</div>
+      <div><span class="jcw-name">Junioura</span><span class="jcw-sub">Creative WebDev</span></div>
+    </div>
+  </div>
+
+  <h1><span class="small">Not everything you see online</span><span class="mark">Deserves your attention.</span></h1>
+
+  <ul class="claims">
+    <li><span class="k">Screenshot</span><span class="v">A screenshot can look real.</span><span class="q">?</span></li>
+    <li><span class="k">Headline</span><span class="v">A headline can sound convincing.</span><span class="q">?</span></li>
+    <li><span class="k">Message</span><span class="v">A message can still be false.</span><span class="q">?</span></li>
+  </ul>
+
+  <div class="verify"><span>Pause.</span><span>Check.</span><span>Verify.</span></div>
+  <p class="end">Digital literacy starts with knowing what to trust.</p>
+</div>
+</body>
+</html>

@@ -1,26 +1,46 @@
 <footer class="site-footer">
+  <div class="container footer-lead">
+    <p class="footer-statement"><%= owner.closing %></p>
+    <a class="btn btn-accent" href="<%= section('contact') %>">Start a conversation <%- include('icon', { name: 'arrow' }) %></a>
+  </div>
+
   <div class="container footer-grid">
     <div class="footer-brand">
-      <p class="footer-name"><%= owner.name %></p>
+      <a class="footer-logo" href="<%= isHome ? '#top' : base %>" aria-label="<%= owner.name %>, back to top">
+        <span class="wordmark-mark" aria-hidden="true"><%= owner.initials %></span>
+        <span class="footer-name"><%= owner.name %></span>
+      </a>
       <p class="footer-role"><%= owner.roles.join(' · ') %></p>
-      <p class="footer-place"><%= owner.location %></p>
+      <p class="footer-place"><%- include('icon', { name: 'pin' }) %> <%= owner.location %></p>
     </div>
 
-    <nav class="footer-nav" aria-label="Footer">
+    <nav class="footer-col" aria-label="Footer: pages">
+      <h2>Explore</h2>
       <ul>
         <li><a href="<%= section('about') %>">About</a></li>
-        <li><a href="<%= section('work') %>">Work</a></li>
-        <li><a href="<%= section('design') %>">Design</a></li>
-        <li><a href="<%= section('communications') %>">Content</a></li>
-        <li><a href="<%= section('skills') %>">Skills</a></li>
-        <li><a href="<%= section('background') %>">Background</a></li>
-        <li><a href="<%= section('contact') %>">Contact</a></li>
+        <li><a href="<%= section('work') %>">Selected work</a></li>
+        <li><a href="<%= section('design') %>">Graphic design</a></li>
+        <li><a href="<%= section('communications') %>">Digital communications</a></li>
+        <li><a href="<%= section('skills') %>">Skills &amp; tools</a></li>
+        <li><a href="<%= section('background') %>">Experience &amp; education</a></li>
       </ul>
     </nav>
 
-    <div class="footer-contact">
-      <a href="mailto:<%= owner.email %>"><%= owner.email %></a>
-      <a href="tel:<%= owner.phoneHref %>"><%= owner.phone %></a>
+    <nav class="footer-col" aria-label="Footer: services">
+      <h2>Services</h2>
+      <ul>
+        <% services.forEach(s => { %>
+          <li><a href="<%= section('service-' + s.slug) %>"><%= s.title %></a></li>
+        <% }) %>
+      </ul>
+    </nav>
+
+    <div class="footer-col footer-contact">
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="mailto:<%= owner.email %>"><%= owner.email %></a></li>
+        <li><a href="tel:<%= owner.phoneHref %>"><%= owner.phone %></a></li>
+      </ul>
       <ul class="social-list" aria-label="Social profiles">
         <% owner.social.forEach(s => { %>
           <li><a href="<%= s.url %>" target="_blank" rel="noopener noreferrer" aria-label="<%= s.name %> (opens in a new tab)"><%- include('icon', { name: s.name.toLowerCase() }) %></a></li>
@@ -30,7 +50,7 @@
   </div>
 
   <div class="container footer-bottom">
-    <p>&copy; <%= year %> <%= owner.name %>. Built with Node.js, Express and EJS.</p>
+    <p>&copy; <%= year %> <%= owner.name %>. All rights reserved.</p>
     <a class="back-to-top" href="#top">Back to top <%- include('icon', { name: 'up' }) %></a>
   </div>
 </footer>

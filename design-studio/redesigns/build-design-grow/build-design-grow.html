@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1190x1684">
+<title>Build. Design. Grow. — Junioura Akwensimbom</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1190px 1684px; margin: 0; }
+  html, body { width: 1190px; height: 1684px; overflow: hidden; }
+  /* Personal brand: the same palette as the portfolio website */
+  :root { --plum: #2A0F2E; --purple: #421B46; --orange: #EB7825; --orange-text: #A94B0B; --cream: #FBF7F0; --muted: #5E5462; --line: #E6DDD0; --mauve: #CBB7CC; }
+  .artboard { width: 1190px; height: 1684px; background: var(--cream); color: var(--plum); }
+
+  .head { position: absolute; left: 96px; right: 96px; top: 90px; display: flex; justify-content: space-between; align-items: center; }
+  .id { display: flex; align-items: center; gap: 18px; }
+  .mark { position: relative; width: 70px; height: 70px; background: var(--plum); color: #fff; border-radius: 6px; display: grid; place-items: center; font: 800 27px/1 'Manrope'; }
+  .mark::after { content: ''; position: absolute; right: 8px; bottom: 8px; width: 10px; height: 10px; background: var(--orange); border-radius: 2px; }
+  .id b { display: block; font: 800 24px/1.1 'Manrope'; letter-spacing: .02em; text-transform: uppercase; }
+  .id small { display: block; font: 600 14px/1 'Inter'; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  .kicker { font: 700 16px/1 'Inter'; letter-spacing: .16em; text-transform: uppercase; color: var(--orange-text); }
+
+  h1 { position: absolute; left: 90px; top: 250px; font: 800 200px/0.86 'Manrope'; letter-spacing: -0.06em; }
+  h1 span { display: block; }
+  h1 span:nth-child(2) { color: var(--orange); }
+  h1 span:nth-child(3) { color: var(--purple); }
+
+  .intro { position: absolute; right: 96px; top: 548px; width: 330px; font: 500 25px/1.42 'Inter'; color: var(--plum); padding-top: 22px; border-top: 3px solid var(--orange); }
+
+  .what { position: absolute; left: 96px; right: 96px; top: 880px; }
+  .what h2 { font: 800 18px/1 'Inter'; letter-spacing: .2em; text-transform: uppercase; padding-bottom: 18px; border-bottom: 3px solid var(--plum); }
+  .what ol { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+  .what li { display: grid; grid-template-columns: 54px 1fr; padding: 24px 0; border-bottom: 1.5px solid var(--line); }
+  .what li:last-child { grid-column: 1 / -1; }
+  .what .n { font: 800 18px/1.5 'Manrope'; color: var(--orange-text); }
+  .what h3 { font: 800 24px/1.2 'Manrope'; letter-spacing: -0.01em; text-transform: uppercase; }
+  .what p { font: 400 20px/1.45 'Inter'; color: var(--muted); margin-top: 6px; }
+
+  .cta { position: absolute; left: 0; right: 0; top: 1338px; height: 280px; background: var(--plum); color: #fff; padding: 52px 96px 0; display: grid; grid-template-columns: 1fr 360px; column-gap: 60px; }
+  .cta h2 { font: 800 50px/1 'Manrope'; letter-spacing: -0.035em; }
+  .cta h2 span { color: var(--orange); }
+  .cta p { font: 400 20px/1.5 'Inter'; color: #E7DBE7; margin-top: 18px; max-width: 520px; }
+  .cta .btn { display: inline-block; background: var(--orange); color: var(--plum); font: 800 20px/1 'Manrope'; padding: 18px 24px; border-radius: 4px; margin-bottom: 24px; }
+  .cta dl { display: grid; grid-template-columns: 110px 1fr; row-gap: 12px; font: 500 18px/1.3 'Inter'; }
+  .cta dt { font: 700 14px/1.6 'Inter'; letter-spacing: .14em; text-transform: uppercase; color: var(--mauve); }
+
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 66px; background: var(--orange); color: var(--plum); display: grid; place-items: center; font: 800 15px/1 'Inter'; letter-spacing: .28em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="head">
+    <div class="id">
+      <div class="mark">JA</div>
+      <div><b>Junioura<br>Akwensimbom</b><small>Digital Creative</small></div>
+    </div>
+    <span class="kicker">Digital Creative • Web &amp; Design</span>
+  </div>
+
+  <h1><span>Build.</span><span>Design.</span><span>Grow.</span></h1>
+
+  <p class="intro">I create modern digital experiences that help ideas, brands and businesses stand out.</p>
+
+  <div class="what">
+    <h2>What I do</h2>
+    <ol>
+      <li><span class="n">01</span><div><h3>Web Development</h3><p>Responsive websites built for modern users.</p></div></li>
+      <li><span class="n">02</span><div><h3>UI/UX Design</h3><p>Clean, intuitive interfaces designed around people.</p></div></li>
+      <li><span class="n">03</span><div><h3>WordPress</h3><p>Professional websites that are easy to manage.</p></div></li>
+      <li><span class="n">04</span><div><h3>Website Management</h3><p>Updates, maintenance and ongoing support.</p></div></li>
+      <li><span class="n">05</span><div><h3>Digital Design</h3><p>Visual solutions that communicate your brand clearly.</p></div></li>
+    </ol>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h2>Let’s build <span>something great.</span></h2>
+      <p>Have an idea, website or brand that needs a digital touch? Let’s turn your vision into something people can see, use and remember.</p>
+    </div>
+    <div>
+      <span class="btn">Start a project →</span>
+      <dl>
+        <dt>WhatsApp</dt><dd>+237 679 016 149</dd>
+        <dt>Email</dt><dd>juniouraakwensimbon@gmail.com</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="foot">Dedicated to creating modern solutions that make an impact.</div>
+</div>
+</body>
+</html>

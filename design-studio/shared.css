@@ -1,0 +1,35 @@
+/* Shared foundation for all redesigned flyers.
+   Fonts are open-licence (SIL OFL) and stored in ./fonts. */
+@font-face { font-family: 'Manrope'; src: url('fonts/Manrope-Variable.ttf') format('truetype'); font-weight: 200 800; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Variable.ttf') format('truetype'); font-weight: 100 900; }
+@font-face { font-family: 'Barlow Condensed'; src: url('fonts/BarlowCondensed-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Barlow Condensed'; src: url('fonts/BarlowCondensed-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Barlow Condensed'; src: url('fonts/BarlowCondensed-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { background: #888; }
+body { -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+ul, ol { list-style: none; }
+
+/* Each design is one fixed-size artboard (size set per file) */
+.artboard {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+}
+.display { font-family: 'Manrope', sans-serif; }
+.condensed { font-family: 'Barlow Condensed', sans-serif; }
+
+/* Line icons: one consistent style across the series */
+.ico { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Junioura Creative WebDev lockup */
+.jcw { display: flex; align-items: center; gap: 14px; }
+.jcw-mark {
+  width: 46px; height: 46px; border-radius: 10px;
+  display: grid; place-items: center;
+  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em;
+}
+.jcw-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; line-height: 1; letter-spacing: -0.01em; }
+.jcw-sub { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.02em; margin-top: 4px; }

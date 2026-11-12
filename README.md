@@ -69,7 +69,7 @@ $env:BASE_PATH="/junioura-akwensimbom-portfolio/"; npm run build; npm run previe
 │   ├── js/script.js
 │   ├── images/
 │   │   ├── profile/             # profile photograph
-│   │   ├── designs/             # design samples (digital literacy posts)
+│   │   ├── designs/             # web versions of the graphic design gallery
 │   │   ├── projects/            # project screenshots (add here)
 │   │   ├── certificates/        # certificate images (add here)
 │   │   └── branding/            # favicon / logo
@@ -78,6 +78,7 @@ $env:BASE_PATH="/junioura-akwensimbom-portfolio/"; npm run build; npm run previe
 │   ├── build.js                 # static export → dist/
 │   ├── preview.js               # serve dist/ like GitHub Pages
 │   └── check.js                 # link and HTML checker
+├── design-studio/               # editable flyer sources, PNG + vector PDF exports (see its README)
 ├── test/site.test.js
 └── deployment/github-pages.yml  # prepared GitHub Actions workflow (inactive)
 ```
@@ -89,7 +90,7 @@ Almost everything is edited in **`src/data/portfolioData.js`**:
 - **Projects:** to show a real screenshot instead of the typographic panel, save the image in `public/images/projects/` and set `image: 'images/projects/<file>.jpg'` on that project.
 - **AAGYW-CAM link:** this is hidden for now. Set `show: true` on its link once `aagyw-cam.org` is serving the association's own site again.
 - **Certificates:** save the image in `public/images/certificates/` and set `image:` on the certificate. A "View certificate" link then appears.
-- **Design gallery:** add a web-sized image (about 900 px wide, `.webp` or `.jpg`) to `public/images/designs/` and add an entry to `designs`.
+- **Design gallery:** add a web-sized image (about 1000 px wide, `.webp`) named `<slug>.webp` to `public/images/designs/` and add an entry to `designs`. Editable flyer sources are in `design-studio/`.
 
 Run `npm test` after any change to catch broken links or missing images.
 

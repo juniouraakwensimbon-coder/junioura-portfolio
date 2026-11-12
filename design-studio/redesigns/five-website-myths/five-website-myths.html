@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1080x1080">
+<title>5 common myths about websites — Junioura Creative WebDev</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  :root { --navy: #0F1D3F; --yellow: #F4C21B; --paper: #F6F2EA; --muted: #4B5674; --line: #D8D1C2; --red: #C8372D; --green: #2E8B57; }
+  .artboard { width: 1080px; height: 1080px; background: var(--paper); color: var(--navy); }
+
+  .head { position: absolute; left: 80px; right: 80px; top: 70px; display: flex; justify-content: space-between; align-items: center; }
+  .jcw-mark { background: var(--navy); color: var(--yellow); }
+  .jcw-sub { color: var(--muted); }
+
+  .title { position: absolute; left: 80px; top: 170px; display: grid; grid-template-columns: auto 1fr; column-gap: 26px; align-items: end; }
+  .five { font: 800 250px/0.74 'Manrope'; letter-spacing: -0.06em; color: var(--yellow); -webkit-text-stroke: 0; }
+  .title h1 { font: 800 64px/0.98 'Manrope'; letter-spacing: -0.04em; padding-bottom: 4px; }
+  .title h1 span { display: block; }
+
+  .myths { position: absolute; left: 80px; top: 390px; width: 520px; }
+  .myths li { display: grid; grid-template-columns: 34px 1fr; column-gap: 18px; align-items: start; padding: 17px 0; border-top: 1.5px solid var(--line); font: 600 22px/1.3 'Inter'; letter-spacing: -0.01em; }
+  .myths li:first-child { border-top: 2px solid var(--navy); }
+  .x { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--red); color: var(--red); display: grid; place-items: center; margin-top: 1px; }
+  .x svg { width: 16px; height: 16px; }
+  .label { font: 700 13px/1 'Inter'; letter-spacing: .16em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+
+  .truth { position: absolute; right: 80px; top: 414px; width: 360px; height: 368px; background: var(--navy); color: #fff; border-radius: 6px; padding: 34px 34px; display: flex; flex-direction: column; }
+  .tick { width: 50px; height: 50px; border-radius: 50%; background: var(--yellow); color: var(--navy); display: grid; place-items: center; margin-bottom: 22px; }
+  .tick svg { width: 26px; height: 26px; stroke-width: 2.6; }
+  .truth h2 { font: 800 46px/1 'Manrope'; letter-spacing: -0.03em; color: var(--yellow); margin-bottom: 18px; }
+  .truth p { font: 500 23px/1.42 'Inter'; color: #E6E9F2; }
+
+  .ask { position: absolute; left: 0; right: 0; bottom: 0; height: 172px; background: var(--yellow); display: grid; grid-template-columns: 78px 1fr; column-gap: 26px; align-items: center; padding: 0 80px; }
+  .bulb { width: 78px; height: 78px; border-radius: 50%; background: var(--navy); color: var(--yellow); display: grid; place-items: center; }
+  .bulb svg { width: 38px; height: 38px; }
+  .ask small { display: block; font: 700 20px/1 'Inter'; margin-bottom: 10px; }
+  .ask strong { display: block; font: 800 40px/1.05 'Manrope'; letter-spacing: -0.03em; }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="head">
+    <div class="jcw">
+      <div class="jcw-mark">JA</div>
+      <div><span class="jcw-name">Junioura</span><span class="jcw-sub">Creative WebDev</span></div>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="five">5</div>
+    <h1><span>Common myths</span><span>about websites</span></h1>
+  </div>
+
+  <div class="myths">
+    <p class="label">Myths</p>
+    <ul>
+      <li><span class="x"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Websites are only for big businesses.</li>
+      <li><span class="x"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6 6 18"/></svg></span>A Facebook Page means you don’t need a website.</li>
+      <li><span class="x"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6 6 18"/></svg></span>A website only needs to look good.</li>
+      <li><span class="x"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Websites don’t need maintenance after launch.</li>
+      <li><span class="x"><svg class="ico" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Everyone needs a website immediately.</li>
+    </ul>
+  </div>
+
+  <div class="truth">
+    <div class="tick"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>The truth:</h2>
+    <p>A website should serve a clear purpose, be useful, easy to navigate, responsive, and maintained over time.</p>
+  </div>
+
+  <div class="ask">
+    <div class="bulb"><svg class="ico" viewBox="0 0 24 24"><path d="M9 17.5h6M9.8 20.5h4.4M12 3.5a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2v1.2h5.2v-1.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3.5z"/></svg></div>
+    <div><small>Before building one, ask:</small><strong>“What do I want my website to achieve?”</strong></div>
+  </div>
+</div>
+</body>
+</html>

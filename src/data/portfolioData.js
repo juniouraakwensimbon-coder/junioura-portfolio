@@ -31,6 +31,7 @@ const owner = {
     { name: 'Facebook', handle: 'Junioura Creative WebDev', url: 'https://www.facebook.com/share/18Zyvny6Wi' },
     { name: 'TikTok', handle: '@juniouracreativewebdev', url: 'https://www.tiktok.com/@juniouracreativewebdev' },
   ],
+  closing: 'Websites, content and learning that make digital tools easier to understand and use.',
 };
 
 const intro = [
@@ -44,61 +45,64 @@ const currently = [
   'Creating digital literacy content for Junioura Creative WebDev',
 ];
 
+// The connection between the three disciplines, shown in About
+const pillars = [
+  { title: 'Technology', text: 'Building and managing websites with WordPress, Elementor, HTML, CSS and JavaScript.' },
+  { title: 'Communication', text: 'Writing, designing and planning content that people understand at a glance.' },
+  { title: 'Learning', text: 'Teaching Biology and digital skills in simple, practical language.' },
+];
+
 const facts = [
   { term: 'Based in', detail: 'Bamenda, Cameroon' },
   { term: 'Studied', detail: 'BSc Biochemistry · DIPES II Biology, University of Bamenda' },
   { term: 'Trained', detail: 'Web and Application Development, Nexinch' },
-  { term: 'Works with', detail: 'WordPress, Elementor, HTML, CSS, JavaScript, Canva, Adobe, Figma' },
+  { term: 'Tools', detail: 'WordPress, Elementor, Canva, Illustrator, Photoshop, Figma' },
 ];
 
-// "What I do" — the four areas of work
+/**
+ * Services — what visitors can ask me for.
+ * `subject` pre-fills the contact form when someone clicks "Enquire".
+ */
 const services = [
   {
-    title: 'Web Development',
-    summary: 'Building and looking after websites that are clear, responsive and easy to update.',
-    items: [
-      'Website development and management',
-      'WordPress and Elementor',
-      'HTML, CSS and JavaScript',
-      'Responsive layouts',
-      'Site structure and navigation',
-      'Forms, updates and maintenance',
-      'Usability improvements',
-    ],
+    slug: 'websites',
+    title: 'Website Development & Management',
+    summary: 'Websites built with WordPress, Elementor, HTML, CSS and JavaScript, then kept up to date.',
+    value: 'A clear, responsive site that people can find their way around, with forms that work and content that stays current.',
+    includes: ['Site structure and navigation', 'Responsive layouts', 'Forms and functionality', 'Updates and maintenance', 'Usability improvements'],
+    subject: 'Website development or management',
   },
   {
-    title: 'Digital Communications',
-    summary: 'Planning and writing content that informs people and keeps an audience engaged.',
-    items: [
-      'Digital content creation',
-      'Social media management',
-      'Content planning and scheduling',
-      'Caption writing',
-      'Educational and digital literacy posts',
-      'Audience interaction',
-    ],
+    slug: 'design',
+    title: 'Graphic Design & Visual Communication',
+    summary: 'Flyers, social media graphics and presentation materials designed in Canva, Illustrator, Photoshop and Figma.',
+    value: 'Visuals with a clear hierarchy, so the main message is understood before the details are read.',
+    includes: ['Promotional flyers', 'Educational flyers', 'Social media graphics', 'Presentation materials'],
+    subject: 'Graphic design',
   },
   {
-    title: 'Visual Design',
-    summary: 'Designing flyers, educational graphics and social media visuals that communicate quickly.',
-    items: [
-      'Flyers and announcements',
-      'Educational graphics',
-      'Social media designs',
-      'Visual communication assets',
-      'Canva, Illustrator, Photoshop, Figma',
-    ],
+    slug: 'content',
+    title: 'Digital Content Creation',
+    summary: 'Educational and informative posts written and designed for a specific audience.',
+    value: 'Content that explains one useful idea at a time, in language your audience already uses.',
+    includes: ['Educational content', 'Caption writing', 'Content writing', 'Post design'],
+    subject: 'Digital content creation',
   },
   {
-    title: 'Education',
-    summary: 'Teaching in simple language so that people can understand and use what they learn.',
-    items: [
-      'Classroom teaching and Biology education',
-      'Digital literacy',
-      'Beginner-friendly technology education',
-      'Web development learning support',
-      'Lesson planning, presentations and resources',
-    ],
+    slug: 'social',
+    title: 'Digital Communications & Social Media Management',
+    summary: 'Planning, publishing and managing content on social media pages.',
+    value: 'A consistent presence, with a content plan and replies to the people who engage.',
+    includes: ['Content planning', 'Page management', 'Scheduling and publishing', 'Audience interaction'],
+    subject: 'Social media management',
+  },
+  {
+    slug: 'training',
+    title: 'Digital Skills Education & Training',
+    summary: 'Beginner-friendly teaching on digital tools, digital literacy and web development basics.',
+    value: 'People leave able to use the tool themselves, because it was explained simply and practised.',
+    includes: ['Digital literacy', 'Web development learning support', 'Lesson planning', 'Presentations and learning materials'],
+    subject: 'Digital skills training',
   },
 ];
 
@@ -136,6 +140,7 @@ const projects = [
     scope: ['Digital literacy content', 'Web development content', 'Educational content', 'Flyer design', 'Caption writing', 'Content planning'],
     tools: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Social media'],
     panel: 'designs',
+    panelDesigns: ['who-needs-a-website', 'pause-check-verify', 'five-website-myths'],
     image: null,
     links: [
       { label: 'Facebook', url: 'https://www.facebook.com/share/18Zyvny6Wi', show: true },
@@ -163,7 +168,7 @@ const projects = [
     role: 'Teacher and digital skills facilitator',
     organisation: 'Classroom and community learning',
     desc: 'Teaching is where I learned to explain things clearly. I teach Biology, support people learning digital skills and web development, and prepare lessons, presentations and learning resources.',
-    scope: ['Biology teaching', 'Digital skills support', 'Web development learning', 'Website management', 'Figma and design learning', 'Lesson planning', 'Presentations', 'Learning resources'],
+    scope: ['Biology teaching', 'Digital skills support', 'Web development learning', 'Figma and design learning', 'Lesson planning', 'Presentations', 'Learning resources'],
     tools: ['Lesson planning', 'Presentations', 'Microsoft Office', 'Canva'],
     panel: 'teach',
     image: null,
@@ -171,22 +176,73 @@ const projects = [
   },
 ];
 
-// Design gallery — real work from the digital literacy series.
-// Files live in public/images/designs/. Add more by copying an entry.
+/**
+ * Graphic design gallery.
+ * Web images live in public/images/designs/; editable sources and
+ * full-resolution exports live in design-studio/redesigns/.
+ */
+const designCategories = [
+  { id: 'web', label: 'Web education' },
+  { id: 'literacy', label: 'Digital literacy' },
+  { id: 'brand', label: 'Brand & print' },
+];
+
 const designs = [
-  { src: 'images/designs/apps-and-productivity.webp', width: 900, height: 1125, title: 'More apps don’t always mean more productivity', topic: 'Digital wellbeing' },
-  { src: 'images/designs/prize-scam-awareness.webp', width: 900, height: 1350, title: 'You won a prize? Which competition did you enter?', topic: 'Online safety' },
-  { src: 'images/designs/mobile-data-usage.webp', width: 900, height: 1125, title: 'Who is eating your mobile data?', topic: 'Phone skills' },
-  { src: 'images/designs/fake-job-alert.webp', width: 900, height: 1350, title: 'Fake job alert: stop, check, verify', topic: 'Online safety' },
-  { src: 'images/designs/windows-screenshot-tip.webp', width: 900, height: 1125, title: 'Still photographing your computer screen?', topic: 'Computer skills' },
-  { src: 'images/designs/phone-battery-tips.webp', width: 900, height: 1125, title: 'Your phone battery dies before the day ends?', topic: 'Phone skills' },
+  {
+    slug: 'who-needs-a-website', category: 'web', width: 1000, height: 1000,
+    title: 'Who actually needs a website?',
+    client: 'Junioura Creative WebDev', format: 'Social media post',
+    desc: 'Explains who benefits from a website: businesses, professionals, schools and creators. A simple drawn website replaces stock imagery.',
+  },
+  {
+    slug: 'five-website-myths', category: 'web', width: 1000, height: 1000,
+    title: '5 common myths about websites',
+    client: 'Junioura Creative WebDev', format: 'Social media post',
+    desc: 'Five misconceptions set against one clear truth, ending with the question every website owner should ask first.',
+  },
+  {
+    slug: 'websites-every-day', category: 'web', width: 1000, height: 1000,
+    title: 'You use websites every day…',
+    client: 'Junioura Creative WebDev', format: 'Social media post · Digital Knowledge 01',
+    desc: 'A plain-language definition of a website, broken into three jobs a site does: inform, connect and grow.',
+  },
+  {
+    slug: 'pause-check-verify', category: 'literacy', width: 1000, height: 1000,
+    title: 'Not everything you see online deserves your attention',
+    client: 'Junioura Creative WebDev', format: 'Social media post',
+    desc: 'A typographic piece on misinformation: three claims to question, then one memorable habit: pause, check, verify.',
+  },
+  {
+    slug: 'search-smarter', category: 'literacy', width: 1000, height: 1250,
+    title: 'Search smarter. Get better results.',
+    client: 'Digital literacy series', format: 'Social media post',
+    desc: 'Four practical search tips with examples, built around a simple drawn search bar.',
+  },
+  {
+    slug: 'password-first-defence', category: 'literacy', width: 1400, height: 933,
+    title: 'Your password is your first line of defence',
+    client: 'Tech & Education · Digital Safety Awareness', format: 'Landscape post',
+    desc: 'Four account-security habits in a calm two-by-two layout, with a flat shield graphic carrying the message.',
+  },
+  {
+    slug: 'build-design-grow', category: 'brand', width: 1000, height: 1415,
+    title: 'Build. Design. Grow.',
+    client: 'Personal brand', format: 'A4 flyer',
+    desc: 'A personal services flyer in my own plum and orange identity, built around one strong typographic statement.',
+  },
+  {
+    slug: 'nexinch-services', category: 'brand', width: 1000, height: 1415,
+    title: 'Nexinch services',
+    client: 'Nexinch', format: 'A4 flyer',
+    desc: 'A services flyer in Nexinch’s blue and red, set as a clear numbered index with contact details in a dedicated panel.',
+  },
 ];
 
 const designTools = [
   { name: 'Canva', use: 'Social media posts, educational graphics and quick layouts' },
   { name: 'Adobe Illustrator', use: 'Flyers, vector graphics and print-ready layouts' },
   { name: 'Adobe Photoshop', use: 'Photo editing and image composition' },
-  { name: 'Figma', use: 'Website and interface layouts — actively learning' },
+  { name: 'Figma', use: 'Website and interface layouts (actively learning)' },
 ];
 
 // Digital communications — how the content work is done
@@ -202,51 +258,87 @@ const communications = {
   topics: ['Online safety and scams', 'Phone skills', 'Computer skills', 'Digital wellbeing', 'Web development basics'],
 };
 
+// Skills — grouped by area of work (no ratings or percentages)
 const skills = [
-  { category: 'Web Development', tags: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'Elementor', 'Responsive Design', 'Website Management', 'Git and GitHub'] },
-  { category: 'Design & Creative Tools', tags: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma'] },
-  { category: 'Digital Communications', tags: ['Content Creation', 'Content Writing', 'Social Media Management', 'Content Planning', 'Digital Literacy', 'Audience Interaction'] },
-  { category: 'Education', tags: ['Teaching', 'Lesson Planning', 'Educational Content Development', 'Presentations', 'Digital Skills Support'] },
-  { category: 'Productivity', tags: ['Microsoft Office'] },
+  {
+    category: 'Web development & website management',
+    note: 'Building, structuring and maintaining websites.',
+    items: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Responsive layouts', 'Website structure and navigation', 'Forms and functionality', 'Updates and maintenance', 'Usability improvements'],
+  },
+  {
+    category: 'Digital communication',
+    note: 'Planning, writing and managing content.',
+    items: ['Social media content creation', 'Caption writing', 'Educational content', 'Content planning', 'Social media page management', 'Audience interaction'],
+  },
+  {
+    category: 'Graphic design',
+    note: 'Designing visuals that communicate clearly.',
+    items: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma', 'Promotional and educational flyers', 'Social media graphics', 'Presentation materials'],
+  },
+  {
+    category: 'Education',
+    note: 'Making technical information understandable.',
+    items: ['Biology teaching', 'Lesson planning', 'Educational presentations', 'Learning materials', 'Digital literacy', 'Web development learning support'],
+  },
+  {
+    category: 'Additional skills',
+    note: 'Supporting tools and abilities.',
+    items: ['Git and GitHub', 'Microsoft Office', 'Website management', 'Social media management', 'Content writing'],
+  },
 ];
 
+/**
+ * Experience. `type` distinguishes employment, volunteering, training,
+ * teaching practice and project work.
+ */
 const experience = [
   {
     date: 'Ongoing',
+    type: 'Project work',
     title: 'Website Development & Management',
     org: 'AAGYW-CAM',
-    desc: 'Developed and manage the association’s website: content, navigation, forms, responsive presentation and updates.',
+    desc: 'Developed and manage the association’s website: content organisation, navigation, forms, responsive presentation and updates.',
   },
   {
     date: 'Ongoing',
+    type: 'Personal brand',
     title: 'Creator & Content Designer',
     org: 'Junioura Creative WebDev',
     desc: 'Plan, write and design digital literacy and web development content for Facebook and TikTok.',
   },
   {
     date: '2025 – 2026',
+    type: 'Training & internship',
     title: 'Web & Application Development Trainee',
     org: 'Nexinch',
     desc: 'One-year intensive training with hands-on internship work in WordPress, Elementor, HTML, CSS, JavaScript, responsive design, testing and maintenance.',
   },
   {
     date: '2023 – 2025',
-    title: 'Biology Teacher',
+    type: 'Teaching practice · DIPES II',
+    title: 'Biology Teaching',
     org: 'G.B.H.S Bamendakwe',
     desc: 'Lesson planning, classroom management, student engagement and instructional delivery, adapting methods to different learners.',
   },
   {
-    date: 'Ongoing',
-    title: 'Online Sales & Customer Communication',
-    org: 'Trust and Blessed Shopping Mall',
-    desc: 'Manage online promotion and customer communication for a footwear business through WhatsApp business groups.',
+    date: '2023 – 2025',
+    type: 'Volunteer',
+    title: 'Digital Content & Social Media',
+    org: 'G.B.H.S Bamendakwe',
+    desc: 'Created digital content and supported the school’s social media communication.',
   },
   {
-    date: '2021 – 2022',
-    title: 'Medical Laboratory Scientist',
-    org: 'ABII Specialist Polyclinic',
-    desc: 'Sample collection, laboratory analysis and careful record-keeping.',
+    date: 'Ongoing',
+    type: 'Education',
+    title: 'Digital Skills & Web Development Support',
+    org: 'Learners and community',
+    desc: 'Help beginners build practical digital skills and support people learning web development and website management.',
   },
+];
+
+const otherExperience = [
+  { date: 'Ongoing', title: 'Online Sales & Customer Communication', org: 'Trust and Blessed Shopping Mall', desc: 'Online promotion and customer communication for a footwear business through WhatsApp business groups.' },
+  { date: '2021 – 2022', title: 'Medical Laboratory Scientist', org: 'ABII Specialist Polyclinic', desc: 'Sample collection, laboratory analysis and careful record-keeping.' },
 ];
 
 const education = [
@@ -262,7 +354,7 @@ const education = [
  */
 const certifications = [
   {
-    title: 'Youth Digital Safety and Child Protection',
+    title: 'Youth Digital Safety and Child Protection Ambassadors Program',
     org: 'AAGYW Cameroon, GLOWA and Community Green Engagement',
     date: 'June 2026',
     image: null,
@@ -279,14 +371,17 @@ module.exports = {
   owner,
   intro,
   currently,
+  pillars,
   facts,
   services,
   projects,
+  designCategories,
   designs,
   designTools,
   communications,
   skills,
   experience,
+  otherExperience,
   education,
   certifications,
 };

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1080x1080">
+<title>Who actually needs a website? — Junioura Creative WebDev</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  :root { --navy: #0F1D3F; --navy-2: #22346A; --yellow: #F4C21B; --paper: #F6F2EA; --muted: #4B5674; --line: #D8D1C2; }
+  .artboard { width: 1080px; height: 1080px; background: var(--paper); color: var(--navy); }
+
+  .top { position: absolute; left: 80px; top: 76px; right: 80px; display: flex; justify-content: space-between; align-items: center; }
+  .rule { width: 110px; height: 10px; background: var(--yellow); border-radius: 2px; }
+
+  h1 { position: absolute; left: 76px; top: 160px; width: 640px; font: 800 86px/0.98 'Manrope'; letter-spacing: -0.045em; }
+  h1 .hl { position: relative; display: inline-block; z-index: 0; }
+  h1 .hl::before { content: ''; position: absolute; left: -4px; right: -12px; top: 22px; bottom: 2px; background: var(--yellow); z-index: -1; }
+
+  /* simple browser drawing: a website, not a photo */
+  .browser { position: absolute; right: 80px; top: 176px; width: 270px; height: 238px; border: 2.5px solid var(--navy); border-radius: 14px; background: #fff; overflow: hidden; }
+  .browser .bar { height: 30px; border-bottom: 2.5px solid var(--navy); display: flex; align-items: center; gap: 7px; padding-left: 12px; }
+  .browser .bar i { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--navy); }
+  .browser .page { padding: 18px 18px 0; }
+  .browser .k { width: 64px; height: 8px; background: var(--yellow); border-radius: 4px; margin-bottom: 12px; }
+  .browser .t { font: 800 21px/1.05 'Manrope'; letter-spacing: -0.02em; }
+  .browser .s { font: 500 11px/1.35 'Inter'; color: var(--muted); margin: 8px 0 14px; }
+  .browser .b { display: inline-block; background: var(--navy); color: #fff; font: 700 11px/1 'Inter'; padding: 8px 12px; border-radius: 6px; }
+
+  .lead { position: absolute; left: 80px; top: 520px; font: 700 30px/1 'Manrope'; letter-spacing: -0.02em; }
+  .lead::after { content: ''; display: inline-block; width: 120px; height: 2px; background: var(--navy); vertical-align: middle; margin-left: 18px; }
+
+  .grid { position: absolute; left: 80px; right: 80px; top: 588px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+  .item { display: grid; grid-template-columns: 58px 1fr; column-gap: 20px; padding: 32px 0 36px; border-top: 2px solid var(--navy); }
+  .item:nth-child(n+3) { border-top-color: var(--line); border-top-width: 1.5px; }
+  .item .ico-wrap { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; }
+  .item:nth-child(1) .ico-wrap, .item:nth-child(4) .ico-wrap { background: var(--navy); color: var(--yellow); }
+  .item:nth-child(2) .ico-wrap, .item:nth-child(3) .ico-wrap { background: var(--yellow); color: var(--navy); }
+  .item svg { width: 30px; height: 30px; }
+  .item h2 { font: 800 21px/1.1 'Manrope'; letter-spacing: 0.01em; text-transform: uppercase; margin: 4px 0 8px; }
+  .item p { font: 400 19px/1.4 'Inter'; color: var(--muted); }
+
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; }
+  .foot .jcw-mark { background: var(--yellow); color: var(--navy); }
+  .foot .jcw-sub { color: #C9D0E4; }
+  .foot .tag { font: 600 19px/1 'Inter'; letter-spacing: 0.01em; }
+  .foot .tag::before { content: ''; display: block; width: 70px; height: 4px; background: var(--yellow); margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="top">
+    <span class="rule"></span>
+  </div>
+
+  <h1>Who actually needs a <span class="hl">website?</span></h1>
+
+  <div class="browser" aria-hidden="true">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="page">
+      <div class="k"></div>
+      <div class="t">Build Your Digital Presence</div>
+      <div class="s">Modern websites for businesses, professionals, and creators.</div>
+      <span class="b">Get Started</span>
+    </div>
+  </div>
+
+  <p class="lead">A website can be valuable for:</p>
+
+  <div class="grid">
+    <div class="item">
+      <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24"><path d="M4 9.5 5.5 4h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12.5V20h13v-7.5M10 20v-4.5h4V20"/></svg></div>
+      <div><h2>Businesses</h2><p>Showcase products, services &amp; contact information.</p></div>
+    </div>
+    <div class="item">
+      <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.8 3.4-6 7-6s6.4 2.2 7 6"/></svg></div>
+      <div><h2>Professionals</h2><p>Build your online presence and showcase your work.</p></div>
+    </div>
+    <div class="item">
+      <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.8c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11M21.5 9v5"/></svg></div>
+      <div><h2>Schools &amp; organizations</h2><p>Share programs, activities, events &amp; important information.</p></div>
+    </div>
+    <div class="item">
+      <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24"><circle cx="10" cy="7.5" r="3.4"/><path d="M3.5 19c.5-3.6 3.1-5.6 6.5-5.6 1 0 1.9.2 2.7.5M17.5 13l1.2 2.5 2.7.4-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.4z"/></svg></div>
+      <div><h2>Creators &amp; personal brands</h2><p>Organize your work, knowledge and digital presence.</p></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="jcw">
+      <div class="jcw-mark">JA</div>
+      <div><span class="jcw-name">Junioura</span><span class="jcw-sub">Creative WebDev</span></div>
+    </div>
+    <div class="tag">Learn. Build. Create. Grow.</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1080x1350">
+<title>Search smarter. Get better results.</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1080px 1350px; margin: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  :root { --navy: #0F1D3F; --yellow: #F4C21B; --paper: #F6F2EA; --muted: #4B5674; --line: #D8D1C2; --blue: #2F5BD3; }
+  .artboard { width: 1080px; height: 1350px; background: var(--paper); color: var(--navy); }
+
+  .top { position: absolute; left: 80px; top: 80px; font: 700 16px/1 'Inter'; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 16px; }
+  .top::before { content: ''; width: 46px; height: 4px; background: var(--yellow); }
+
+  h1 { position: absolute; left: 76px; top: 128px; font: 800 72px/1 'Manrope'; letter-spacing: -0.04em; width: 900px; }
+  h1 .num { display: block; font-size: 124px; line-height: .98; letter-spacing: -0.06em; }
+  h1 .num span { background: linear-gradient(transparent 58%, var(--yellow) 58% 90%, transparent 90%); }
+  h2 { position: absolute; left: 80px; top: 462px; font: 700 40px/1.1 'Manrope'; letter-spacing: -0.03em; color: var(--muted); }
+  h2 b { color: var(--navy); }
+
+  /* drawn search bar (no brand logos) */
+  .search { position: absolute; left: 80px; right: 80px; top: 540px; background: #fff; border: 2.5px solid var(--navy); border-radius: 18px; padding: 26px 30px 0; }
+  .field { display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--line); border-radius: 40px; padding: 16px 24px; font: 500 26px/1 'Inter'; }
+  .field svg { width: 28px; height: 28px; color: var(--blue); }
+  .tabs { display: flex; gap: 38px; padding: 18px 8px 0; font: 500 19px/1 'Inter'; color: var(--muted); }
+  .tabs span { padding-bottom: 16px; }
+  .tabs .on { color: var(--blue); border-bottom: 3px solid var(--blue); font-weight: 600; }
+
+  .note { position: absolute; left: 80px; right: 80px; top: 752px; }
+  .note strong { display: block; font: 800 30px/1.2 'Manrope'; letter-spacing: -0.02em; }
+  .note span { display: block; font: 400 23px/1.4 'Inter'; color: var(--muted); margin-top: 6px; }
+
+  .tips-label { position: absolute; left: 80px; top: 862px; font: 800 24px/1 'Manrope'; letter-spacing: .01em; text-transform: uppercase; }
+  .tips-label b { color: var(--navy); background: var(--yellow); padding: 2px 8px; }
+  .tips { position: absolute; left: 80px; right: 80px; top: 906px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2.5px solid var(--navy); }
+  .tips li { padding: 24px 20px 0 0; }
+  .tips li + li { padding-left: 20px; border-left: 1.5px solid var(--line); }
+  .tips .n { font: 800 44px/1 'Manrope'; color: var(--yellow); -webkit-text-stroke: 1.5px var(--navy); letter-spacing: -0.03em; }
+  .tips h3 { font: 700 21px/1.25 'Inter'; letter-spacing: -0.01em; margin: 14px 0 10px; }
+  .tips p { font: 400 17px/1.4 'Inter'; color: var(--muted); font-style: italic; }
+
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: var(--navy); color: #fff; display: flex; align-items: center; padding: 0 80px; }
+  .foot p { font: 800 52px/1 'Manrope'; letter-spacing: -0.035em; }
+  .foot p span { color: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="top" aria-hidden="true"></div>
+
+  <h1>Google gave you <span class="num"><span>10,000</span></span><span class="num"><span>results.</span></span></h1>
+  <h2>How do you find <b>the right answer?</b></h2>
+
+  <div class="search" aria-hidden="true">
+    <div class="field">how to create a website <svg class="ico" viewBox="0 0 24 24" style="stroke-width:2.4"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></div>
+    <div class="tabs"><span class="on">All</span><span>Videos</span><span>Images</span><span>Books</span><span>More ▾</span></div>
+  </div>
+
+  <div class="note">
+    <strong>Too many results can be confusing.</strong>
+    <span>But with smart search tips, you can find exactly what you need!</span>
+  </div>
+
+  <p class="tips-label">Here are <b>4</b> simple tips:</p>
+  <ol class="tips">
+    <li><span class="n">1</span><h3>Use specific keywords.</h3><p>e.g. “build a website with WordPress”</p></li>
+    <li><span class="n">2</span><h3>Use quotation marks for exact phrases.</h3><p>e.g. “digital literacy”</p></li>
+    <li><span class="n">3</span><h3>Use filters like Videos, Images or Tools.</h3></li>
+    <li><span class="n">4</span><h3>Check reliable sources.</h3><p>(official websites, trusted sites)</p></li>
+  </ol>
+
+  <div class="foot"><p>Search smarter. <span>Get better results.</span></p></div>
+</div>
+</body>
+</html>

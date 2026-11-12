@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1080x1080">
+<title>You use websites every day — Junioura Creative WebDev</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  @page { size: 1080px 1080px; margin: 0; }
+  html, body { width: 1080px; height: 1080px; overflow: hidden; }
+  :root { --ink: #0B1530; --ink-2: #16234A; --yellow: #F4C21B; --sky: #7FC8F8; --mist: #AEB8D0; }
+  .artboard { width: 1080px; height: 1080px; background: var(--ink); color: #fff; }
+
+  .top { position: absolute; left: 80px; right: 80px; top: 72px; display: flex; justify-content: space-between; align-items: center; }
+  .kicker { font: 700 16px/1 'Inter'; letter-spacing: .18em; text-transform: uppercase; color: var(--yellow); }
+  .jcw-mark { background: var(--yellow); color: var(--ink); }
+  .jcw-sub { color: var(--mist); }
+
+  h1 { position: absolute; left: 80px; top: 150px; width: 900px; font: 800 74px/1.0 'Manrope'; letter-spacing: -0.04em; }
+  h1 em { font-style: normal; color: var(--yellow); display: block; margin-top: 14px; font-size: 52px; line-height: 1.05; letter-spacing: -0.03em; }
+  h1 em span { color: #fff; }
+
+  .simple { position: absolute; left: 80px; top: 452px; width: 860px; }
+  .simple b { display: block; font: 700 16px/1 'Inter'; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); margin-bottom: 14px; }
+  .simple p { font: 400 27px/1.42 'Inter'; color: #E9EDF6; }
+
+  .three { position: absolute; left: 80px; right: 80px; top: 600px; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .three div { padding: 22px 28px 6px 0; border-top: 3px solid var(--c); }
+  .three div + div { padding-left: 28px; border-left: 1px solid rgba(255,255,255,.14); }
+  .three .n { font: 800 15px/1 'Manrope'; color: var(--c); letter-spacing: .06em; }
+  .three h2 { font: 800 30px/1 'Manrope'; letter-spacing: -0.01em; margin: 14px 0 12px; }
+  .three p { font: 400 19px/1.45 'Inter'; color: var(--mist); }
+
+  .part { position: absolute; left: 80px; top: 862px; width: 560px; }
+  .part b { display: block; font: 700 16px/1 'Inter'; letter-spacing: .18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; }
+  .part strong { display: block; font: 700 26px/1.25 'Manrope'; letter-spacing: -0.01em; }
+  .part span { display: block; font: 400 21px/1.4 'Inter'; color: var(--mist); }
+
+  .cta { position: absolute; right: 80px; top: 862px; width: 330px; padding-left: 30px; border-left: 3px solid var(--yellow); }
+  .cta strong { display: block; font: 800 23px/1.2 'Manrope'; letter-spacing: -0.01em; margin-bottom: 14px; }
+  .cta .f { display: block; font: 600 18px/1.3 'Inter'; color: var(--sky); }
+  .cta .t { display: block; font: 500 18px/1.3 'Inter'; color: #fff; margin-top: 6px; }
+
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: linear-gradient(90deg, var(--yellow) 0 33.3%, var(--sky) 33.3% 66.6%, #8BD17C 66.6%); }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="top">
+    <span class="kicker">Digital knowledge • 01</span>
+    <div class="jcw">
+      <div class="jcw-mark">JA</div>
+      <div><span class="jcw-name">Junioura</span><span class="jcw-sub">Creative WebDev</span></div>
+    </div>
+  </div>
+
+  <h1>You use websites<br>every day…<em>But do you really <span>know what a website is?</span></em></h1>
+
+  <div class="simple">
+    <b>Let’s make it simple.</b>
+    <p>A website is a place on the internet where people can find information, products, services, or content.</p>
+  </div>
+
+  <div class="three">
+    <div style="--c:#F4C21B"><span class="n">01</span><h2>Inform</h2><p>Tell people who you are, what you do and offer.</p></div>
+    <div style="--c:#7FC8F8"><span class="n">02</span><h2>Connect</h2><p>Help people contact you, enquire or book.</p></div>
+    <div style="--c:#8BD17C"><span class="n">03</span><h2>Grow</h2><p>Showcase your work, sell, share and reach more people.</p></div>
+  </div>
+
+  <div class="part">
+    <b>Here’s the interesting part:</b>
+    <strong>You may already be using websites</strong>
+    <span>without even thinking about them as “websites.”</span>
+  </div>
+
+  <div class="cta">
+    <strong>Do you actually need a website? →</strong>
+    <span class="f">Follow Junioura Creative WebDev</span>
+    <span class="t">Learn. Build. Create. Grow.</span>
+  </div>
+
+  <div class="bar"></div>
+</div>
+</body>
+</html>

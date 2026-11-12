@@ -82,11 +82,30 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ---------- Design gallery filters ---------- */
+  var filters = document.querySelectorAll('.filter');
+  var galleryItems = document.querySelectorAll('.gallery-item');
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.getAttribute('data-filter');
+      filters.forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      galleryItems.forEach(function (item) {
+        item.hidden = !(f === 'all' || item.getAttribute('data-category') === f);
+      });
+    });
+  });
+
   /* ---------- Design lightbox ---------- */
   var lightbox = document.querySelector('.lightbox');
   if (lightbox && typeof lightbox.showModal === 'function') {
     var lbImg = lightbox.querySelector('img');
-    var lbCap = lightbox.querySelector('.lightbox-caption');
+    var lbTitle = lightbox.querySelector('#lightbox-title');
+    var lbMeta = lightbox.querySelector('.lightbox-meta');
+    var lbDesc = lightbox.querySelector('.lightbox-desc');
     var opener = null;
 
     document.querySelectorAll('.gallery-open').forEach(function (btn) {
@@ -94,7 +113,9 @@
         opener = btn;
         lbImg.src = btn.getAttribute('data-full');
         lbImg.alt = btn.querySelector('img').alt;
-        lbCap.textContent = btn.getAttribute('data-caption');
+        lbTitle.textContent = btn.getAttribute('data-title');
+        lbMeta.textContent = btn.getAttribute('data-meta');
+        lbDesc.textContent = btn.getAttribute('data-desc');
         lightbox.showModal();
       });
     });
@@ -115,6 +136,18 @@
 
   /* ---------- Contact form ---------- */
   var form = document.querySelector('.contact-form');
+
+  // "Enquire" on a service pre-fills the subject, then the link scrolls to #contact
+  document.querySelectorAll('[data-subject]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var subject = form && form.elements.subject;
+      // only replace an empty subject or one filled by a previous "Enquire" click
+      if (subject && (!subject.value.trim() || subject.value.indexOf('Enquiry: ') === 0)) {
+        subject.value = 'Enquiry: ' + link.getAttribute('data-subject');
+      }
+    });
+  });
+
   if (form) {
     var errorBox = form.querySelector('.form-error');
     var fields = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));

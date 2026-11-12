@@ -70,7 +70,7 @@ test('no placeholder content, stock photos or skill percentages', () => {
 });
 
 test('every image referenced in the data exists', () => {
-  const imgs = [data.owner.photo.src, ...data.designs.map((d) => d.src)];
+  const imgs = [data.owner.photo.src, ...data.designs.map((d) => `images/designs/${d.slug}.webp`)];
   for (const p of data.projects) if (p.image) imgs.push(p.image);
   for (const c of data.certifications) if (c.image) imgs.push(c.image);
   for (const src of imgs) assert.ok(fs.existsSync(path.join(root, 'public', src)), `missing ${src}`);
