@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <div class="nav-container">
+
+    <div class="logo">
+      <div class="logo-mark"><%= owner.initials %></div>
+      <div class="logo-text">
+        <h3><%= owner.name.split(' ')[0] %></h3>
+        <span><%= owner.tagline %></span>
+      </div>
+    </div>
+
+    <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobileMenuBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#business">Business</a></li>
+      <li><a href="/contact" class="nav-cta">Let's Talk</a></li>
+    </ul>
+
+  </div>
+</nav>

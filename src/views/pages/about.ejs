@@ -1,0 +1,37 @@
+<section class="about-page section-reveal">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>My journey started with a deep curiosity about how the internet and digital systems work. This curiosity quickly grew into a passion for web development, where I began exploring how ideas can be transformed into functional and meaningful digital solutions.</p>
+                <p>Alongside my growth in technology, I developed a strong passion for teaching. As a trained educator, I discovered the power of simplifying complex concepts and helping others build practical skills through structured learning and guidance in the classroom.</p>
+                <p>At the same time, my entrepreneurial journey led me to build and manage a footwear business, where I gained real-world experience in product marketing, customer engagement, sales management, and online business operations.</p>
+            </div>
+            <div class="about-stats">
+                <% stats.forEach(stat => { %>
+                    <div class="stat-card">
+                        <span class="stat-number"><%= stat.number %></span>
+                        <span class="stat-label"><%= stat.label %></span>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="identities" class="identities section-reveal bg-light">
+    <div class="container">
+        <h2 class="section-title text-center">Professional Identities</h2>
+        <div class="identity-grid">
+            <% identities.forEach(id => { %>
+                <div class="identity-card">
+                    <div class="id-header">
+                        <i class="fa-solid <%= id.icon %>"></i>
+                        <h3><%= id.title %></h3>
+                    </div>
+                    <p class="id-desc"><%= id.desc %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>

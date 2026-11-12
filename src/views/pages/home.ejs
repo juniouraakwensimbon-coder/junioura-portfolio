@@ -1,0 +1,238 @@
+<!-- HERO SECTION -->
+<section id="hero" class="hero section-reveal">
+    <div class="hero-container">
+        <div class="hero-content">
+            <span class="greeting">Hi, I'm</span>
+            <h1 class="headline">Junioura <span>AKwensimbom</span></h1>
+            <p class="brand-statement">
+                Bridging Technology, Education, and Entrepreneurship. I build modern digital experiences, simplify learning for the next generation, and create real-world business solutions.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper">
+            <div class="hero-image-backdrop"></div>
+            <img src="/images/profile.jpg" alt="Junioura Akwensimbom" class="hero-image">
+        </div>
+    </div>
+</section>
+
+<!-- PERSONAL BRAND SUMMARY -->
+<section id="brand-summary" class="brand-summary section-reveal">
+    <div class="container text-center">
+        <h2 class="section-title">The Value I Bring</h2>
+        <div class="summary-grid">
+            <% brandSummary.forEach(item => { %>
+                <div class="summary-card">
+                    <i class="fa-solid <%= item.icon %> icon-highlight"></i>
+                    <h3><%= item.title %></h3>
+                    <p><%= item.text %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<!-- PERSONAL BRAND SUMMARY -->
+<section id="brand-summary" class="brand-summary section-reveal">
+    <div class="container text-center">
+        <h2 class="section-title">The Value I Bring</h2>
+        <div class="summary-grid">
+            <% brandSummary.forEach(item => { %>
+                <div class="summary-card">
+                    <i class="fa-solid <%= item.icon %> icon-highlight"></i>
+                    <h3><%= item.title %></h3>
+                    <p><%= item.text %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT ME -->
+<section id="about" class="about section-reveal bg-light">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="section-title text-left">My Journey</h2>
+                <p>My journey started with a deep curiosity about how the internet and digital systems work. This curiosity quickly grew into a passion for web development, where I began exploring how ideas can be transformed into functional and meaningful digital solutions.</p>
+                <p>Alongside my growth in technology, I developed a strong passion for teaching. As a trained educator, I discovered the power of simplifying complex concepts and helping others build practical skills through structured learning and guidance in the classroom.</p>
+                <p>At the same time, my entrepreneurial journey led me to build and manage a footwear business, where I gained real-world experience in product marketing, customer engagement, sales management, and online business operations.</p>
+            
+                <div class="mission-vision">
+                    <div class="mv-box">
+                        <h4><i class="fa-solid fa-bullseye"></i> Mission</h4>
+                        <p>To build impactful digital solutions, empower learners through practical and simplified education, and create value-driven business experiences that solve real-world problems.</p>
+                    </div>
+                    <div class="mv-box">
+                        <h4><i class="fa-solid fa-eye"></i> Vision</h4>
+                        <p>To become a multidisciplinary professional who bridges technology, education, and entrepreneurship, creating innovative solutions that inspire growth and opportunity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <% stats.forEach(stat => { %>
+                    <div class="stat-card">
+                        <span class="stat-number"><%= stat.number %></span>
+                        <span class="stat-label"><%= stat.label %></span>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROFESSIONAL IDENTITY -->
+<section id="identities" class="identities section-reveal">
+    <div class="container">
+        <h2 class="section-title text-center">My Professional Identities</h2>
+        <div class="identity-grid">
+            <% identities.forEach(id => { %>
+                <div class="identity-card">
+                    <div class="id-header">
+                        <i class="fa-solid <%= id.icon %>"></i>
+                        <h3><%= id.title %></h3>
+                    </div>
+                    <p class="id-desc"><%= id.desc %></p>
+                    <ul class="id-strengths">
+                        <% id.strengths.forEach(strength => { %>
+                            <li><i class="fa-solid fa-check"></i> <%= strength %></li>
+                        <% }) %>
+                    </ul>
+                    <div class="id-impact">
+                        <strong><%= id.impactLabel %>:</strong> <%= id.impact %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION & EXPERIENCE -->
+<section id="experience" class="timeline-section section-reveal bg-light">
+    <div class="container">
+        <div class="two-col-layout">
+            <div class="timeline-col">
+                <h2 class="section-title text-left"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+                <div class="timeline">
+                    <% education.forEach(item => { %>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date"><%= item.date %></span>
+                            <h3 class="timeline-title"><%= item.title %></h3>
+                            <h4 class="timeline-subtitle"><%= item.org %></h4>
+                            <p><%= item.desc %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="timeline-col">
+                <h2 class="section-title text-left"><i class="fa-solid fa-briefcase"></i> Experience</h2>
+                <div class="timeline">
+                    <% experience.forEach(item => { %>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date"><%= item.date %></span>
+                            <h3 class="timeline-title"><%= item.title %></h3>
+                            <h4 class="timeline-subtitle"><%= item.org %></h4>
+                            <p><%= item.desc %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills section-reveal">
+    <div class="container">
+        <h2 class="section-title text-center">Skills & Competencies</h2>
+        <div class="skills-wrapper">
+            <% skills.forEach(skill => { %>
+                <div class="skill-category">
+                    <h3><i class="fa-solid <%= skill.icon %>"></i> <%= skill.category %></h3>
+                    <div class="skill-tags">
+                        <% skill.tags.forEach(tag => { %>
+                            <span><%= tag %></span>
+                        <% }) %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="portfolio section-reveal bg-light">
+    <div class="container">
+        <h2 class="section-title text-center">Featured Projects</h2>
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="education">Education</button>
+            <button class="filter-btn" data-filter="business">Business</button>
+        </div>
+        <div class="portfolio-grid">
+            <% projects.forEach(project => { %>
+                <div class="portfolio-card" data-category="<%= project.category %>">
+                    <div class="portfolio-img">
+                        <img src="<%= project.image %>" alt="<%= project.title %>">
+                        <div class="portfolio-overlay">
+                            <% if (project.demo) { %>
+                                <a href="<%= project.demo %>" class="portfolio-link"><i class="fa-solid fa-link"></i> Demo</a>
+                            <% } %>
+                            <% if (project.code) { %>
+                                <a href="<%= project.code %>" class="portfolio-link"><i class="fa-brands fa-github"></i> Code</a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3><%= project.title %></h3>
+                        <p><%= project.desc %></p>
+                        <div class="tech-stack">
+                            <% project.stack.forEach(tech => { %>
+                                <span><%= tech %></span>
+                            <% }) %>
+                        </div>
+                        <div class="project-role"><strong>Role:</strong> <%= project.role %></div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- BUSINESS SECTION -->
+<section id="business" class="business-section section-reveal bg-dark text-white">
+    <div class="container">
+        <div class="business-content text-center">
+            <span class="badge">Business Spotlight</span>
+            <h2><%= business.name %></h2>
+            <p class="business-desc"><%= business.desc %></p>
+            <div class="offerings-row">
+                <% business.offerings.forEach(offering => { %>
+                    <div class="offering">
+                        <i class="fa-solid <%= offering.icon %>"></i>
+                        <h4><%= offering.label %></h4>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="lessons-learned">
+                <h3>Key Business Lessons</h3>
+                <div class="lessons-list">
+                    <% business.lessons.forEach(lesson => { %>
+                        <span><%= lesson %></span>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
