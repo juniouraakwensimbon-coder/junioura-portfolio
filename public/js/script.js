@@ -48,38 +48,26 @@
     .map(function (a) { return document.getElementById(a.hash.slice(1)); })
     .filter(Boolean);
 
-  if ('IntersectionObserver' in window && sections.length) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var hash = '#' + entry.target.id;
-        navLinks.forEach(function (a) {
-          if (entry.isIntersecting) {
-            if (a.hash === hash) a.setAttribute('aria-current', 'true');
-            else a.removeAttribute('aria-current');
-          } else if (a.hash === hash) {
-            // section left the middle of the screen (e.g. scrolled back to the hero)
-            a.removeAttribute('aria-current');
-          }
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- Reveal on scroll ---------- */
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var revealer = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    reveals.forEach(function (el) { revealer.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  // Exactly one link is marked: the section crossing a line 40% down the screen.
+  var ticking = false;
+  var markCurrent = function () {
+    ticking = false;
+    var y = window.innerHeight * 0.4;
+    var current = null;
+    sections.forEach(function (s) {
+      var r = s.getBoundingClientRect();
+      if (r.top <= y && r.bottom > y) current = s.id;
+    });
+    navLinks.forEach(function (a) {
+      if (current && a.hash === '#' + current) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  if (sections.length) {
+    markCurrent();
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(markCurrent); }
+    }, { passive: true });
   }
 
   /* ---------- Design gallery filters ---------- */

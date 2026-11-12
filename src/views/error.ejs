@@ -1,10 +1,9 @@
 <section class="section error-page" aria-labelledby="error-title">
   <div class="container">
-    <p class="section-label"><span><%= status %></span> Error</p>
-    <h1 id="error-title" class="section-title">Something went wrong.</h1>
-    <p class="section-intro"><%= message %></p>
+    <h1 id="error-title" class="section-title">Something went wrong</h1>
+    <p class="section-intro"><%= message %> (error <%= status %>)</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="<%= base %>">Back to the portfolio <%- include('partials/icon', { name: 'arrow' }) %></a>
+      <a class="btn btn-primary" href="<%= base %>">Back to the portfolio</a>
     </div>
   </div>
 </section>
