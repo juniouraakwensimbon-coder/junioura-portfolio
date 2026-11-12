@@ -170,7 +170,7 @@
   <div class="container">
     <div class="section-head section-head-row reveal">
       <div>
-        <p class="section-label"><span>04</span> Visual design &amp; content</p>
+        <p class="section-label"><span>04</span> Visual design</p>
         <h2 id="design-title" class="section-title">Designs that explain digital life simply.</h2>
       </div>
       <p class="section-intro">Posts from my digital literacy series. I write the message and design the visual, so the advice is easy to understand at a glance.</p>
@@ -204,11 +204,59 @@
   </dialog>
 </section>
 
+<%# ============================== DIGITAL COMMUNICATIONS ============================== %>
+<section class="section" id="communications" aria-labelledby="communications-title">
+  <div class="container">
+    <div class="section-head section-head-row reveal">
+      <div>
+        <p class="section-label"><span>05</span> Digital communications</p>
+        <h2 id="communications-title" class="section-title">Content that helps people use technology well.</h2>
+      </div>
+      <p class="section-intro"><%= communications.intro %></p>
+    </div>
+
+    <ol class="process">
+      <% communications.process.forEach((p, i) => { %>
+        <li class="process-step reveal">
+          <span class="process-num" aria-hidden="true"><%= String(i + 1).padStart(2, '0') %></span>
+          <h3><%= p.step %></h3>
+          <p class="process-skill"><%= p.skill %></p>
+          <p><%= p.text %></p>
+        </li>
+      <% }) %>
+    </ol>
+
+    <div class="comms-footer reveal">
+      <div class="comms-topics">
+        <h3 class="col-title">Topics I cover</h3>
+        <ul class="tag-list">
+          <% communications.topics.forEach(t => { %><li><%= t %></li><% }) %>
+        </ul>
+      </div>
+      <div class="comms-channels">
+        <h3 class="col-title">Follow the work</h3>
+        <ul class="channel-list">
+          <% owner.social.filter(s => s.name !== 'LinkedIn').forEach(s => { %>
+            <li>
+              <a href="<%= s.url %>" target="_blank" rel="noopener noreferrer">
+                <%- include('../partials/icon', { name: s.name.toLowerCase() }) %>
+                <span><strong><%= s.name %></strong><%= s.handle %></span>
+                <%- include('../partials/icon', { name: 'external', className: 'channel-arrow' }) %>
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%# ============================== SKILLS ============================== %>
-<section class="section" id="skills" aria-labelledby="skills-title">
+<section class="section section-white" id="skills" aria-labelledby="skills-title">
   <div class="container skills-grid">
     <div class="section-head reveal">
-      <p class="section-label"><span>05</span> Skills &amp; tools</p>
+      <p class="section-label"><span>06</span> Skills &amp; tools</p>
       <h2 id="skills-title" class="section-title">What I work with.</h2>
       <p class="section-intro">Grouped by how I use them in my work. I keep learning and adding to this list.</p>
     </div>
@@ -227,10 +275,10 @@
 </section>
 
 <%# ============================== BACKGROUND ============================== %>
-<section class="section section-white" id="background" aria-labelledby="background-title">
+<section class="section" id="background" aria-labelledby="background-title">
   <div class="container">
     <div class="section-head reveal">
-      <p class="section-label"><span>06</span> Background</p>
+      <p class="section-label"><span>07</span> Background</p>
       <h2 id="background-title" class="section-title">Experience, education and certificates.</h2>
     </div>
 
@@ -285,7 +333,7 @@
 <section class="section section-contact" id="contact" aria-labelledby="contact-title">
   <div class="container contact-grid">
     <div class="contact-intro reveal">
-      <p class="section-label"><span>07</span> Contact</p>
+      <p class="section-label"><span>08</span> Contact</p>
       <h2 id="contact-title" class="section-title">Let’s work together.</h2>
       <p class="section-intro">Need a website built or updated, content for your audience, or someone to teach digital skills? Send me a message. I usually reply by email or phone.</p>
 

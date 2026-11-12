@@ -659,7 +659,7 @@ html:not(.js) .header-inner { flex-wrap: wrap; }
 .panel-code .t { color: var(--plum-700); font-weight: 600; }
 .panel-code .a { color: var(--orange-text); }
 .panel-code .s { color: #6B4A12; }
-.panel-code .c { color: #8A7E8C; font-style: italic; }
+.panel-code .c { color: #685C6B; font-style: italic; }
 
 /* Teaching — orange */
 .panel-teach { background: var(--orange); color: var(--plum-900); }
@@ -852,6 +852,89 @@ html:not(.js) .header-inner { flex-wrap: wrap; }
   box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
 }
 @media (max-width: 560px) { .lightbox-close { top: -54px; right: 0; } }
+
+/* ---------- Digital communications ---------- */
+.process {
+  display: grid;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+@media (min-width: 640px) {
+  .process { grid-template-columns: 1fr 1fr; }
+  .process-step:nth-child(even) { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+  .process-step:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 1100px) { .process { grid-template-columns: repeat(5, 1fr); } }
+
+.process-step {
+  position: relative;
+  padding: 1.5rem 1.25rem 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 1100px) {
+  .process-step { border-bottom: 0; padding-right: 1.5rem; }
+  .process-step + .process-step { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+  /* small orange marker where each step meets the top rule */
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: 0;
+    width: 10px; height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .process-step + .process-step::before { left: 1.5rem; }
+}
+.process-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .85rem;
+  color: var(--orange-text);
+  margin-bottom: 1.1rem;
+}
+@media (min-width: 1100px) { .process-num { margin-top: .5rem; } }
+.process-step h3 {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: .2rem;
+}
+.process-skill {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .875rem;
+  color: var(--plum-700);
+  margin-bottom: .6rem;
+}
+.process-step p:last-child { margin: 0; color: var(--muted); font-size: var(--fs-small); }
+
+.comms-footer {
+  display: grid;
+  gap: 2.5rem 4rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (min-width: 900px) { .comms-footer { grid-template-columns: 7fr 5fr; } }
+.comms-footer .col-title { margin-bottom: 1.1rem; }
+
+.channel-list { display: grid; gap: .75rem; }
+.channel-list a {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .9rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.channel-list a:hover { border-color: var(--plum-900); }
+.channel-list a > .icon:first-child { width: 24px; height: 24px; color: var(--plum-900); }
+.channel-list a > span:not(.visually-hidden) { display: grid; flex: 1; min-width: 0; font-size: .875rem; color: var(--muted); overflow-wrap: anywhere; }
+.channel-list strong { font-family: var(--font-display); font-size: 1rem; color: var(--ink); }
+.channel-arrow { color: var(--orange-text); transition: transform .2s var(--ease); }
+.channel-list a:hover .channel-arrow { transform: translate(2px, -2px); }
 
 /* ---------- Skills ---------- */
 .skills-grid { display: grid; gap: 0 4rem; }

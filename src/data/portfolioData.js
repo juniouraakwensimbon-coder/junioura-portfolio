@@ -189,6 +189,19 @@ const designTools = [
   { name: 'Figma', use: 'Website and interface layouts — actively learning' },
 ];
 
+// Digital communications — how the content work is done
+const communications = {
+  intro: 'Through Junioura Creative WebDev I run an ongoing digital literacy channel on Facebook and TikTok. I handle every step myself, from choosing the topic to responding to the people who read it.',
+  process: [
+    { step: 'Plan', skill: 'Content planning and scheduling', text: 'Choosing useful topics and organising them into a content calendar so posts go out consistently.' },
+    { step: 'Write', skill: 'Caption writing', text: 'Short, clear captions in simple language that explain one practical idea at a time.' },
+    { step: 'Design', skill: 'Visual communication', text: 'Flyers and graphics that carry the main message at a glance, even before the caption is read.' },
+    { step: 'Publish', skill: 'Social media management', text: 'Posting and managing content across Facebook and TikTok.' },
+    { step: 'Engage', skill: 'Audience interaction', text: 'Responding to comments and questions so the content becomes a conversation.' },
+  ],
+  topics: ['Online safety and scams', 'Phone skills', 'Computer skills', 'Digital wellbeing', 'Web development basics'],
+};
+
 const skills = [
   { category: 'Web Development', tags: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'Elementor', 'Responsive Design', 'Website Management', 'Git and GitHub'] },
   { category: 'Design & Creative Tools', tags: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma'] },
@@ -271,6 +284,7 @@ module.exports = {
   projects,
   designs,
   designTools,
+  communications,
   skills,
   experience,
   education,
