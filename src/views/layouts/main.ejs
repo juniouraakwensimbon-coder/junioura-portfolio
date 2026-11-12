@@ -2,27 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= title %></title>
   <meta name="description" content="<%= metaDesc %>">
+  <meta name="author" content="<%= owner.name %>">
+  <meta name="theme-color" content="#2A0F2E">
+<% if (typeof noindex !== 'undefined' && noindex) { %>
+  <meta name="robots" content="noindex">
+<% } %>
+<% if (siteUrl) { %>
+  <link rel="canonical" href="<%= siteUrl %>">
+<% } %>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Site CSS -->
-  <link rel="stylesheet" href="/css/style.css">
+  <!-- Social previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= owner.name %> — <%= owner.roles.join(' · ') %>">
+  <meta property="og:description" content="<%= metaDesc %>">
+  <meta property="og:image" content="<%= absolute(owner.photo.src) %>">
+<% if (siteUrl) { %>
+  <meta property="og:url" content="<%= siteUrl %>">
+<% } %>
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="<%= asset('images/branding/favicon.svg') %>" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<%= asset('css/style.css') %>">
+
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <%- include('../partials/navbar') %>
 
-  <main>
+  <main id="main" tabindex="-1">
     <%- body %>
   </main>
 
   <%- include('../partials/footer') %>
 
-  <script src="/js/script.js"></script>
+  <script src="<%= asset('js/script.js') %>" defer></script>
 </body>
 </html>

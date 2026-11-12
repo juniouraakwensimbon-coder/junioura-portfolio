@@ -1,25 +1,28 @@
-<nav class="navbar">
-  <div class="nav-container">
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="wordmark" href="<%= isHome ? '#top' : base %>" aria-label="<%= owner.name %>, home">
+      <span class="wordmark-mark" aria-hidden="true"><%= owner.initials %></span>
+      <span class="wordmark-text">
+        <span class="wordmark-name"><%= owner.name %></span>
+        <span class="wordmark-role"><%= owner.roles.join(' · ') %></span>
+      </span>
+    </a>
 
-    <div class="logo">
-      <div class="logo-mark"><%= owner.initials %></div>
-      <div class="logo-text">
-        <h3><%= owner.name.split(' ')[0] %></h3>
-        <span><%= owner.tagline %></span>
-      </div>
-    </div>
-
-    <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobileMenuBtn">
-      <i class="fa-solid fa-bars"></i>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-open"><%- include('icon', { name: 'menu' }) %></span>
+      <span class="nav-toggle-close"><%- include('icon', { name: 'close' }) %></span>
+      <span class="visually-hidden">Menu</span>
     </button>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="/#about">About</a></li>
-      <li><a href="/#experience">Experience</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/#business">Business</a></li>
-      <li><a href="/contact" class="nav-cta">Let's Talk</a></li>
-    </ul>
-
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="<%= section('about') %>">About</a></li>
+        <li><a href="<%= section('work') %>">Work</a></li>
+        <li><a href="<%= section('design') %>">Design</a></li>
+        <li><a href="<%= section('skills') %>">Skills</a></li>
+        <li><a href="<%= section('background') %>">Background</a></li>
+        <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="<%= section('contact') %>">Get in touch</a></li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>

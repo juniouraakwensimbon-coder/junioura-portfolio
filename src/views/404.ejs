@@ -1,10 +1,11 @@
-<section class="error-section">
-    <div class="container text-center">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Page Not Found</h2>
-        <p class="error-message">The page you are looking for doesn't exist or has been moved.</p>
-        <div class="error-actions">
-            <a href="/" class="btn btn-primary">Back to Home</a>
-        </div>
+<section class="section error-page" aria-labelledby="error-title">
+  <div class="container">
+    <p class="section-label"><span>404</span> Page not found</p>
+    <h1 id="error-title" class="section-title">This page doesn’t exist.</h1>
+    <p class="section-intro">The link may be old or mistyped. Everything on this portfolio lives on one page.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="<%= base %>">Go to the portfolio <%- include('partials/icon', { name: 'arrow' }) %></a>
+      <a class="btn btn-outline" href="<%= section('contact') %>">Contact me</a>
     </div>
+  </div>
 </section>

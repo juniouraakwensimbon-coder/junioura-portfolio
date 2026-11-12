@@ -1,36 +1,35 @@
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-
-      <div class="footer-brand">
-        <h3><%= owner.initials %></h3>
-        <p>Bridging Education, Technology, and Entrepreneurship.</p>
-      </div>
-
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/#business">Business</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-social">
-        <h4>Connect</h4>
-        <div class="social-icons">
-          <a href="<%= owner.social.linkedin %>" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="<%= owner.social.github %>" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="<%= owner.social.twitter %>" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-          <a href="<%= owner.social.instagram %>" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </div>
-
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p class="footer-name"><%= owner.name %></p>
+      <p class="footer-role"><%= owner.roles.join(' · ') %></p>
+      <p class="footer-place"><%= owner.location %></p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; <%= year %> <%= owner.name %>. All Rights Reserved.</p>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <ul>
+        <li><a href="<%= section('about') %>">About</a></li>
+        <li><a href="<%= section('work') %>">Work</a></li>
+        <li><a href="<%= section('design') %>">Design</a></li>
+        <li><a href="<%= section('skills') %>">Skills</a></li>
+        <li><a href="<%= section('background') %>">Background</a></li>
+        <li><a href="<%= section('contact') %>">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <a href="mailto:<%= owner.email %>"><%= owner.email %></a>
+      <a href="tel:<%= owner.phoneHref %>"><%= owner.phone %></a>
+      <ul class="social-list" aria-label="Social profiles">
+        <% owner.social.forEach(s => { %>
+          <li><a href="<%= s.url %>" target="_blank" rel="noopener noreferrer" aria-label="<%= s.name %> (opens in a new tab)"><%- include('icon', { name: s.name.toLowerCase() }) %></a></li>
+        <% }) %>
+      </ul>
     </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; <%= year %> <%= owner.name %>. Built with Node.js, Express and EJS.</p>
+    <a class="back-to-top" href="#top">Back to top <%- include('icon', { name: 'up' }) %></a>
   </div>
 </footer>

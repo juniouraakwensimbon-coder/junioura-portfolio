@@ -1,224 +1,278 @@
 /**
  * src/data/portfolioData.js
  * Single source of truth for all portfolio content.
- * Swap this out with a database call when scaling up.
+ *
+ * Edit the text here and both the local server (npm run dev) and the
+ * static GitHub Pages build (npm run build) will update.
+ *
+ * Image paths are relative to the /public folder (no leading slash),
+ * e.g. 'images/projects/aagyw-cam-home.jpg'.
  */
 
 const owner = {
-  name:       'Junioura AKwensimbom',
-  initials:   'JA',
-  tagline:    'Developer • Teacher • Entrepreneur',
-  statement:  'Bridging Technology, Education, and Entrepreneurship. I build modern digital experiences, simplify learning for the next generation, and create real-world business solutions.',
-  email:      'juniouraakwensimbon@mail.com',
-  phone:      '+237 6790 161 49',
-  location:   'Cameroon',
-  photo:      '/images/profile.jpg',
-  social: {
-    linkedin:  '#',
-    github:    '#',
-    twitter:   '#',
-    instagram: '#',
+  name: 'Junioura Akwensimbom',
+  firstName: 'Junioura',
+  lastName: 'Akwensimbom',
+  initials: 'JA',
+  roles: ['Web Developer', 'Digital Communications', 'Educator'],
+  headline: 'I build and manage websites, create digital content and help people build practical digital skills.',
+  location: 'Bamenda, Cameroon',
+  email: 'juniouraakwensimbon@gmail.com',
+  phone: '+237 679 016 149',
+  phoneHref: '+237679016149',
+  photo: {
+    src: 'images/profile/junioura-akwensimbom.jpg',
+    width: 1080,
+    height: 719,
+    alt: 'Portrait of Junioura Akwensimbom smiling, wearing a red blouse',
   },
+  social: [
+    { name: 'LinkedIn', handle: 'Junioura Akwensimbom', url: 'https://www.linkedin.com/in/junioura-akwensimbom-156143295/' },
+    { name: 'Facebook', handle: 'Junioura Creative WebDev', url: 'https://www.facebook.com/share/18Zyvny6Wi' },
+    { name: 'TikTok', handle: '@juniouracreativewebdev', url: 'https://www.tiktok.com/@juniouracreativewebdev' },
+  ],
 };
 
-const stats = [
-  { number: '1+', label: 'Years Experience in Web Development' },
-  { number: '5+', label: 'Web & Business Projects Built' },
-  { number: '50+', label: 'Students Taught & Mentored' },
-  { number: '1',  label: 'Active Business Managed' },
+const intro = [
+  'I am Junioura Akwensimbom, a web developer and educator based in Bamenda, Cameroon.',
+  'I create digital content, manage websites, design visual materials, and help people build practical digital skills.',
+  'My work connects technology, communication, and learning. Through practical projects and teaching, I make information and digital tools easier to access and understand.',
 ];
 
-const brandSummary = [
+const currently = [
+  'Managing the AAGYW-CAM website',
+  'Creating digital literacy content for Junioura Creative WebDev',
+];
+
+const facts = [
+  { term: 'Based in', detail: 'Bamenda, Cameroon' },
+  { term: 'Studied', detail: 'BSc Biochemistry · DIPES II Biology, University of Bamenda' },
+  { term: 'Trained', detail: 'Web and Application Development, Nexinch' },
+  { term: 'Works with', detail: 'WordPress, Elementor, HTML, CSS, JavaScript, Canva, Adobe, Figma' },
+];
+
+// "What I do" — the four areas of work
+const services = [
   {
-    icon:  'fa-code-branch',
-    title: 'What I Do',
-    text:  'I design and develop responsive web applications, create structured learning experiences for students, and manage digital business activities including online product marketing and sales operations.',
+    title: 'Web Development',
+    summary: 'Building and looking after websites that are clear, responsive and easy to update.',
+    items: [
+      'Website development and management',
+      'WordPress and Elementor',
+      'HTML, CSS and JavaScript',
+      'Responsive layouts',
+      'Site structure and navigation',
+      'Forms, updates and maintenance',
+      'Usability improvements',
+    ],
   },
   {
-    icon:  'fa-lightbulb',
-    title: 'What Makes Me Unique',
-    text:  'My multidisciplinary background in web development, teaching, and entrepreneurship allows me to approach problems with practical technical skills, educational clarity, and real business understanding.',
+    title: 'Digital Communications',
+    summary: 'Planning and writing content that informs people and keeps an audience engaged.',
+    items: [
+      'Digital content creation',
+      'Social media management',
+      'Content planning and scheduling',
+      'Caption writing',
+      'Educational and digital literacy posts',
+      'Audience interaction',
+    ],
   },
   {
-    icon:  'fa-puzzle-piece',
-    title: 'The Problem I Solve',
-    text:  'I bridge the gap between technology, education, and business by building solutions that are not only functional, but also easy to understand, user-friendly, and applicable in real-world contexts.',
+    title: 'Visual Design',
+    summary: 'Designing flyers, educational graphics and social media visuals that communicate quickly.',
+    items: [
+      'Flyers and announcements',
+      'Educational graphics',
+      'Social media designs',
+      'Visual communication assets',
+      'Canva, Illustrator, Photoshop, Figma',
+    ],
+  },
+  {
+    title: 'Education',
+    summary: 'Teaching in simple language so that people can understand and use what they learn.',
+    items: [
+      'Classroom teaching and Biology education',
+      'Digital literacy',
+      'Beginner-friendly technology education',
+      'Web development learning support',
+      'Lesson planning, presentations and resources',
+    ],
   },
 ];
 
-const education = [
+/**
+ * Selected projects.
+ * - image: set to a real screenshot path (e.g. 'images/projects/aagyw-cam-home.jpg')
+ *   to replace the typographic panel.
+ * - links[].show: set to false to hide a link without deleting it.
+ */
+const projects = [
   {
-    date:     '2025 – 2026',
-    title:    'Web Development',
-    org:      'NEXINCH',
-    desc:     'Focused on both front-end and back-end development.',
+    slug: 'aagyw-cam',
+    title: 'AAGYW-CAM Website',
+    category: 'Web development',
+    role: 'Website development and management',
+    organisation: 'Association of Adolescent Girls and Young Women, Cameroon',
+    desc: 'I developed and currently manage the AAGYW-CAM website. I organise the content, structure the navigation, set up the forms, keep the layout working on phones and computers, and publish updates.',
+    scope: ['Content organisation', 'Navigation', 'Forms', 'Responsive presentation', 'Website updates', 'Website management'],
+    tools: ['WordPress', 'Elementor', 'Responsive design'],
+    panel: 'site',
+    image: null,
+    links: [
+      // The live site is temporarily hidden. Change show to true once
+      // aagyw-cam.org is serving the association's own website again.
+      { label: 'Visit aagyw-cam.org', url: 'https://aagyw-cam.org/', show: false },
+    ],
   },
   {
-    date:     '2023 – 2025',
-    title:    'DIPES II (Diploma of Secondary Teacher)',
-    org:      'University of BAMENDA',
-    desc:     'Pedagogy, instructional methods, classroom management, curriculum development, learner-centred teaching, student assessment and educational psychology.',
+    slug: 'junioura-creative-webdev',
+    title: 'Junioura Creative WebDev',
+    category: 'Digital communications · Content',
+    role: 'Creator, writer and designer',
+    organisation: 'Personal digital content and creative brand',
+    desc: 'My ongoing content brand on Facebook and TikTok. I plan, write and design posts that explain digital tools, online safety and web development in simple, practical language.',
+    scope: ['Digital literacy content', 'Web development content', 'Educational content', 'Flyer design', 'Caption writing', 'Content planning'],
+    tools: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Social media'],
+    panel: 'designs',
+    image: null,
+    links: [
+      { label: 'Facebook', url: 'https://www.facebook.com/share/18Zyvny6Wi', show: true },
+      { label: 'TikTok', url: 'https://www.tiktok.com/@juniouracreativewebdev', show: true },
+      { label: 'See the designs', url: '#design', show: true, internal: true },
+    ],
   },
   {
-    date:     '2020 – 2023',
-    title:    'BSc. in Biochemistry',
-    org:      'University of BAMENDA',
-    desc:     'Focused on Medical Laboratory Technology.',
+    slug: 'nexinch',
+    title: 'Web & Application Development Training',
+    category: 'Training · Internship',
+    role: 'Trainee',
+    organisation: 'Nexinch · One-year intensive programme',
+    desc: 'Hands-on training and internship experience building and maintaining websites. I worked through the full cycle: page structure, styling, interactivity, responsive behaviour, testing and ongoing maintenance.',
+    scope: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Responsive design', 'Testing', 'Website maintenance'],
+    tools: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript'],
+    panel: 'code',
+    image: null,
+    links: [],
   },
+  {
+    slug: 'teaching',
+    title: 'Teaching & Digital Skills',
+    category: 'Education',
+    role: 'Teacher and digital skills facilitator',
+    organisation: 'Classroom and community learning',
+    desc: 'Teaching is where I learned to explain things clearly. I teach Biology, support people learning digital skills and web development, and prepare lessons, presentations and learning resources.',
+    scope: ['Biology teaching', 'Digital skills support', 'Web development learning', 'Website management', 'Figma and design learning', 'Lesson planning', 'Presentations', 'Learning resources'],
+    tools: ['Lesson planning', 'Presentations', 'Microsoft Office', 'Canva'],
+    panel: 'teach',
+    image: null,
+    links: [],
+  },
+];
+
+// Design gallery — real work from the digital literacy series.
+// Files live in public/images/designs/. Add more by copying an entry.
+const designs = [
+  { src: 'images/designs/apps-and-productivity.webp', width: 900, height: 1125, title: 'More apps don’t always mean more productivity', topic: 'Digital wellbeing' },
+  { src: 'images/designs/prize-scam-awareness.webp', width: 900, height: 1350, title: 'You won a prize? Which competition did you enter?', topic: 'Online safety' },
+  { src: 'images/designs/mobile-data-usage.webp', width: 900, height: 1125, title: 'Who is eating your mobile data?', topic: 'Phone skills' },
+  { src: 'images/designs/fake-job-alert.webp', width: 900, height: 1350, title: 'Fake job alert: stop, check, verify', topic: 'Online safety' },
+  { src: 'images/designs/windows-screenshot-tip.webp', width: 900, height: 1125, title: 'Still photographing your computer screen?', topic: 'Computer skills' },
+  { src: 'images/designs/phone-battery-tips.webp', width: 900, height: 1125, title: 'Your phone battery dies before the day ends?', topic: 'Phone skills' },
+];
+
+const designTools = [
+  { name: 'Canva', use: 'Social media posts, educational graphics and quick layouts' },
+  { name: 'Adobe Illustrator', use: 'Flyers, vector graphics and print-ready layouts' },
+  { name: 'Adobe Photoshop', use: 'Photo editing and image composition' },
+  { name: 'Figma', use: 'Website and interface layouts — actively learning' },
+];
+
+const skills = [
+  { category: 'Web Development', tags: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'Elementor', 'Responsive Design', 'Website Management', 'Git and GitHub'] },
+  { category: 'Design & Creative Tools', tags: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma'] },
+  { category: 'Digital Communications', tags: ['Content Creation', 'Content Writing', 'Social Media Management', 'Content Planning', 'Digital Literacy', 'Audience Interaction'] },
+  { category: 'Education', tags: ['Teaching', 'Lesson Planning', 'Educational Content Development', 'Presentations', 'Digital Skills Support'] },
+  { category: 'Productivity', tags: ['Microsoft Office'] },
 ];
 
 const experience = [
   {
-    date:  '2025 – Present',
-    title: 'Web Developer',
-    org:   'NEXINCH',
-    desc:  'Hands-on experience in WordPress, UI/UX design, responsive front-end development, back-end system integration, and website management for e-commerce, portfolios, and business applications.',
+    date: 'Ongoing',
+    title: 'Website Development & Management',
+    org: 'AAGYW-CAM',
+    desc: 'Developed and manage the association’s website: content, navigation, forms, responsive presentation and updates.',
   },
   {
-    date:  '2023 – 2025',
-    title: 'Teacher',
-    org:   'G.B.H.S Bamendakwe',
-    desc:  'Classroom management, lesson planning, student engagement, and instructional delivery. Adapted teaching methods to diverse learners and created a supportive academic environment.',
+    date: 'Ongoing',
+    title: 'Creator & Content Designer',
+    org: 'Junioura Creative WebDev',
+    desc: 'Plan, write and design digital literacy and web development content for Facebook and TikTok.',
   },
   {
-    date:  '2021 – 2022',
+    date: '2025 – 2026',
+    title: 'Web & Application Development Trainee',
+    org: 'Nexinch',
+    desc: 'One-year intensive training with hands-on internship work in WordPress, Elementor, HTML, CSS, JavaScript, responsive design, testing and maintenance.',
+  },
+  {
+    date: '2023 – 2025',
+    title: 'Biology Teacher',
+    org: 'G.B.H.S Bamendakwe',
+    desc: 'Lesson planning, classroom management, student engagement and instructional delivery, adapting methods to different learners.',
+  },
+  {
+    date: 'Ongoing',
+    title: 'Online Sales & Customer Communication',
+    org: 'Trust and Blessed Shopping Mall',
+    desc: 'Manage online promotion and customer communication for a footwear business through WhatsApp business groups.',
+  },
+  {
+    date: '2021 – 2022',
     title: 'Medical Laboratory Scientist',
-    org:   'ABII SPECIALIST POLYCLINIC',
-    desc:  'Practical experience in blood testing, sample collection, laboratory analysis, and diagnostic procedures, with precision record-keeping.',
+    org: 'ABII Specialist Polyclinic',
+    desc: 'Sample collection, laboratory analysis and careful record-keeping.',
   },
 ];
 
-const identities = [
-  {
-    icon:   'fa-laptop-code',
-    title:  'Web Developer',
-    desc:   'I design and develop responsive websites and web applications that combine clean user interfaces with functional back-end systems.',
-    strengths: [
-      'Front-end development (HTML, CSS, JavaScript)',
-      'Back-end development (Node.js, Express)',
-      'UI/UX structure and implementation',
-      'Website development and maintenance',
-    ],
-    impact: 'Building functional and user-friendly web solutions for personal, educational, and business use.',
-    impactLabel: 'Focus',
-  },
-  {
-    icon:   'fa-chalkboard-user',
-    title:  'Educator',
-    desc:   'I teach in a secondary school environment while developing structured approaches to simplify complex concepts into clear, understandable lessons.',
-    strengths: [
-      'Lesson planning and curriculum structuring',
-      'Classroom management and student engagement',
-      'Academic mentorship and guidance',
-      'Simplifying complex topics for learners',
-    ],
-    impact: 'Improved student understanding and participation through structured and interactive teaching methods.',
-    impactLabel: 'Impact',
-  },
-  {
-    icon:   'fa-chart-line',
-    title:  'Entrepreneur',
-    desc:   'I manage a footwear business — Trust and Blessed Shopping Mall — handling online marketing, customer engagement, and product sales.',
-    strengths: [
-      'WhatsApp business group management',
-      'Online product marketing and sales',
-      'Customer relationship management',
-      'Product listing and digital promotion',
-    ],
-    impact: 'Growing a sustainable online footwear business through digital platforms and customer trust.',
-    impactLabel: 'Focus',
-  },
+const education = [
+  { title: 'DIPES II', field: 'Biology', org: 'University of Bamenda', date: '2025' },
+  { title: 'Bachelor of Science', field: 'Biochemistry', org: 'University of Bamenda', date: '2023' },
+  { title: 'Web and Application Development', field: 'One-year intensive training', org: 'Nexinch', date: '2025 – 2026' },
 ];
 
-const skills = [
-  {
-    icon: 'fa-code',
-    category: 'Technical',
-    tags: ['JavaScript (ES6+)', 'Node.js', 'Express.js', 'React.js', 'HTML5/CSS3', 'EJS', 'SQL/NoSQL', 'Git & GitHub', 'Python'],
-  },
-  {
-    icon: 'fa-person-chalkboard',
-    category: 'Teaching',
-    tags: ['Lesson Planning', 'Classroom Management', 'Student Engagement', 'Curriculum Development', 'Assessment & Evaluation', 'Instructional Delivery', 'Educational Mentorship', 'Learner-Centred Teaching'],
-  },
-  {
-    icon: 'fa-building-columns',
-    category: 'Business',
-    tags: ['E-commerce Sales Management', 'Social Media Promotion', 'Digital Marketing', 'Product Strategy', 'Customer Experience', 'Product Listing & Advertising'],
-  },
-  {
-    icon: 'fa-users',
-    category: 'Soft Skills',
-    tags: ['Problem Solving', 'Adaptability', 'Leadership', 'Time Management', 'Communication'],
-  },
-];
-
-const projects = [
-  {
-    id:       1,
-    title:    'NextGen E-commerce',
-    category: 'web',
-    image:    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800',
-    desc:     'A full-stack e-commerce platform with real-time inventory and Stripe payment integration.',
-    stack:    ['React', 'Node.js', 'MongoDB'],
-    role:     'Lead Full-stack Developer',
-    demo:     '#',
-    code:     '#',
-  },
-  {
-    id:       2,
-    title:    'CodeLearn LMS',
-    category: 'education',
-    image:    'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800',
-    desc:     'A custom Learning Management System built for local coding bootcamps to track student progress.',
-    stack:    ['Vue.js', 'Firebase'],
-    role:     'Creator & Curriculum Designer',
-    demo:     '#',
-    code:     null,
-  },
-  {
-    id:       3,
-    title:    'Junioura Footwear Store',
-    category: 'business',
-    image:    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800',
-    desc:     'The official online storefront for my footwear business, with dynamic filtering and cart management.',
-    stack:    ['Shopify', 'Custom CSS/JS'],
-    role:     'Founder & Developer',
-    demo:     '#',
-    code:     null,
-  },
-];
-
+/**
+ * Certifications.
+ * image: set to a certificate image path in public/images/certificates/
+ * (e.g. 'images/certificates/youth-digital-safety.jpg') to show a "View certificate" link.
+ */
 const certifications = [
-  { icon: 'fa-award',       title: 'DIPES II (Diploma of Secondary Teacher)',  period: '2023 – 2025' },
-  { icon: 'fa-certificate', title: 'BSc. in Biochemistry',                      period: '2020 – 2023' },
-  { icon: 'fa-trophy',      title: 'Web Development (NEXINCH)',                 period: '2025 – Present' },
+  {
+    title: 'Youth Digital Safety and Child Protection',
+    org: 'AAGYW Cameroon, GLOWA and Community Green Engagement',
+    date: 'June 2026',
+    image: null,
+  },
+  {
+    title: 'Bloom Summit 2026',
+    org: 'Purpose in Action · “Dare to Create” · Bamenda',
+    date: 'July 4–5, 2026',
+    image: null,
+  },
 ];
-
-const business = {
-  name:   'Trust and Blessed Shopping Mall',
-  desc:   'At Trust and Blessed, we provide stylish and comfortable footwear for all ages — from sneakers and sandals to office shoes and heels — with doorstep delivery for your convenience. Every pair is carefully selected, clean, fresh, and well-packaged because we believe your shopping experience should feel special.',
-  offerings: [
-    { icon: 'fa-gem',       label: 'Premium Quality' },
-    { icon: 'fa-truck-fast',label: 'Nationwide Delivery' },
-    { icon: 'fa-headset',   label: '24/7 Support' },
-  ],
-  lessons: [
-    'Customer retention is cheaper than acquisition.',
-    'A clean UX directly impacts online sales.',
-    'Adaptability is the most valuable business asset.',
-  ],
-};
 
 module.exports = {
   owner,
-  stats,
-  brandSummary,
-  education,
-  experience,
-  identities,
-  skills,
+  intro,
+  currently,
+  facts,
+  services,
   projects,
+  designs,
+  designTools,
+  skills,
+  experience,
+  education,
   certifications,
-  business,
 };

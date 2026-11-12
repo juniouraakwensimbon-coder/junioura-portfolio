@@ -1,124 +1,75 @@
-
 const nodemailer = require('nodemailer');
 const { validationResult } = require('express-validator');
-const data = require('../data/portfolioData');
+const { siteContext } = require('../lib/siteContext');
 
-const base = {
-  owner:  data.owner,
-  year:   new Date().getFullYear(),
+const page = {
+  title: 'Junioura Akwensimbom — Web Developer · Digital Communications · Educator',
+  metaDesc:
+    'Junioura Akwensimbom is a web developer, digital communicator and educator in Bamenda, Cameroon, building websites, creating digital content and teaching practical digital skills.',
 };
+
+function renderHome(res, contact, status = 200) {
+  const ctx = siteContext({ isHome: true });
+  res.status(status).render('pages/home', {
+    ...ctx,
+    ...page,
+    contact: { ...ctx.contact, ...contact },
+  });
+}
+
+const escapeHtml = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 // GET /
-exports.home = (req, res) => {
-  res.render('pages/home', {
-    ...base,
-    title:          `${data.owner.name} — Developer, Teacher, Entrepreneur`,
-    metaDesc:       'Portfolio of Junioura AKwensimbom. Web Developer, Educator, and Entrepreneur based in Cameroon.',
-    stats:          data.stats,
-    brandSummary:   data.brandSummary,
-    education:      data.education,
-    experience:     data.experience,
-    identities:     data.identities,
-    skills:         data.skills,
-    projects:       data.projects,
-    certifications: data.certifications,
-    business:       data.business,
-  });
-};
+exports.home = (req, res) => renderHome(res, {});
 
-// GET /about
-exports.about = (req, res) => {
-  res.render('pages/about', {
-    ...base,
-    title:      'About — Junioura AKwensimbom',
-    metaDesc:   'Learn more about Junioura AKwensimbom\'s journey, mission, and professional identity.',
-    identities: data.identities,
-    stats:      data.stats,
-    education:  data.education,
-    experience: data.experience,
-  });
-};
+// Old multi-page URLs now point to sections of the single page.
+exports.redirectTo = (id) => (req, res) => res.redirect(301, `/#${id}`);
 
-// GET /projects
-exports.projects = (req, res) => {
-  const { category } = req.query;
-  const filtered = category && category !== 'all'
-    ? data.projects.filter(p => p.category === category)
-    : data.projects;
-
-  res.render('pages/projects', {
-    ...base,
-    title:    'Projects — Junioura AKwensimbom',
-    metaDesc: 'Explore web development, education, and business projects by Junioura AKwensimbom.',
-    projects: filtered,
-    active:   category || 'all',
-  });
-};
-
-// GET /contact
-exports.contactPage = (req, res) => {
-  res.render('pages/contact', {
-    ...base,
-    title:    'Contact — Junioura AKwensimbom',
-    metaDesc: 'Get in touch with Junioura AKwensimbom for collaboration, development, or business enquiries.',
-    errors:   [],
-    values:   {},
-    success:  false,
-  });
-};
-
-// POST /contact
+// POST /contact — only available when running the Node server locally.
+// The GitHub Pages version uses the visitor's email app instead.
 exports.sendContact = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).render('pages/contact', {
-      ...base,
-      title:   'Contact — Junioura AKwensimbom',
-      metaDesc:'Get in touch with Junioura AKwensimbom.',
-      errors:  errors.array(),
-      values:  req.body,
-      success: false,
-    });
+    return renderHome(res, { errors: errors.array(), values: req.body }, 422);
   }
 
   const { name, email, subject, message } = req.body;
 
+  if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
+    console.error('[Mail] MAIL_USER / MAIL_PASS are not set in .env — message not sent.');
+    return renderHome(res, { status: 'failed', values: req.body }, 503);
+  }
+
   try {
-    // ── Configure transporter from .env ─────────────────────────────────
     const transporter = nodemailer.createTransport({
-      host:   process.env.MAIL_HOST   || 'smtp.gmail.com',
-      port:   process.env.MAIL_PORT   || 587,
+      host: process.env.MAIL_HOST || 'smtp.gmail.com',
+      port: Number(process.env.MAIL_PORT) || 587,
       secure: false,
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
+      auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
     });
 
     await transporter.sendMail({
-      from:    `"${name}" <${email}>`,
-      to:      process.env.MAIL_TO || data.owner.email,
+      // Gmail rejects mail "from" other addresses, so send from your own
+      // account and set Reply-To to the visitor.
+      from: `"Portfolio contact form" <${process.env.MAIL_USER}>`,
+      replyTo: `"${name.replace(/"/g, '')}" <${email}>`,
+      to: process.env.MAIL_TO || process.env.MAIL_USER,
       subject: `[Portfolio] ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
       html: `
         <h2>New message from your portfolio</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr/>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+        <hr>
+        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
       `,
     });
   } catch (err) {
-    // Silently log — don't expose mail config errors to visitors
     console.error('[Mail error]', err.message);
+    return renderHome(res, { status: 'failed', values: req.body }, 502);
   }
 
-  res.render('pages/contact', {
-    ...base,
-    title:   'Contact — Junioura AKwensimbom',
-    metaDesc:'Get in touch with Junioura AKwensimbom.',
-    errors:  [],
-    values:  {},
-    success: true,
-  });
+  return renderHome(res, { status: 'sent' });
 };

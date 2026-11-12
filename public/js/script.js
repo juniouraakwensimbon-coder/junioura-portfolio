@@ -1,78 +1,176 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const revealElements = document.querySelectorAll('.section-reveal');
-    const revealCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    };
-    const revealOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filterValue = btn.getAttribute('data-filter');
-            portfolioCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'flex';
-                    card.style.opacity = '0';
-                    setTimeout(() => {
-                        card.style.transition = 'opacity 0.4s ease';
-                        card.style.opacity = '1';
-                    }, 50);
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
+/* Junioura Akwensimbom — portfolio interactions
+   Everything here is progressive: the page works without JavaScript. */
+(function () {
+  'use strict';
 
-    if(mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.className = 'fa-solid fa-xmark';
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.background = 'rgba(255, 255, 255, 0.98)';
-                navLinks.style.padding = '20px 0';
-                navLinks.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
-            } else {
-                icon.className = 'fa-solid fa-bars';
-                navLinks.style.display = '';
-            }
-        });
-    }
+  var header = document.querySelector('.site-header');
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
 
-    // --- 4. Navbar Background on Scroll ---
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            navbar.style.boxShadow = 'none';
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+  /* ---------- Mobile menu ---------- */
+  function setMenu(open) {
+    if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
+  }
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (toggle.getAttribute('aria-expanded') === 'true' && !header.contains(e.target)) setMenu(false);
+    });
+    window.matchMedia('(min-width: 960px)').addEventListener('change', function (mq) {
+      if (mq.matches) setMenu(false);
+    });
+  }
+
+  /* ---------- Header border once the page scrolls ---------- */
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ---------- Highlight the current section in the nav ---------- */
+  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href*="#"]:not(.btn)')) : [];
+  var sections = navLinks
+    .map(function (a) { return document.getElementById(a.hash.slice(1)); })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var hash = '#' + entry.target.id;
+        navLinks.forEach(function (a) {
+          if (entry.isIntersecting) {
+            if (a.hash === hash) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          } else if (a.hash === hash) {
+            // section left the middle of the screen (e.g. scrolled back to the hero)
+            a.removeAttribute('aria-current');
+          }
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
         }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    reveals.forEach(function (el) { revealer.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Design lightbox ---------- */
+  var lightbox = document.querySelector('.lightbox');
+  if (lightbox && typeof lightbox.showModal === 'function') {
+    var lbImg = lightbox.querySelector('img');
+    var lbCap = lightbox.querySelector('.lightbox-caption');
+    var opener = null;
+
+    document.querySelectorAll('.gallery-open').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        opener = btn;
+        lbImg.src = btn.getAttribute('data-full');
+        lbImg.alt = btn.querySelector('img').alt;
+        lbCap.textContent = btn.getAttribute('data-caption');
+        lightbox.showModal();
+      });
+    });
+    // Click on the dark backdrop closes it
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) lightbox.close();
+    });
+    lightbox.addEventListener('close', function () {
+      lbImg.removeAttribute('src');
+      if (opener) opener.focus();
+    });
+  } else {
+    // Very old browsers: open the image directly
+    document.querySelectorAll('.gallery-open').forEach(function (btn) {
+      btn.addEventListener('click', function () { window.open(btn.getAttribute('data-full'), '_blank', 'noopener'); });
+    });
+  }
+
+  /* ---------- Contact form ---------- */
+  var form = document.querySelector('.contact-form');
+  if (form) {
+    var errorBox = form.querySelector('.form-error');
+    var fields = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));
+
+    var labelFor = function (el) {
+      var l = form.querySelector('label[for="' + el.id + '"]');
+      return l ? l.textContent.trim() : el.name;
+    };
+
+    var validate = function () {
+      var firstInvalid = null;
+      var messages = [];
+      fields.forEach(function (el) {
+        el.value = el.value.trim() ? el.value : '';
+        var ok = el.checkValidity();
+        el.setAttribute('aria-invalid', String(!ok));
+        if (!ok) {
+          if (!firstInvalid) firstInvalid = el;
+          if (el.validity.valueMissing) messages.push(labelFor(el) + ' is required.');
+          else if (el.validity.typeMismatch) messages.push('Please enter a valid email address.');
+          else if (el.validity.tooShort) messages.push(labelFor(el) + ' needs at least ' + el.minLength + ' characters.');
+          else messages.push(labelFor(el) + ' is not valid.');
+        }
+      });
+      if (firstInvalid) {
+        errorBox.textContent = messages.join(' ');
+        errorBox.hidden = false;
+        firstInvalid.focus();
+        return false;
+      }
+      errorBox.hidden = true;
+      return true;
+    };
+
+    fields.forEach(function (el) {
+      el.addEventListener('input', function () {
+        if (el.getAttribute('aria-invalid') === 'true' && el.checkValidity()) el.setAttribute('aria-invalid', 'false');
+      });
     });
 
-});
+    form.addEventListener('submit', function (e) {
+      if (!validate()) { e.preventDefault(); return; }
+
+      // Static (GitHub Pages) version: compose an email in the visitor's mail app
+      var to = form.getAttribute('data-mailto');
+      if (to) {
+        e.preventDefault();
+        var v = function (n) { return form.elements[n].value.trim(); };
+        var body = v('message') + '\n\n— ' + v('name') + '\n' + v('email');
+        window.location.href = 'mailto:' + to +
+          '?subject=' + encodeURIComponent('[Portfolio] ' + v('subject')) +
+          '&body=' + encodeURIComponent(body);
+        errorBox.textContent = 'Your email app should open with the message ready. If nothing happens, email ' + to + ' directly.';
+        errorBox.hidden = false;
+        errorBox.style.color = 'inherit';
+      }
+    });
+  }
+})();
