@@ -188,7 +188,7 @@ const designCategories = [
 ];
 
 const designs = [
-  { slug: 'build-design-grow', category: 'brand', width: 1000, height: 1415, title: 'Build. Design. Grow.', client: 'Personal brand', format: 'A4 flyer', desc: 'A personal services flyer in my own plum and orange identity, built around one strong typographic statement.' },
+  { slug: 'build-design-grow', category: 'brand', width: 1000, height: 1415, title: 'Build. Design. Grow.', client: 'Personal brand', format: 'A4 flyer', desc: 'A personal services flyer in my own navy and teal identity, built around one strong typographic statement.' },
   { slug: 'search-smarter', category: 'literacy', width: 1000, height: 1250, title: 'Search smarter. Get better results.', client: 'Digital literacy series', format: 'Social media post', desc: 'Four practical search tips with examples, built around a simple drawn search bar.' },
   { slug: 'who-needs-a-website', category: 'web', width: 1000, height: 1000, title: 'Who actually needs a website?', client: 'Junioura Creative WebDev', format: 'Social media post', desc: 'Explains who benefits from a website: businesses, professionals, schools and creators. A simple drawn website replaces stock imagery.' },
   { slug: 'password-first-defence', category: 'literacy', width: 1400, height: 933, title: 'Your password is your first line of defence', client: 'Tech & Education · Digital Safety Awareness', format: 'Landscape post', desc: 'Four account-security habits in a calm two-by-two layout, with a flat shield graphic carrying the message.' },
