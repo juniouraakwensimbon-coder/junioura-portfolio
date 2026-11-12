@@ -1,0 +1,11 @@
+<%#
+  Replaceable image placeholder. Clearly not a real image.
+  shape: 'portrait' (4:5), 'wide' (16:10) or 'cert' (A4 landscape)
+  shortLabel (optional): shown instead of the full label on small thumbnails
+  Usage: include('../partials/placeholder', { label: 'Replace with project screenshot', shape: 'wide', hint: '...', tone: 'light' })
+%><div class="placeholder placeholder-<%= typeof tone !== 'undefined' ? tone : 'light' %> ratio-<%= shape %><%= typeof shortLabel !== 'undefined' ? ' has-short' : '' %>" role="img" aria-label="Placeholder: <%= label %>">
+  <%- include('icon', { name: 'image', className: 'placeholder-icon' }) %>
+  <span class="placeholder-label" aria-hidden="true"><%= label %></span>
+  <% if (typeof shortLabel !== 'undefined') { %><span class="placeholder-short" aria-hidden="true"><%= shortLabel %></span><% } %>
+  <% if (typeof hint !== 'undefined' && hint) { %><span class="placeholder-hint" aria-hidden="true"><%= hint %></span><% } %>
+</div>

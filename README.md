@@ -85,11 +85,19 @@ $env:BASE_PATH="/junioura-akwensimbom-portfolio/"; npm run build; npm run previe
 
 ## Updating the content
 
-Almost everything is edited in **`src/data/portfolioData.js`**:
+Almost everything is edited in **`src/data/portfolioData.js`**. Every missing image currently shows a clearly labelled placeholder. To replace one, save the real file and set its path:
 
-- **Projects:** to show a real screenshot instead of the typographic panel, save the image in `public/images/projects/` and set `image: 'images/projects/<file>.jpg'` on that project.
+| Placeholder | Save the file in | Then set |
+| --- | --- | --- |
+| Personal Portrait – Replace with Approved Photograph (About) | `public/images/profile/` | `owner.aboutPhoto: 'images/profile/<file>.jpg'` |
+| Replace with project screenshot: AAGYW-CAM | `public/images/projects/` | `image:` on the `aagyw-cam` project |
+| Replace with project screenshot: Nexinch | `public/images/projects/` | `image:` on the `nexinch` project |
+| Certificate Image – Replace with Original Certificate | `public/images/certificates/` | `image:` on that entry in `credentials` |
+
+Other updates:
+
 - **AAGYW-CAM link:** this is hidden for now. Set `show: true` on its link once `aagyw-cam.org` is serving the association's own site again.
-- **Certificates:** save the image in `public/images/certificates/` and set `image:` on the certificate. A "View certificate" link then appears.
+- **Experience:** entries are listed most recent first. The G.B.H.S website project has no date yet, so add it in `date:`.
 - **Design gallery:** add a web-sized image (about 1000 px wide, `.webp`) named `<slug>.webp` to `public/images/designs/` and add an entry to `designs`. Editable flyer sources are in `design-studio/`.
 
 Run `npm test` after any change to catch broken links or missing images.
