@@ -123,7 +123,7 @@ main:focus { outline: none; }
 .btn-ghost:hover { background: rgba(255, 255, 255, .1); border-color: var(--white); }
 .btn-outline { border-color: var(--navy); color: var(--navy); }
 .btn-outline:hover { background: var(--navy); color: var(--white); }
-.site-header .btn-primary { background: var(--muted-teal); border-color: var(--muted-teal); color: var(--white); }
+.site-header .btn-primary { background: var(--muted-teal); border-color: var(--muted-teal); color: var(--slate-blue); }
 .site-header .btn-primary:hover { background: var(--soft-white); border-color: var(--soft-white); color: var(--slate-blue); }
 .hero .btn-primary { background: var(--slate-blue); border-color: var(--slate-blue); color: var(--white); }
 .hero .btn-primary:hover { background: var(--teal); border-color: var(--teal); }
