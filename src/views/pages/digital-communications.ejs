@@ -1,0 +1,112 @@
+<%
+  const commsExperience = experience.filter(e => e.areas.includes('comms'));
+  const commsCreds = credentials.filter(c => c.areas.includes('comms'));
+  const commsDocs = documents.filter(d => d.area === 'comms');
+%>
+<%- include('../partials/page-hero', { heading: 'Digital Communications', intro: comms.intro, jumps: [
+  { id: 'skills', label: 'Skills and tools' }, { id: 'samples', label: 'Work samples' },
+  { id: 'platforms', label: 'Platforms' }, { id: 'experience', label: 'Experience' }, { id: 'certificates', label: 'Certificates' } ] }) %>
+
+<section class="section section-white" id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="skills-title" class="section-title">Skills and tools</h2>
+      <p class="section-intro">How I plan, write, design and manage content.</p>
+    </div>
+    <%- include('../partials/skill-groups', { groups: comms.skills }) %>
+  </div>
+</section>
+
+<section class="section section-cool" id="samples" aria-labelledby="samples-title">
+  <div class="container">
+    <div class="section-head section-head-split">
+      <div>
+        <h2 id="samples-title" class="section-title">Work samples</h2>
+        <p class="section-intro">Flyers and social media designs. Select any design to see it larger.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter designs">
+        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
+        <% designCategories.forEach(c => { %>
+          <button type="button" class="filter" data-filter="<%= c.id %>" aria-pressed="false"><%= c.label %></button>
+        <% }) %>
+      </div>
+    </div>
+
+    <ul class="gallery" aria-label="Designs">
+      <% designs.forEach(d => { const cat = designCategories.find(c => c.id === d.category); %>
+        <li class="gallery-item" data-category="<%= d.category %>">
+          <button class="gallery-open" type="button"
+                  data-full="<%= asset('images/designs/' + d.slug + '.webp') %>"
+                  data-title="<%= d.title %>" data-meta="<%= d.format %> · <%= d.platform %>" data-desc="Purpose: <%= d.purpose %>. My contribution: <%= d.contribution.toLowerCase() %>.">
+            <img src="<%= asset('images/designs/' + d.slug + '.webp') %>" width="<%= d.width %>" height="<%= d.height %>" alt="<%= d.title %>, <%= d.format.toLowerCase() %> for <%= d.platform %>" loading="lazy">
+            <span class="visually-hidden">View larger</span>
+          </button>
+          <p class="gallery-cat"><%= cat.label %></p>
+          <h3 class="gallery-title"><%= d.title %></h3>
+          <dl class="gallery-facts">
+            <div><dt>Purpose</dt><dd><%= d.purpose %></dd></div>
+            <div><dt>Format</dt><dd><%= d.format %> · <%= d.platform %></dd></div>
+            <div><dt>My contribution</dt><dd><%= d.contribution %></dd></div>
+          </dl>
+        </li>
+      <% }) %>
+    </ul>
+
+    <div class="plans">
+      <div class="plans-head">
+        <h3 class="sub-title">Content planning</h3>
+        <p>Real content calendars I prepared for Junioura Creative WebDev. The first page of each is shown.</p>
+      </div>
+      <ul class="doc-grid doc-grid-2">
+        <% commsDocs.forEach(d => { %><%- include('../partials/document', { d, context: 'Content calendar · Junioura Creative WebDev' }) %><% }) %>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white" id="platforms" aria-labelledby="platforms-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="platforms-title" class="section-title">Platforms</h2>
+      <p class="section-intro">Where my content is published and where to find me professionally.</p>
+    </div>
+    <ul class="platform-list">
+      <% owner.social.forEach(s => { %>
+        <li>
+          <a href="<%= s.url %>" target="_blank" rel="noopener noreferrer">
+            <%- include('../partials/icon', { name: s.name.toLowerCase() }) %>
+            <span class="platform-name"><%= s.name %></span>
+            <span class="platform-handle"><%= s.handle %></span>
+            <%- include('../partials/icon', { name: 'external', className: 'platform-arrow' }) %>
+            <span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-cool" id="experience" aria-labelledby="experience-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="experience-title" class="section-title">Experience</h2>
+      <p class="section-intro">Content and social media work, most recent first.</p>
+    </div>
+    <%- include('../partials/timeline', { items: commsExperience }) %>
+  </div>
+</section>
+
+<section class="section section-white" id="certificates" aria-labelledby="certificates-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="certificates-title" class="section-title">Certificates</h2>
+      <p class="section-intro">Digital safety and professional development. Select a certificate to read it at full size.</p>
+    </div>
+    <ul class="cred-list">
+      <% commsCreds.forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
+    </ul>
+  </div>
+</section>
+
+<%- include('../partials/enquiry', { e: comms.enquiry }) %>
+<%- include('../partials/lightbox') %>

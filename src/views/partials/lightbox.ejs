@@ -1,0 +1,12 @@
+<%# Shared large-view dialog for designs, documents and certificates (view only) %>
+<dialog class="lightbox" aria-labelledby="lightbox-title">
+  <form method="dialog"><button class="lightbox-close" type="submit" aria-label="Close"><%- include('icon', { name: 'close' }) %></button></form>
+  <div class="lightbox-inner">
+    <div class="lightbox-media"><img alt=""></div>
+    <div class="lightbox-text">
+      <p class="lightbox-meta"></p>
+      <h3 id="lightbox-title"></h3>
+      <p class="lightbox-desc"></p>
+    </div>
+  </div>
+</dialog>

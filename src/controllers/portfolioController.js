@@ -1,44 +1,41 @@
 const nodemailer = require('nodemailer');
 const { validationResult } = require('express-validator');
-const { siteContext } = require('../lib/siteContext');
+const { siteContext, PAGES } = require('../lib/siteContext');
 
-const page = {
-  title: 'Junioura Akwensimbom — Web Developer · Digital Communications · Educator',
-  metaDesc:
-    'Junioura Akwensimbom is a web developer, digital communicator and educator in Bamenda, Cameroon, building websites, creating digital content and teaching practical digital skills.',
-};
-
-function renderHome(res, contact, status = 200) {
-  const ctx = siteContext({ isHome: true });
-  res.status(status).render('pages/home', {
+function renderPage(res, pageId, extra = {}, status = 200) {
+  const page = PAGES.find((p) => p.id === pageId);
+  const ctx = siteContext({ pageId });
+  res.status(status).render(page.view, {
     ...ctx,
-    ...page,
-    contact: { ...ctx.contact, ...contact },
+    title: page.title,
+    metaDesc: page.description,
+    ...extra,
+    contact: { ...ctx.contact, ...(extra.contact || {}) },
   });
 }
 
 const escapeHtml = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// GET /
-exports.home = (req, res) => renderHome(res, {});
+// GET /, /web-development/, /digital-communications/, /education/, /about/
+exports.page = (pageId) => (req, res) => renderPage(res, pageId);
 
-// Old multi-page URLs now point to sections of the single page.
-exports.redirectTo = (id) => (req, res) => res.redirect(301, `/#${id}`);
+// Old URLs from the earlier versions of the site
+exports.redirectTo = (target) => (req, res) => res.redirect(301, target);
 
 // POST /contact — only available when running the Node server locally.
 // The GitHub Pages version uses the visitor's email app instead.
 exports.sendContact = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return renderHome(res, { errors: errors.array(), values: req.body }, 422);
+    return renderPage(res, 'home', { contact: { errors: errors.array(), values: req.body } }, 422);
   }
 
   const { name, email, subject, message } = req.body;
 
   if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
     console.error('[Mail] MAIL_USER / MAIL_PASS are not set in .env — message not sent.');
-    return renderHome(res, { status: 'failed', values: req.body }, 503);
+    return renderPage(res, 'home', { contact: { status: 'failed', values: req.body } }, 503);
   }
 
   try {
@@ -68,8 +65,8 @@ exports.sendContact = async (req, res) => {
     });
   } catch (err) {
     console.error('[Mail error]', err.message);
-    return renderHome(res, { status: 'failed', values: req.body }, 502);
+    return renderPage(res, 'home', { contact: { status: 'failed', values: req.body } }, 502);
   }
 
-  return renderHome(res, { status: 'sent' });
+  return renderPage(res, 'home', { contact: { status: 'sent' } });
 };

@@ -8,7 +8,7 @@ module.exports = (err, req, res, _next) => {
   console.error('[Error]', err.stack || err.message);
   const status = err.status || 500;
   res.status(status).render('error', {
-    ...siteContext({ isHome: false }),
+    ...siteContext({ pageId: 'none' }),
     title: `${status} — Something went wrong`,
     metaDesc: 'An error occurred.',
     noindex: true,

@@ -2,189 +2,158 @@
  * src/data/portfolioData.js
  * Single source of truth for all portfolio content.
  *
- * Edit the text here and both the local server (npm run dev) and the
- * static GitHub Pages build (npm run build) will update.
+ * The site has five pages: Home, Web Development, Digital Communications,
+ * Education and About. Entries carry an `areas` list so each pathway page
+ * shows only what belongs to it, and About shows everything.
  *
- * Image paths are relative to the /public folder (no leading slash).
- * Any `image: null` shows a clearly labelled placeholder until you add
- * the real file and set its path here.
+ * Every fact here comes from Junioura's CV, her documents, the live
+ * websites or her written confirmation. Fields left empty are unconfirmed:
+ * add them only when confirmed.
+ *
+ * Image paths are relative to /public (no leading slash).
  */
 
 const owner = {
   name: 'Junioura Akwensimbom',
-  firstName: 'Junioura',
-  lastName: 'Akwensimbom',
   initials: 'JA',
   roles: ['Web Developer', 'Digital Communications', 'Educator'],
   location: 'Bamenda, Cameroon',
   email: 'juniouraakwensimbon@gmail.com',
   phone: '+237 679 016 149',
   phoneHref: '+237679016149',
-  // Approved for the hero (unchanged original file)
   photo: {
     src: 'images/profile/junioura-akwensimbom.jpg',
     width: 1080,
     height: 719,
     alt: 'Portrait of Junioura Akwensimbom smiling, wearing a red blouse',
   },
-  // About section portrait: null shows a labelled placeholder
-  aboutPhoto: null,
   social: [
     { name: 'LinkedIn', handle: 'Junioura Akwensimbom', url: 'https://www.linkedin.com/in/junioura-akwensimbom-156143295/' },
     { name: 'Facebook', handle: 'Junioura Creative WebDev', url: 'https://www.facebook.com/share/18Zyvny6Wi' },
     { name: 'TikTok', handle: '@juniouracreativewebdev', url: 'https://www.tiktok.com/@juniouracreativewebdev' },
   ],
+  intro: 'I am Junioura Akwensimbom, a web developer, digital communications professional and educator based in Bamenda, Cameroon. My work brings together technology, communication and learning. I build and manage websites, create digital content and visual materials, and help make information and digital tools easier to understand. I keep learning through practical work and share what I learn in clear, useful ways.',
   closing: 'Websites, content and learning that make digital tools easier to understand and use.',
 };
 
-const intro = [
-  'I am Junioura Akwensimbom, a web developer and educator based in Bamenda, Cameroon.',
-  'I create digital content, manage websites, design visual materials, and help people build practical digital skills.',
-  'My work connects technology, communication, and learning. Through practical projects and teaching, I make information and digital tools easier to access and understand.',
+/* ------------------------------------------------------------------ */
+/* The three professional pathways                                     */
+/* ------------------------------------------------------------------ */
+const pathways = [
+  { id: 'web', slug: 'web-development', icon: 'browser', title: 'Web Development', summary: 'Building, managing and improving websites and practical digital experiences.', cta: 'Explore Web Development' },
+  { id: 'comms', slug: 'digital-communications', icon: 'chat', title: 'Digital Communications', summary: 'Creating useful digital content, communicating ideas and managing digital platforms.', cta: 'Explore Digital Communications' },
+  { id: 'edu', slug: 'education', icon: 'learn', title: 'Education', summary: 'Teaching, developing learning resources and making knowledge easier to understand.', cta: 'Explore Education' },
 ];
 
-// Professional highlights — the four areas of work
-const highlights = [
-  {
-    id: 'web', icon: 'browser', title: 'Web Development',
-    text: 'Building and managing responsive websites that are clear to navigate and easy to keep up to date.',
-    items: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Responsive websites', 'Website management and maintenance', 'Forms, navigation and usability'],
-  },
-  {
-    id: 'comms', icon: 'chat', title: 'Digital Communications',
-    text: 'Planning, writing and managing content that informs an audience and keeps the conversation going.',
-    items: ['Social media content', 'Caption writing', 'Content planning', 'Educational content', 'Page management', 'Audience interaction'],
-  },
-  {
-    id: 'design', icon: 'pen', title: 'Graphic Design',
-    text: 'Designing flyers and social media graphics that get the main message across at a glance.',
-    items: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma', 'Promotional flyers', 'Educational designs', 'Social media graphics'],
-  },
-  {
-    id: 'edu', icon: 'learn', title: 'Education',
-    text: 'Teaching Biology and digital skills in simple language, with lessons and resources that people can use.',
-    items: ['Biology teaching', 'Lesson planning', 'Educational presentations', 'Learning resources', 'Digital literacy', 'Web development learning support'],
-  },
-];
+/* ------------------------------------------------------------------ */
+/* Pathway page content                                                */
+/* ------------------------------------------------------------------ */
+const web = {
+  intro: [
+    'I build and manage websites with WordPress and Elementor, and use HTML, CSS and JavaScript to customise layouts and interactive elements.',
+    'My focus is practical: pages organised so people can find what they need, navigation that makes sense, forms that work, and content that stays current on phones and computers.',
+  ],
+  skills: [
+    { title: 'Website development and management', items: ['WordPress', 'Elementor: page layouts, menus, forms and plugins', 'Website structure and page organisation', 'Website content management', 'Updates and maintenance'] },
+    { title: 'Front-end development', items: ['HTML', 'CSS', 'JavaScript', 'Responsive layouts', 'Interface structure and usability'] },
+    { title: 'Website functionality and quality', items: ['Forms', 'Navigation', 'Content organisation', 'Testing and troubleshooting', 'Version control with Git and GitHub'] },
+  ],
+  enquiry: { title: 'Need a website built, updated or managed?', text: 'Tell me about the website and what it needs to do. I am happy to discuss new websites, updates and ongoing management.', subject: 'Website development or management' },
+};
 
-// About — short content blocks (no invented stories)
-const aboutBlocks = [
-  { title: 'Education and technology', text: 'I studied Biochemistry at the University of Bamenda, trained as a Biology teacher (DIPES II), and then completed a one-year intensive web and application development programme at Nexinch.' },
-  { title: 'Making information easier to understand', text: 'Whether I am building a website, designing a flyer or preparing a lesson, the goal is the same: information that people can find, understand and use.' },
-  { title: 'How I learn and create', text: 'I learn by doing: practical projects, real websites and content made for a real audience. Teaching keeps me explaining things simply, and that shapes everything I create.' },
-];
+const comms = {
+  intro: [
+    'Through Junioura Creative WebDev, I plan, write and design content that explains digital skills and web development in plain language, then respond to the people who engage with it.',
+    'I also create visual materials such as flyers and social media graphics, so that information is easy to take in at a glance.',
+  ],
+  skills: [
+    { title: 'Content development', items: ['Content writing', 'Caption writing', 'Educational content', 'Informational content', 'Content planning'] },
+    { title: 'Social media', items: ['Social media content creation', 'Page management', 'Audience interaction'] },
+    { title: 'Visual communication', items: ['Flyer design', 'Educational graphics', 'Social media graphics', 'Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma'] },
+    { title: 'Digital platforms', items: ['Website content updates in WordPress'] },
+  ],
+  enquiry: { title: 'Looking for content or social media support?', text: 'I can help plan, write and design content for your audience and keep your page active.', subject: 'Digital communications or content' },
+};
 
-const facts = [
-  { term: 'Based in', detail: 'Bamenda, Cameroon' },
-  { term: 'Focus', detail: 'Web development, digital communications, graphic design, education' },
-  { term: 'Web tools', detail: 'WordPress, Elementor, HTML, CSS, JavaScript' },
-  { term: 'Design tools', detail: 'Canva, Illustrator, Photoshop, Figma' },
-];
+const edu = {
+  intro: [
+    'My teaching background shapes how I approach technology. I trained as a Biology teacher, and I enjoy taking ideas that seem complicated and explaining them one step at a time.',
+    'I bring the same approach to digital skills and web development, creating beginner-friendly lessons and resources that help people understand technology and use it with confidence.',
+  ],
+  areas: [
+    { title: 'Teaching', items: ['Biology teaching', 'Lesson planning', 'Learning support', 'Presentations', 'Learning materials', 'Assignments, assessment and feedback'] },
+    { title: 'Digital education', items: ['Digital literacy', 'Beginner-friendly technology explanations', 'Web development learning support', 'Educational digital content'] },
+  ],
+  philosophy: 'I believe learning becomes meaningful when information is explained clearly and connected to practical examples. I start from what a learner already knows, break difficult ideas into manageable steps, encourage questions, and make room for hands-on practice.',
+  enquiry: { title: 'Planning lessons or digital skills training?', text: 'Schools, organisations and learners are welcome to get in touch about teaching, training and digital literacy.', subject: 'Teaching or digital skills training' },
+};
 
-/**
- * Services. `subject` pre-fills the contact form when someone clicks "Enquire".
- * `image` uses a real design from the gallery where one fits.
- */
-const services = [
-  {
-    slug: 'websites', icon: 'browser',
-    title: 'Website Development and Management',
-    summary: 'New websites built with WordPress, Elementor, HTML, CSS and JavaScript, and existing websites kept current and working.',
-    deliverables: ['A responsive website for phones and computers', 'Clear page structure and navigation', 'Working contact and enquiry forms', 'Content and page updates', 'Ongoing maintenance and usability fixes'],
-    subject: 'Website development or management',
-  },
-  {
-    slug: 'design', icon: 'pen',
-    title: 'Graphic Design and Visual Communication',
-    summary: 'Flyers and visuals with a clear hierarchy, so the main message is understood before the details are read.',
-    deliverables: ['Promotional flyers', 'Educational flyers', 'Social media graphics', 'Presentation visuals'],
-    image: 'build-design-grow',
-    subject: 'Graphic design',
-  },
-  {
-    slug: 'content', icon: 'doc',
-    title: 'Digital Content Creation',
-    summary: 'Educational posts that explain one useful idea at a time, written and designed for your audience.',
-    deliverables: ['Educational post series', 'Captions and short copy', 'Designed post graphics'],
-    image: 'search-smarter',
-    subject: 'Digital content creation',
-  },
-  {
-    slug: 'social', icon: 'chat',
-    title: 'Digital Communications and Social Media Management',
-    summary: 'Planning, publishing and managing your page so it stays active and consistent, and people who engage get a reply.',
-    deliverables: ['Content plan and posting schedule', 'Page management', 'Publishing posts', 'Replying to comments and messages'],
-    subject: 'Social media management',
-  },
-  {
-    slug: 'training', icon: 'learn',
-    title: 'Digital Skills Education and Training',
-    summary: 'Beginner-friendly sessions on digital tools, digital literacy and web development basics, explained simply and practised.',
-    deliverables: ['Digital literacy sessions', 'Web development learning support', 'Lesson plans', 'Presentations and learning materials'],
-    subject: 'Digital skills training',
-  },
-];
+/* The Beginner HTML and CSS Learning Programme (developed by Junioura) */
+const programme = {
+  title: 'Beginner HTML and CSS Learning Programme',
+  dates: '13 October – 11 November 2026',
+  summary: 'A 30-lesson programme I developed for complete beginners with no assumed computer knowledge. Each lesson lasts two hours. Learners start with essential computer and VS Code skills, build a simple website in HTML, and then learn how CSS changes its appearance.',
+  phases: ['Phase 1: Computer confidence and HTML', 'Phase 2: CSS foundations and styling'],
+  approach: [
+    { title: 'Explain in plain language', text: 'Define every new technical word and connect it to a familiar, real-life example.' },
+    { title: 'Demonstrate, then practise', text: 'Model each task in VS Code; learners repeat it and explain what they did.' },
+    { title: 'Keep examples short', text: 'Introduce one or two ideas at a time before combining them.' },
+    { title: 'Check understanding daily', text: 'Quick oral questions, short exercises and a small practical task.' },
+    { title: 'Build in stages', text: 'Finish a simple HTML website before learning how CSS changes it.' },
+  ],
+  lessonFlow: ['Review and warm-up', 'Explain with real-life examples', 'Teacher demonstration', 'Guided and independent practice', 'Exercise or mini-task', 'Recap and assignment'],
+};
 
-/**
- * Selected projects.
- * image: a real screenshot path, or null for a labelled placeholder.
- * links[].show: false hides a link without deleting it.
- */
+/* ------------------------------------------------------------------ */
+/* Projects                                                            */
+/* ------------------------------------------------------------------ */
 const projects = [
   {
-    slug: 'aagyw-cam',
+    slug: 'aagyw-cam', area: 'web',
     title: 'AAGYW Cameroon Website',
-    category: 'Website Development & Management',
-    organisation: 'Association of Adolescent Girls and Young Women, Cameroon',
-    desc: 'The association’s website, which I developed and currently manage.',
-    contribution: ['Organised the website content', 'Structured the navigation', 'Set up the forms', 'Responsive presentation on phones and computers', 'Ongoing updates and management'],
+    label: 'Website Development and Management Project',
+    date: '2026 – Present',
+    organisation: 'Association of Adolescent Girls and Young Women Cameroon',
+    purpose: 'The association’s public website. It presents the organisation’s purpose and work, shares insights, and gives visitors ways to get involved, donate, contact the team and join its mailing list.',
+    role: 'I developed the website and continue to manage it.',
+    work: ['Organise the website pages and content', 'Maintain the navigation and forms', 'Update the website’s information', 'Use WordPress and Elementor to support presentation, functionality and responsive use on phones and computers'],
     tools: ['WordPress', 'Elementor'],
-    // Genuine screenshots of https://aagyw-cam.org/ (captured 13 Nov 2026)
-    image: 'images/projects/aagyw-cam/aagyw-cam-homepage.webp',
-    imageSize: [1600, 1000],
-    imageAlt: 'AAGYW Cameroon homepage: navigation, hero with the headline “Born from a generation that refused to be defined by crisis.” and the Our Purpose section',
-    secondaryImage: 'images/projects/aagyw-cam/aagyw-cam-why-we-exist.webp',
-    secondaryImageSize: [1600, 1333],
-    secondaryImageAlt: 'AAGYW Cameroon homepage, Why We Exist section with three illustrated cards and a statement panel',
-    placeholder: 'Replace with project screenshot: AAGYW-CAM home page',
-    links: [
-      { label: 'Visit Live Website', url: 'https://aagyw-cam.org/', show: true },
+    images: [
+      { src: 'images/projects/aagyw-cam/aagyw-cam-homepage.webp', width: 1600, height: 1000, alt: 'AAGYW Cameroon homepage: navigation, hero with the headline “Born from a generation that refused to be defined by crisis.” and the Our Purpose section' },
+      { src: 'images/projects/aagyw-cam/aagyw-cam-why-we-exist.webp', width: 1600, height: 1333, alt: 'AAGYW Cameroon homepage, Why We Exist section with three illustrated cards and a statement panel' },
     ],
+    link: { label: 'Visit Live Website', url: 'https://aagyw-cam.org/' },
   },
   {
-    slug: 'junioura-creative-webdev',
-    title: 'Junioura Creative WebDev',
-    category: 'Digital content and communications',
-    organisation: 'My personal digital content brand',
-    desc: 'An ongoing channel on Facebook and TikTok with digital literacy, online safety and web development content in simple, practical language.',
-    contribution: ['Plan the topics and posting schedule', 'Write the posts and captions', 'Design the flyers and graphics', 'Publish and reply to the audience'],
-    tools: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop'],
-    designs: ['who-needs-a-website', 'pause-check-verify', 'five-website-myths'],
-    links: [
-      { label: 'Facebook page', url: 'https://www.facebook.com/share/18Zyvny6Wi', show: true },
-      { label: 'TikTok', url: 'https://www.tiktok.com/@juniouracreativewebdev', show: true },
-    ],
-  },
-  {
-    slug: 'nexinch',
-    title: 'Web and Application Development',
-    category: 'Training and internship',
-    organisation: 'Nexinch · One-year intensive programme, 2025 – 2026',
-    desc: 'Hands-on training and internship experience building and maintaining websites.',
-    contribution: ['WordPress and Elementor websites', 'HTML, CSS and JavaScript', 'Responsive design', 'Testing', 'Website maintenance'],
-    tools: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript'],
-    image: null,
+    slug: 'nexinch', area: 'web',
+    title: 'Web Development Training and Internship',
+    label: 'Nexinch',
+    date: 'September 2025 – 2026',
+    organisation: 'Nexinch · One-year intensive Web and Application Development training',
+    purpose: 'Hands-on training and internship work building and maintaining websites.',
+    role: 'Web Development Intern / Trainee',
+    work: ['Built and customised WordPress websites and page layouts using Elementor', 'Organised sections, navigation, content and forms', 'Used HTML, CSS and JavaScript for interface customisation and interactive elements, including responsive presentation', 'Updated and maintained content, tested pages and functionality, and troubleshot issues', 'Used Git and GitHub for version control'],
+    tools: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Git', 'GitHub'],
+    images: [],
     placeholder: 'Replace with project screenshot: a website from the Nexinch training',
-    relatedDesign: 'nexinch-services',
-    links: [],
+  },
+  {
+    slug: 'gbhs-website', area: 'web',
+    title: 'G.B.H.S Bamendakwe Website',
+    label: 'Website development and management project',
+    date: '', // not yet confirmed
+    organisation: 'G.B.H.S Bamendakwe',
+    purpose: 'Website development and management for the school, carried out separately from my teaching role.',
+    role: '',
+    work: [], // specific responsibilities not yet confirmed
+    tools: [],
+    images: [],
   },
 ];
 
-/**
- * Graphic design gallery.
- * Web images: public/images/designs/<slug>.webp
- * Editable sources and full-resolution exports: design-studio/redesigns/
- */
+/* ------------------------------------------------------------------ */
+/* Graphic design and content samples (Digital Communications)         */
+/* ------------------------------------------------------------------ */
 const designCategories = [
   { id: 'web', label: 'Web education' },
   { id: 'literacy', label: 'Digital literacy' },
@@ -192,97 +161,125 @@ const designCategories = [
 ];
 
 const designs = [
-  { slug: 'build-design-grow', category: 'brand', width: 1000, height: 1415, title: 'Build. Design. Grow.', client: 'Personal brand', format: 'A4 flyer', desc: 'A personal services flyer in my own navy and teal identity, built around one strong typographic statement.' },
-  { slug: 'search-smarter', category: 'literacy', width: 1000, height: 1250, title: 'Search smarter. Get better results.', client: 'Digital literacy series', format: 'Social media post', desc: 'Four practical search tips with examples, built around a simple drawn search bar.' },
-  { slug: 'who-needs-a-website', category: 'web', width: 1000, height: 1000, title: 'Who actually needs a website?', client: 'Junioura Creative WebDev', format: 'Social media post', desc: 'Explains who benefits from a website: businesses, professionals, schools and creators. A simple drawn website replaces stock imagery.' },
-  { slug: 'password-first-defence', category: 'literacy', width: 1400, height: 933, title: 'Your password is your first line of defence', client: 'Tech & Education · Digital Safety Awareness', format: 'Landscape post', desc: 'Four account-security habits in a calm two-by-two layout, with a flat shield graphic carrying the message.' },
-  { slug: 'nexinch-services', category: 'brand', width: 1000, height: 1415, title: 'Nexinch services', client: 'Nexinch', format: 'A4 flyer', desc: 'A services flyer in Nexinch’s blue and red, set as a clear numbered index with contact details in a dedicated panel.' },
-  { slug: 'pause-check-verify', category: 'literacy', width: 1000, height: 1000, title: 'Not everything you see online deserves your attention', client: 'Junioura Creative WebDev', format: 'Social media post', desc: 'A typographic piece on misinformation: three claims to question, then one habit to remember: pause, check, verify.' },
-  { slug: 'five-website-myths', category: 'web', width: 1000, height: 1000, title: '5 common myths about websites', client: 'Junioura Creative WebDev', format: 'Social media post', desc: 'Five misconceptions set against one clear truth, ending with the question every website owner should ask first.' },
-  { slug: 'websites-every-day', category: 'web', width: 1000, height: 1000, title: 'You use websites every day…', client: 'Junioura Creative WebDev', format: 'Social media post', desc: 'A plain-language definition of a website, broken into three jobs a site does: inform, connect and grow.' },
+  { slug: 'build-design-grow', category: 'brand', width: 1000, height: 1415, title: 'Build. Design. Grow.', purpose: 'Introduce my web and design services', format: 'A4 flyer', platform: 'Personal brand', contribution: 'Content and design' },
+  { slug: 'search-smarter', category: 'literacy', width: 1000, height: 1250, title: 'Search smarter. Get better results.', purpose: 'Share four practical tips for finding reliable information online', format: 'Social media post', platform: 'Digital literacy series', contribution: 'Design' },
+  { slug: 'who-needs-a-website', category: 'web', width: 1000, height: 1000, title: 'Who actually needs a website?', purpose: 'Explain who benefits from having a website', format: 'Social media post', platform: 'Junioura Creative WebDev', contribution: 'Content and design' },
+  { slug: 'password-first-defence', category: 'literacy', width: 1400, height: 933, title: 'Your password is your first line of defence', purpose: 'Encourage four habits that keep online accounts secure', format: 'Landscape post', platform: 'Tech & Education · Digital Safety Awareness', contribution: 'Design' },
+  { slug: 'nexinch-services', category: 'brand', width: 1000, height: 1415, title: 'Nexinch services', purpose: 'Present Nexinch’s services and contact details', format: 'A4 flyer', platform: 'Nexinch', contribution: 'Design' },
+  { slug: 'pause-check-verify', category: 'literacy', width: 1000, height: 1000, title: 'Not everything you see online deserves your attention', purpose: 'Encourage people to pause, check and verify before trusting online content', format: 'Social media post', platform: 'Junioura Creative WebDev', contribution: 'Content and design' },
+  { slug: 'five-website-myths', category: 'web', width: 1000, height: 1000, title: '5 common myths about websites', purpose: 'Correct common misconceptions about websites', format: 'Social media post', platform: 'Junioura Creative WebDev', contribution: 'Content and design' },
+  { slug: 'websites-every-day', category: 'web', width: 1000, height: 1000, title: 'You use websites every day…', purpose: 'Explain what a website is and what it does, in plain language', format: 'Social media post', platform: 'Junioura Creative WebDev', contribution: 'Content and design' },
 ];
 
-/**
- * Experience, most recent first. `type` distinguishes project work,
- * training and internship, volunteering, teaching practice and so on.
- * Leave `date` empty if you have not confirmed it yet.
- */
+/* Document previews (first pages only; originals are kept off the site) */
+const documents = [
+  { slug: 'lesson-calendar', area: 'edu', src: 'images/education/html-css-programme-lesson-calendar.webp', width: 1236, height: 1600, title: 'Lesson calendar', note: '30 daily lessons, course approach and the standard two-hour lesson structure' },
+  { slug: 'lesson-1', area: 'edu', src: 'images/education/html-css-programme-lesson-1.webp', width: 1236, height: 1600, title: 'Lesson 1: Understanding the Computer', note: 'Lesson information, learning objectives and introduction' },
+  { slug: 'lesson-5', area: 'edu', src: 'images/education/html-css-programme-lesson-5.webp', width: 1236, height: 1600, title: 'Lesson 5: HTML Tags, Elements and Attributes', note: 'Lesson information, objectives and materials' },
+  { slug: 'website-lesson', area: 'edu', src: 'images/education/website-lesson-how-a-website-appears.webp', width: 1236, height: 1600, title: 'How does a website appear on your screen?', note: 'A plain-language lesson written for Junioura Creative WebDev' },
+  { slug: 'facebook-calendar', area: 'comms', src: 'images/communications/30-day-facebook-content-calendar.webp', width: 1236, height: 1600, title: '30-day Facebook content calendar', note: 'Takes the audience from basic website ideas to practical web development, with a topic, angle, format, goal and engagement question for each day' },
+  { slug: 'october-calendar', area: 'comms', src: 'images/communications/october-2026-content-calendar.webp', width: 1236, height: 1600, title: 'October 2026 content calendar', note: 'Theme: “Technology Beyond the Screen”, with daily pillars, topics, formats, platforms and engagement questions' },
+];
+
+/* ------------------------------------------------------------------ */
+/* Experience, most recent first                                       */
+/* Only confirmed dates and responsibilities are shown.                */
+/* ------------------------------------------------------------------ */
 const experience = [
   {
-    date: 'Ongoing', type: 'Project',
-    title: 'Website Development and Management', org: 'AAGYW-CAM',
-    desc: 'Developed and manage the association’s website.',
-    duties: ['Content organisation', 'Navigation structure', 'Forms', 'Responsive presentation', 'Updates and maintenance'],
+    areas: ['web'], date: '2026 – Present', type: 'Project',
+    title: 'Website Development and Management', org: 'AAGYW Cameroon',
+    summary: 'Developed and manage the association’s website, aagyw-cam.org.',
+    duties: ['Organise pages and content', 'Maintain navigation and forms', 'Update information', 'Work in WordPress and Elementor'],
   },
   {
-    date: 'Ongoing', type: 'Personal brand',
-    title: 'Creator and Content Designer', org: 'Junioura Creative WebDev',
-    desc: 'Digital literacy and web development content for Facebook and TikTok.',
-    duties: ['Content planning', 'Caption writing', 'Flyer and graphic design', 'Audience interaction'],
+    areas: ['comms'], date: 'Ongoing', type: 'Personal brand',
+    title: 'Digital Content and Social Media', org: 'Junioura Creative WebDev',
+    summary: 'Create and publish digital literacy, web development and educational content on Facebook, LinkedIn and TikTok.',
+    duties: ['Plan content', 'Write captions and post copy', 'Prepare visual materials', 'Respond to comments and support community engagement'],
   },
   {
-    date: 'Ongoing', type: 'Education',
-    title: 'Digital Skills and Web Development Support', org: 'Learners and community',
-    desc: 'Helping beginners build practical digital skills and supporting people learning web development.',
-    duties: ['Digital literacy', 'Web development learning support', 'Website management guidance'],
+    areas: ['web'], date: 'September 2025 – 2026', type: 'Training and internship',
+    title: 'Web Development Intern / Trainee', org: 'Nexinch',
+    summary: 'One-year intensive Web and Application Development training with hands-on internship work.',
+    duties: ['WordPress and Elementor websites', 'HTML, CSS and JavaScript customisation', 'Testing and troubleshooting', 'Content updates and maintenance', 'Git and GitHub'],
   },
   {
-    date: '2025 – 2026', type: 'Training and internship',
-    title: 'Web and Application Development Trainee', org: 'Nexinch',
-    desc: 'One-year intensive training with hands-on internship work.',
-    duties: ['WordPress and Elementor', 'HTML, CSS and JavaScript', 'Responsive design', 'Testing', 'Website maintenance'],
-  },
-  {
-    date: '2023 – 2025', type: 'Volunteer',
+    areas: ['comms'], date: 'From January 2025', type: '', // end date and work type not yet confirmed
     title: 'Digital Content and Social Media', org: 'G.B.H.S Bamendakwe',
-    desc: 'Created digital content and supported the school’s social media communication.',
-    duties: ['Digital content creation', 'Social media communication'],
+    summary: 'Digital content and social media work for the school, separate from my teaching role.',
+    duties: [],
   },
   {
-    date: '2023 – 2025', type: 'Teaching practice (DIPES II)',
-    title: 'Biology Teaching', org: 'G.B.H.S Bamendakwe',
-    desc: 'Biology teaching as part of the DIPES II teacher training.',
-    duties: ['Lesson planning', 'Classroom management', 'Student engagement', 'Instructional delivery'],
+    areas: ['edu'], date: 'January 2025 – April 2025', type: '', // work type not yet confirmed
+    title: 'Teacher', org: 'G.B.H.S Bamendakwe',
+    summary: 'Planned and delivered lessons using practical activities, real-life examples and learner-centred methods.',
+    duties: ['Prepared lesson notes, presentations, assignments and assessments', 'Gave feedback and supported learner participation', 'Developed and explained digital skills learning materials, including web development, website management, Figma and design topics'],
   },
   {
-    // Dates not yet confirmed: add them here, e.g. date: '2025'
-    date: '', type: 'Project',
-    title: 'Website Development and Management', org: 'G.B.H.S Bamendakwe',
-    desc: 'A website development and management project for the school.',
+    areas: [], date: 'August 2022', type: 'Internship (one month)',
+    title: 'Laboratory Technician', org: 'ABII Specialist Polyclinic',
+    summary: 'Laboratory support during a one-month internship.',
     duties: [],
   },
 ];
 
-const otherExperience = [
-  { date: 'Ongoing', title: 'Online Sales and Customer Communication', org: 'Trust and Blessed Shopping Mall', desc: 'Online promotion and customer communication for a footwear business through WhatsApp business groups.' },
-  { date: '2021 – 2022', title: 'Medical Laboratory Scientist', org: 'ABII Specialist Polyclinic', desc: 'Sample collection, laboratory analysis and careful record-keeping.' },
-];
-
-// Skills — grouped, no ratings or percentages
-const toolkit = ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma', 'Git', 'GitHub', 'Microsoft Office'];
-
-const skills = [
-  { icon: 'browser', category: 'Web Development', note: 'Building responsive websites.', items: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Responsive layouts'] },
-  { icon: 'layout', category: 'Website Management', note: 'Keeping websites clear and current.', items: ['Website structure and navigation', 'Forms and functionality', 'Content updates', 'Maintenance', 'Usability improvements'] },
-  { icon: 'pen', category: 'Graphic Design', note: 'Visuals that communicate clearly.', items: ['Canva', 'Adobe Illustrator', 'Adobe Photoshop', 'Figma', 'Flyers and social media graphics', 'Presentation materials'] },
-  { icon: 'chat', category: 'Digital Communications', note: 'Content and audience.', items: ['Social media content creation', 'Caption and content writing', 'Content planning', 'Page management', 'Audience interaction'] },
-  { icon: 'learn', category: 'Education', note: 'Making information understandable.', items: ['Biology teaching', 'Lesson planning', 'Educational presentations', 'Learning materials', 'Digital literacy', 'Web development learning support'] },
-  { icon: 'tool', category: 'Productivity and Collaboration', note: 'Working and sharing files.', items: ['Git and GitHub', 'Microsoft Office'] },
-];
-
-/**
- * Education and certifications, newest first.
- * image: path in public/images/certificates/, or null for a labelled placeholder.
- */
+/* ------------------------------------------------------------------ */
+/* Credentials, by importance then date                                */
+/* `image` set = shown as a view-only preview; null = listed as text.  */
+/* University documents are listed as text only to protect private     */
+/* details printed on them.                                            */
+/* ------------------------------------------------------------------ */
 const credentials = [
-  { kind: 'Certificate', title: 'Bloom Summit 2026', detail: 'Purpose in Action · “Dare to Create”', org: 'Bamenda', date: 'July 4–5, 2026', image: null },
-  { kind: 'Certificate', title: 'Youth Digital Safety and Child Protection Ambassadors Program', detail: '', org: 'AAGYW Cameroon, GLOWA and Community Green Engagement', date: 'June 2026', image: null },
-  { kind: 'Training', title: 'Web and Application Development', detail: 'One-year intensive training', org: 'Nexinch', date: '2025 – 2026', image: null },
-  { kind: 'Diploma', title: 'DIPES II', detail: 'Biology', org: 'University of Bamenda', date: '2025', image: null },
-  { kind: 'Degree', title: 'Bachelor of Science', detail: 'Biochemistry', org: 'University of Bamenda', date: '2023', image: null },
+  {
+    slug: 'dipes', group: 'Academic qualifications', areas: ['edu'],
+    kind: 'Diploma', title: 'Secondary School Teacher Diploma II (DIPES 2) in Biology',
+    org: 'University of Bamenda · Higher Teacher Training College (H.T.T.C.)', date: 'Effective 15 July 2025',
+    image: null,
+  },
+  {
+    slug: 'bsc', group: 'Academic qualifications', areas: ['edu'],
+    kind: 'Degree', title: 'Bachelor of Science in Biochemistry',
+    detail: 'Minor: Medical Laboratory Technology',
+    org: 'University of Bamenda · Faculty of Science', date: '28 July 2023',
+    image: null,
+  },
+  {
+    slug: 'nexinch-certificate', group: 'Professional training', areas: ['web'],
+    kind: 'Certificate of Completion', title: 'Web and Application Development Training',
+    detail: 'One year of intensive training',
+    org: 'Nexinch', date: 'Training: September 2025 – 2026',
+    image: { src: 'images/certificates/nexinch-web-application-development-certificate.webp', width: 1600, height: 1137 },
+  },
+  {
+    slug: 'youth-digital-safety', group: 'Professional development and participation', areas: ['comms'],
+    kind: 'Attestation of Participation', title: 'Youth Digital Safety and Child Protection Ambassadors Programme',
+    detail: 'In partnership with Brave Movement Cameroon',
+    org: 'AAGYW Cameroon, Global Welfare Association (GLOWA) and Community Green Engagement (GCE)', date: '4 June 2026 · Bamenda',
+    image: { src: 'images/certificates/youth-digital-safety-ambassadors-attestation.webp', width: 1600, height: 1149 },
+  },
+  {
+    slug: 'bloom-summit', group: 'Professional development and participation', areas: [],
+    kind: 'Certificate of Participation', title: 'Bloom Summit 2026, “Dare to Create”',
+    detail: 'Nkwen Baptist Conference Hall, Bamenda',
+    org: 'Purpose in Action (PIA)', date: '4–5 July 2026',
+    image: { src: 'images/certificates/bloom-summit-2026-certificate-of-participation.webp', width: 1600, height: 2094 },
+  },
 ];
 
-// How I work — a real sequence
+/* About page */
+const story = [
+  'My professional journey brings together education and technology. I studied Biochemistry at the University of Bamenda and then trained as a Biology teacher. Through teaching, I became increasingly interested in how digital tools help people find information, communicate and learn.',
+  'That interest led me to a year of intensive web and application development training at Nexinch, where I built practical skills in website development and management. I also create digital content and visual materials through Junioura Creative WebDev.',
+  'Today I work across these connected areas: building and managing websites, communicating ideas through content and design, and helping people understand technology. I value practical learning, clear communication and work that makes digital information easier to access.',
+];
+
+const facts = [
+  { term: 'Based in', detail: 'Bamenda, Cameroon' },
+  { term: 'Studied', detail: 'BSc Biochemistry and DIPES 2 in Biology, University of Bamenda' },
+  { term: 'Trained', detail: 'Web and Application Development, Nexinch' },
+];
+
 const process = [
   { icon: 'search', title: 'Understand the requirement', text: 'Ask what the work is for, who it is for, and what it needs to achieve.' },
   { icon: 'layout', title: 'Plan the work', text: 'Decide the structure, content and tools before anything is built or designed.' },
@@ -292,7 +289,7 @@ const process = [
 ];
 
 module.exports = {
-  owner, intro, highlights, aboutBlocks, facts, services, projects,
-  designCategories, designs, experience, otherExperience,
-  toolkit, skills, credentials, process,
+  owner, pathways, web, comms, edu, programme, projects,
+  designCategories, designs, documents, experience, credentials,
+  story, facts, process,
 };

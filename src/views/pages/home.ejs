@@ -1,4 +1,9 @@
-<% const designBySlug = (s) => designs.find(d => d.slug === s); %>
+<%
+  const aagyw = projects.find(p => p.slug === 'aagyw-cam');
+  const featuredDesign = designs.find(d => d.slug === 'who-needs-a-website');
+  const calendarDoc = documents.find(d => d.slug === 'lesson-calendar');
+  const selectedCreds = credentials.filter(c => ['dipes', 'bsc', 'nexinch-certificate', 'youth-digital-safety'].includes(c.slug));
+%>
 
 <%# ============================== HERO ============================== %>
 <section class="hero" id="home" aria-labelledby="hero-title">
@@ -6,20 +11,12 @@
     <div class="hero-copy">
       <p class="hero-kicker"><%= owner.roles.join(' · ') %></p>
       <h1 id="hero-title" class="hero-title"><%= owner.name %></h1>
-      <p class="hero-intro"><%= intro[0] %> <%= intro[1] %></p>
-
-      <ul class="hero-areas" aria-label="Professional areas">
-        <% highlights.forEach(h => { %>
-          <li><%- include('../partials/icon', { name: h.icon }) %><%= h.title %></li>
-        <% }) %>
-      </ul>
-
+      <p class="hero-intro"><%= owner.intro %></p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#work">View my work</a>
+        <a class="btn btn-primary" href="#pathways">Explore my work</a>
         <a class="btn btn-ghost" href="#contact">Contact me</a>
       </div>
     </div>
-
     <figure class="hero-figure">
       <img src="<%= asset(owner.photo.src) %>" width="<%= owner.photo.width %>" height="<%= owner.photo.height %>" alt="<%= owner.photo.alt %>" fetchpriority="high">
       <figcaption><%- include('../partials/icon', { name: 'pin' }) %> <%= owner.location %></figcaption>
@@ -27,466 +24,108 @@
   </div>
 </section>
 
-<%# ============================== PROFESSIONAL HIGHLIGHTS ============================== %>
-<section class="section highlights" id="highlights" aria-labelledby="highlights-title">
+<%# ============================== PATHWAYS ============================== %>
+<section class="section pathways" id="pathways" aria-labelledby="pathways-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="highlights-title" class="section-title">What I do</h2>
-      <p class="section-intro">Four areas of work that support each other: websites people can use, content they understand, visuals that communicate, and teaching that makes it stick.</p>
+      <h2 id="pathways-title" class="section-title">Three connected areas of work</h2>
+      <p class="section-intro">Choose an area to see the skills, projects, experience and certificates that support it.</p>
     </div>
-
-    <div class="hl-grid">
-      <% const [hWeb, hComms, hDesign, hEdu] = highlights; %>
-      <article class="hl hl-web">
-        <span class="hl-icon"><%- include('../partials/icon', { name: hWeb.icon }) %></span>
-        <h3><%= hWeb.title %></h3>
-        <p><%= hWeb.text %></p>
-        <ul class="hl-columns"><% hWeb.items.forEach(i => { %><li><%= i %></li><% }) %></ul>
-      </article>
-
-      <article class="hl hl-comms">
-        <span class="hl-icon"><%- include('../partials/icon', { name: hComms.icon }) %></span>
-        <div>
-          <h3><%= hComms.title %></h3>
-          <p><%= hComms.text %></p>
-          <p class="hl-inline"><%= hComms.items.join(' · ') %></p>
-        </div>
-      </article>
-
-      <article class="hl hl-design">
-        <img src="<%= asset('images/designs/pause-check-verify.webp') %>" width="1000" height="1000" alt="" loading="lazy">
-        <div>
-          <span class="hl-icon"><%- include('../partials/icon', { name: hDesign.icon }) %></span>
-          <h3><%= hDesign.title %></h3>
-          <p><%= hDesign.text %></p>
-          <a class="text-link" href="#design">See the designs <%- include('../partials/icon', { name: 'arrow' }) %></a>
-        </div>
-      </article>
-
-      <article class="hl hl-edu">
-        <span class="hl-icon"><%- include('../partials/icon', { name: hEdu.icon }) %></span>
-        <h3><%= hEdu.title %></h3>
-        <p><%= hEdu.text %></p>
-        <p class="hl-inline"><%= hEdu.items.join(' · ') %></p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<%# ============================== ABOUT ============================== %>
-<section class="section about" id="about" aria-labelledby="about-title">
-  <div class="container about-grid">
-    <div class="about-media">
-      <% if (owner.aboutPhoto) { %>
-        <img src="<%= asset(owner.aboutPhoto) %>" alt="Junioura Akwensimbom" loading="lazy">
-      <% } else { %>
-        <%- include('../partials/placeholder', { label: 'Personal Portrait – Replace with Approved Photograph', shape: 'portrait', hint: 'Set owner.aboutPhoto in src/data/portfolioData.js', tone: 'tint' }) %>
-      <% } %>
-    </div>
-
-    <div class="about-copy">
-      <h2 id="about-title" class="section-title">About me</h2>
-      <p class="about-lead"><%= intro[2] %></p>
-
-      <div class="about-blocks">
-        <% aboutBlocks.forEach(b => { %>
-          <div class="about-block">
-            <h3><%= b.title %></h3>
-            <p><%= b.text %></p>
-          </div>
-        <% }) %>
-      </div>
-
-      <dl class="facts">
-        <% facts.forEach(f => { %>
-          <div><dt><%= f.term %></dt><dd><%= f.detail %></dd></div>
-        <% }) %>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<%# ============================== SERVICES ============================== %>
-<section class="section services" id="services" aria-labelledby="services-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="services-title" class="section-title">Services</h2>
-      <p class="section-intro">Five ways I can help. Each one lists what you actually receive. Use “Enquire” and the subject is filled in for you.</p>
-    </div>
-
-    <% const [sWeb, sDesign, sContent, sSocial, sTraining] = services; %>
-
-    <%# Split panel for the main service %>
-    <article class="svc-split" id="service-<%= sWeb.slug %>">
-      <div class="svc-split-main">
-        <span class="svc-icon"><%- include('../partials/icon', { name: sWeb.icon }) %></span>
-        <h3><%= sWeb.title %></h3>
-        <p><%= sWeb.summary %></p>
-        <a class="btn btn-secondary" href="#contact" data-subject="<%= sWeb.subject %>">Enquire<span class="visually-hidden"> about <%= sWeb.title %></span></a>
-      </div>
-      <div class="svc-split-list">
-        <p class="svc-label">What you receive</p>
-        <ul class="checklist">
-          <% sWeb.deliverables.forEach(d => { %><li><%- include('../partials/icon', { name: 'check' }) %><%= d %></li><% }) %>
-        </ul>
-      </div>
-    </article>
-
-    <%# Two image cards using real designs %>
-    <div class="svc-cards">
-      <% [sDesign, sContent].forEach(s => { const d = designBySlug(s.image); %>
-        <article class="svc-card" id="service-<%= s.slug %>">
-          <div class="svc-card-img"><img src="<%= asset('images/designs/' + d.slug + '.webp') %>" width="<%= d.width %>" height="<%= d.height %>" alt="Example: <%= d.title %>" loading="lazy"></div>
-          <div class="svc-card-body">
-            <h3><%= s.title %></h3>
-            <p><%= s.summary %></p>
-            <ul class="checklist checklist-sm">
-              <% s.deliverables.forEach(x => { %><li><%- include('../partials/icon', { name: 'check' }) %><%= x %></li><% }) %>
-            </ul>
-            <a class="text-link" href="#contact" data-subject="<%= s.subject %>">Enquire<span class="visually-hidden"> about <%= s.title %></span> <%- include('../partials/icon', { name: 'arrow' }) %></a>
-          </div>
-        </article>
-      <% }) %>
-    </div>
-
-    <%# Editorial rows %>
-    <div class="svc-rows">
-      <% [sSocial, sTraining].forEach(s => { %>
-        <article class="svc-row" id="service-<%= s.slug %>">
-          <span class="svc-icon svc-icon-sm"><%- include('../partials/icon', { name: s.icon }) %></span>
-          <div class="svc-row-main">
-            <h3><%= s.title %></h3>
-            <p><%= s.summary %></p>
-          </div>
-          <p class="svc-row-list"><%= s.deliverables.join(' · ') %></p>
-          <a class="text-link" href="#contact" data-subject="<%= s.subject %>">Enquire<span class="visually-hidden"> about <%= s.title %></span> <%- include('../partials/icon', { name: 'arrow' }) %></a>
-        </article>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<%# ============================== SELECTED PROJECTS ============================== %>
-<section class="section projects" id="work" aria-labelledby="work-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="work-title" class="section-title">Selected projects</h2>
-      <p class="section-intro">Real work: a website I built and manage, my content brand, and my development training.</p>
-    </div>
-
-    <% const [pAagyw, pJcw, pNex] = projects; %>
-
-    <article class="proj proj-aagyw" id="project-<%= pAagyw.slug %>" aria-labelledby="project-<%= pAagyw.slug %>-title">
-      <div class="proj-media proj-shots">
-        <% if (pAagyw.image) { %>
-          <figure class="shot shot-main">
-            <img src="<%= asset(pAagyw.image) %>" width="<%= pAagyw.imageSize[0] %>" height="<%= pAagyw.imageSize[1] %>" alt="<%= pAagyw.imageAlt %>" loading="lazy">
-          </figure>
-          <% if (pAagyw.secondaryImage) { %>
-            <figure class="shot shot-secondary">
-              <img src="<%= asset(pAagyw.secondaryImage) %>" width="<%= pAagyw.secondaryImageSize[0] %>" height="<%= pAagyw.secondaryImageSize[1] %>" alt="<%= pAagyw.secondaryImageAlt %>" loading="lazy">
-            </figure>
-          <% } %>
-          <p class="shot-caption">From the live homepage, aagyw-cam.org</p>
-        <% } else { %>
-          <%- include('../partials/placeholder', { label: pAagyw.placeholder, shape: 'wide', hint: 'Save as public/images/projects/ and set image in portfolioData.js', tone: 'light' }) %>
-        <% } %>
-      </div>
-      <div class="proj-body">
-        <p class="proj-cat"><%= pAagyw.category %></p>
-        <h3 class="proj-title" id="project-<%= pAagyw.slug %>-title"><%= pAagyw.title %></h3>
-        <p class="proj-org"><%= pAagyw.organisation %></p>
-        <p><%= pAagyw.desc %></p>
-        <p class="proj-label">My contribution</p>
-        <ul class="checklist checklist-sm">
-          <% pAagyw.contribution.forEach(c => { %><li><%- include('../partials/icon', { name: 'check' }) %><%= c %></li><% }) %>
-        </ul>
-        <p class="proj-tools"><%= pAagyw.tools.join(' · ') %></p>
-        <% pAagyw.links.filter(l => l.show).forEach(l => { %>
-          <a class="btn btn-primary proj-cta" href="<%= l.url %>" target="_blank" rel="noopener noreferrer"><%= l.label %> <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens aagyw-cam.org in a new tab)</span></a>
-        <% }) %>
-      </div>
-    </article>
-
-    <article class="proj proj-jcw" id="project-<%= pJcw.slug %>" aria-labelledby="project-<%= pJcw.slug %>-title">
-      <div class="proj-body">
-        <p class="proj-cat"><%= pJcw.category %></p>
-        <h3 class="proj-title" id="project-<%= pJcw.slug %>-title"><%= pJcw.title %></h3>
-        <p class="proj-org"><%= pJcw.organisation %></p>
-        <p><%= pJcw.desc %></p>
-        <p class="proj-label">My contribution</p>
-        <ul class="checklist checklist-sm">
-          <% pJcw.contribution.forEach(c => { %><li><%- include('../partials/icon', { name: 'check' }) %><%= c %></li><% }) %>
-        </ul>
-        <p class="proj-tools"><%= pJcw.tools.join(' · ') %></p>
-        <div class="proj-links">
-          <% pJcw.links.filter(l => l.show).forEach(l => { %>
-            <a class="text-link" href="<%= l.url %>" target="_blank" rel="noopener noreferrer"><%= l.label %> <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens in a new tab)</span></a>
-          <% }) %>
-        </div>
-      </div>
-      <div class="proj-media proj-collage">
-        <% pJcw.designs.map(designBySlug).forEach((d, i) => { %>
-          <img class="collage-<%= i + 1 %>" src="<%= asset('images/designs/' + d.slug + '.webp') %>" width="<%= d.width %>" height="<%= d.height %>" alt="Post for Junioura Creative WebDev: <%= d.title %>" loading="lazy">
-        <% }) %>
-      </div>
-    </article>
-
-    <article class="proj proj-nex" id="project-<%= pNex.slug %>" aria-labelledby="project-<%= pNex.slug %>-title">
-      <div class="proj-media proj-pair">
-        <% if (pNex.image) { %>
-          <img src="<%= asset(pNex.image) %>" alt="Screenshot of a website from the Nexinch training" loading="lazy">
-        <% } else { %>
-          <%- include('../partials/placeholder', { label: pNex.placeholder, shape: 'wide', hint: 'Save as public/images/projects/ and set image in portfolioData.js', tone: 'light' }) %>
-        <% } %>
-        <% const nd = designBySlug(pNex.relatedDesign); %>
-        <img class="proj-flyer" src="<%= asset('images/designs/' + nd.slug + '.webp') %>" width="<%= nd.width %>" height="<%= nd.height %>" alt="Nexinch services flyer I designed" loading="lazy">
-      </div>
-      <div class="proj-body">
-        <p class="proj-cat"><%= pNex.category %></p>
-        <h3 class="proj-title" id="project-<%= pNex.slug %>-title"><%= pNex.title %></h3>
-        <p class="proj-org"><%= pNex.organisation %></p>
-        <p><%= pNex.desc %> I also designed the Nexinch services flyer shown here.</p>
-        <p class="proj-label">What I worked on</p>
-        <ul class="checklist checklist-sm">
-          <% pNex.contribution.forEach(c => { %><li><%- include('../partials/icon', { name: 'check' }) %><%= c %></li><% }) %>
-        </ul>
-      </div>
-    </article>
-  </div>
-</section>
-
-<%# ============================== GRAPHIC DESIGN PORTFOLIO ============================== %>
-<section class="section gallery-section" id="design" aria-labelledby="design-title">
-  <div class="container">
-    <div class="section-head section-head-split">
-      <div>
-        <h2 id="design-title" class="section-title">Graphic design portfolio</h2>
-        <p class="section-intro">Flyers and social media designs for my content brand, a digital safety campaign, my personal brand and Nexinch. Select any design to see it larger.</p>
-      </div>
-      <div class="filters" role="group" aria-label="Filter designs">
-        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
-        <% designCategories.forEach(c => { %>
-          <button type="button" class="filter" data-filter="<%= c.id %>" aria-pressed="false"><%= c.label %></button>
-        <% }) %>
-      </div>
-    </div>
-
-    <ul class="gallery" aria-label="Designs">
-      <% designs.forEach(d => { const cat = designCategories.find(c => c.id === d.category); %>
-        <li class="gallery-item" data-category="<%= d.category %>">
-          <button class="gallery-open" type="button"
-                  data-full="<%= asset('images/designs/' + d.slug + '.webp') %>"
-                  data-title="<%= d.title %>" data-meta="<%= cat.label %> · <%= d.client %> · <%= d.format %>" data-desc="<%= d.desc %>">
-            <img src="<%= asset('images/designs/' + d.slug + '.webp') %>" width="<%= d.width %>" height="<%= d.height %>" alt="<%= d.title %>, <%= d.format.toLowerCase() %> for <%= d.client %>" loading="lazy">
-            <span class="visually-hidden">View larger</span>
-          </button>
-          <p class="gallery-cat"><%= cat.label %></p>
-          <h3 class="gallery-title"><%= d.title %></h3>
-          <p class="gallery-desc"><%= d.desc %></p>
+    <ul class="pathway-grid">
+      <% pathways.forEach(p => { %>
+        <li class="pathway">
+          <span class="pathway-icon"><%- include('../partials/icon', { name: p.icon }) %></span>
+          <h3><a class="pathway-link" href="<%= pageUrl(p.id) %>"><%= p.title %></a></h3>
+          <p><%= p.summary %></p>
+          <span class="pathway-cta" aria-hidden="true"><%= p.cta %> <%- include('../partials/icon', { name: 'arrow' }) %></span>
         </li>
       <% }) %>
     </ul>
   </div>
-
-  <dialog class="lightbox" aria-labelledby="lightbox-title">
-    <form method="dialog"><button class="lightbox-close" type="submit" aria-label="Close"><%- include('../partials/icon', { name: 'close' }) %></button></form>
-    <div class="lightbox-inner">
-      <div class="lightbox-media"><img alt=""></div>
-      <div class="lightbox-text">
-        <p class="lightbox-meta"></p>
-        <h3 id="lightbox-title"></h3>
-        <p class="lightbox-desc"></p>
-      </div>
-    </div>
-  </dialog>
 </section>
 
-<%# ============================== EXPERIENCE ============================== %>
-<section class="section experience" id="experience" aria-labelledby="experience-title">
-  <div class="container exp-grid">
-    <div class="exp-head">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      <p class="section-intro">Most recent first. Each entry shows what kind of role it was: project, training, volunteering or teaching practice.</p>
+<%# ============================== SELECTED WORK ============================== %>
+<section class="section selected" id="selected-work" aria-labelledby="selected-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="selected-title" class="section-title">Selected work</h2>
+      <p class="section-intro">One example from each area. Each links to the full details.</p>
     </div>
 
+    <div class="selected-grid">
+      <article class="sel sel-web">
+        <a class="sel-media" href="<%= pageUrl('web', 'project-aagyw-cam') %>">
+          <img src="<%= asset(aagyw.images[0].src) %>" width="<%= aagyw.images[0].width %>" height="<%= aagyw.images[0].height %>" alt="<%= aagyw.images[0].alt %>" loading="lazy">
+        </a>
+        <div class="sel-body">
+          <p class="sel-area">Web Development</p>
+          <h3><a href="<%= pageUrl('web', 'project-aagyw-cam') %>"><%= aagyw.title %></a></h3>
+          <p><%= aagyw.role %> Built with <%= aagyw.tools.join(' and ') %>.</p>
+          <a class="text-link" href="<%= aagyw.link.url %>" target="_blank" rel="noopener noreferrer">aagyw-cam.org <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <article class="sel sel-comms">
+        <a class="sel-media" href="<%= pageUrl('comms', 'samples') %>">
+          <img src="<%= asset('images/designs/' + featuredDesign.slug + '.webp') %>" width="<%= featuredDesign.width %>" height="<%= featuredDesign.height %>" alt="<%= featuredDesign.title %>, <%= featuredDesign.format.toLowerCase() %>" loading="lazy">
+        </a>
+        <div class="sel-body">
+          <p class="sel-area">Digital Communications</p>
+          <h3><a href="<%= pageUrl('comms', 'samples') %>"><%= featuredDesign.title %></a></h3>
+          <p>A post for Junioura Creative WebDev. <%= featuredDesign.purpose %>.</p>
+        </div>
+      </article>
+
+      <article class="sel sel-edu">
+        <a class="sel-media" href="<%= pageUrl('edu', 'programme') %>">
+          <img src="<%= asset(calendarDoc.src) %>" width="<%= calendarDoc.width %>" height="<%= calendarDoc.height %>" alt="First page of the lesson calendar for the <%= programme.title %>" loading="lazy">
+        </a>
+        <div class="sel-body">
+          <p class="sel-area">Education</p>
+          <h3><a href="<%= pageUrl('edu', 'programme') %>"><%= programme.title %></a></h3>
+          <p>A 30-lesson course I developed for complete beginners, <%= programme.dates %>.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<%# ============================== BACKGROUND ============================== %>
+<section class="section background-section" id="background" aria-labelledby="background-title">
+  <div class="container background-grid">
     <div>
-      <ol class="timeline">
-        <% experience.forEach(e => { %>
-          <li class="tl-item">
-            <div class="tl-meta">
-              <% if (e.date) { %><span class="tl-date"><%= e.date %></span><% } %>
-              <span class="tl-type"><%= e.type %></span>
-            </div>
-            <h3><%= e.title %></h3>
-            <p class="tl-org"><%= e.org %></p>
-            <p class="tl-desc"><%= e.desc %></p>
-            <% if (e.duties.length) { %>
-              <ul class="tl-duties"><% e.duties.forEach(d => { %><li><%= d %></li><% }) %></ul>
-            <% } %>
-          </li>
-        <% }) %>
-      </ol>
+      <h2 id="background-title" class="section-title">Professional background</h2>
+      <p class="lead"><%= story[0] %></p>
+      <p><%= story[1] %></p>
+      <a class="text-link" href="<%= pageUrl('about') %>">Read my story <%- include('../partials/icon', { name: 'arrow' }) %></a>
+    </div>
+    <dl class="facts">
+      <% facts.forEach(f => { %><div><dt><%= f.term %></dt><dd><%= f.detail %></dd></div><% }) %>
+      <div><dt>Works with</dt><dd>WordPress, Elementor, HTML, CSS, JavaScript, Canva, Adobe Illustrator, Adobe Photoshop, Figma</dd></div>
+    </dl>
+  </div>
+</section>
 
-      <div class="exp-other">
-        <h3>Other experience</h3>
-        <ul>
-          <% otherExperience.forEach(e => { %>
-            <li><strong><%= e.title %></strong>, <%= e.org %> (<%= e.date %>). <%= e.desc %></li>
-          <% }) %>
-        </ul>
+<%# ============================== CREDENTIALS ============================== %>
+<section class="section home-creds" id="credentials" aria-labelledby="home-creds-title">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div>
+        <h2 id="home-creds-title" class="section-title">Education and professional development</h2>
+        <p class="section-intro">Selected qualifications and certificates.</p>
       </div>
+      <a class="text-link" href="<%= pageUrl('about', 'credentials') %>">All credentials <%- include('../partials/icon', { name: 'arrow' }) %></a>
     </div>
-  </div>
-</section>
-
-<%# ============================== SKILLS ============================== %>
-<section class="section skills" id="skills" aria-labelledby="skills-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="skills-title" class="section-title">Skills and tools</h2>
-      <p class="section-intro">Grouped by how I use them. No ratings or percentages.</p>
-    </div>
-
-    <div class="toolkit">
-      <p class="toolkit-label">Tools I use</p>
-      <ul><% toolkit.forEach(t => { %><li><%= t %></li><% }) %></ul>
-    </div>
-
-    <div class="skill-grid">
-      <% skills.forEach(g => { %>
-        <section class="skill-panel" aria-label="<%= g.category %>">
-          <div class="skill-panel-head">
-            <span class="svc-icon svc-icon-sm"><%- include('../partials/icon', { name: g.icon }) %></span>
-            <div>
-              <h3><%= g.category %></h3>
-              <p><%= g.note %></p>
-            </div>
-          </div>
-          <ul><% g.items.forEach(i => { %><li><%= i %></li><% }) %></ul>
-        </section>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<%# ============================== EDUCATION & CERTIFICATIONS ============================== %>
-<section class="section education" id="education" aria-labelledby="education-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="education-title" class="section-title">Education and certifications</h2>
-      <p class="section-intro">Newest first. Certificate images will be added from the original documents.</p>
-    </div>
-
-    <ul class="cred-grid">
-      <% credentials.forEach((c, i) => { %>
-        <li class="cred">
-          <div class="cred-media">
-            <% if (c.image) { %>
-              <img src="<%= asset(c.image) %>" alt="<%= c.kind %>: <%= c.title %>" loading="lazy">
-            <% } else { %>
-              <%- include('../partials/placeholder', { label: 'Certificate Image – Replace with Original Certificate', shortLabel: 'Certificate image', shape: 'cert', tone: 'tint' }) %>
-            <% } %>
-          </div>
-          <div class="cred-body">
-            <p class="cred-meta"><span class="cred-kind"><%= c.kind %></span><span><%= c.date %></span></p>
-            <h3><%= c.title %></h3>
-            <% if (c.detail) { %><p class="cred-detail"><%= c.detail %></p><% } %>
-            <p class="cred-org"><%= c.org %></p>
-          </div>
+    <ul class="cred-rows">
+      <% selectedCreds.forEach(c => { %>
+        <li>
+          <p class="cred-kind"><%= c.kind %></p>
+          <h3><%= c.title %></h3>
+          <p class="cred-org"><%= c.org %> · <%= c.date %></p>
         </li>
       <% }) %>
     </ul>
   </div>
 </section>
 
-<%# ============================== HOW I WORK ============================== %>
-<section class="section process-section" id="process" aria-labelledby="process-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="process-title" class="section-title">How I work</h2>
-      <p class="section-intro">The same steps whether the work is a website, a flyer, a content series or a lesson.</p>
-    </div>
-
-    <ol class="flow">
-      <% process.forEach(p => { %>
-        <li class="flow-step">
-          <span class="flow-node"><%- include('../partials/icon', { name: p.icon }) %></span>
-          <h3><%= p.title %></h3>
-          <p><%= p.text %></p>
-        </li>
-      <% }) %>
-    </ol>
-  </div>
-</section>
-
-<%# ============================== CONTACT ============================== %>
-<section class="section contact" id="contact" aria-labelledby="contact-title">
-  <div class="container contact-grid">
-    <div class="contact-intro">
-      <h2 id="contact-title" class="section-title">Get in touch</h2>
-      <p>For a website, a flyer, content for your audience or digital skills training, email or call me, or send a message with the form.</p>
-
-      <ul class="contact-list">
-        <li><%- include('../partials/icon', { name: 'mail' }) %><div><span>Email</span><a href="mailto:<%= owner.email %>"><%= owner.email %></a></div></li>
-        <li><%- include('../partials/icon', { name: 'phone' }) %><div><span>Phone</span><a href="tel:<%= owner.phoneHref %>"><%= owner.phone %></a></div></li>
-        <li><%- include('../partials/icon', { name: 'linkedin' }) %><div><span>LinkedIn</span><a href="<%= owner.social[0].url %>" target="_blank" rel="noopener noreferrer"><%= owner.social[0].handle %><span class="visually-hidden"> (opens in a new tab)</span></a></div></li>
-        <li><%- include('../partials/icon', { name: 'pin' }) %><div><span>Location</span><p><%= owner.location %></p></div></li>
-      </ul>
-
-      <a class="btn btn-secondary" href="mailto:<%= owner.email %>?subject=<%= encodeURIComponent('Enquiry from your portfolio') %>">Email me directly</a>
-    </div>
-
-    <div class="contact-form-wrap">
-      <% if (contact.status === 'sent') { %>
-        <div class="notice notice-success" role="status">
-          <h3>Message sent. Thank you.</h3>
-          <p>I will get back to you as soon as I can.</p>
-          <a class="btn btn-outline" href="<%= base %>#contact">Send another message</a>
-        </div>
-      <% } else { %>
-        <form class="contact-form" method="post" novalidate
-              action="<%= isStatic ? 'mailto:' + owner.email : base + 'contact' %>"
-              <% if (isStatic) { %>enctype="text/plain" data-mailto="<%= owner.email %>"<% } %>>
-          <h3 class="form-title">Send an enquiry</h3>
-          <% if (isStatic) { %>
-            <p class="form-note">This opens your email app with the message ready to send.</p>
-          <% } %>
-
-          <% if (contact.status === 'failed') { %>
-            <div class="notice notice-error" role="alert">
-              <p>Sorry, your message could not be sent right now. Please email me directly at <a href="mailto:<%= owner.email %>"><%= owner.email %></a>.</p>
-            </div>
-          <% } %>
-          <% if (contact.errors.length) { %>
-            <div class="notice notice-error" role="alert">
-              <p>Please check the form:</p>
-              <ul><% contact.errors.forEach(e => { %><li><%= e.msg %></li><% }) %></ul>
-            </div>
-          <% } %>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="name">Your name</label>
-              <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="80" value="<%= contact.values.name || '' %>">
-            </div>
-            <div class="field">
-              <label for="email">Your email</label>
-              <input type="email" id="email" name="email" autocomplete="email" required value="<%= contact.values.email || '' %>">
-            </div>
-          </div>
-          <div class="field">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required minlength="3" maxlength="120" value="<%= contact.values.subject || '' %>">
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required minlength="10" maxlength="2000"><%= contact.values.message || '' %></textarea>
-          </div>
-          <p class="form-error" role="alert" hidden></p>
-          <button class="btn btn-primary" type="submit">Send message</button>
-        </form>
-      <% } %>
-    </div>
-  </div>
-</section>
+<%- include('../partials/contact') %>

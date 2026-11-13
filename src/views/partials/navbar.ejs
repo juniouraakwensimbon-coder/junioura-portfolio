@@ -1,6 +1,6 @@
 <header class="site-header" id="top">
   <div class="container header-inner">
-    <a class="wordmark" href="<%= isHome ? '#home' : base %>" aria-label="<%= owner.name %>, home">
+    <a class="wordmark" href="<%= pageUrl('home') %>" aria-label="<%= owner.name %>, home">
       <span class="wordmark-mark" aria-hidden="true"><%= owner.initials %></span>
       <span class="wordmark-text">
         <span class="wordmark-name"><%= owner.name %></span>
@@ -16,15 +16,10 @@
 
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
-        <li><a href="<%= section('home') %>">Home</a></li>
-        <li><a href="<%= section('about') %>">About</a></li>
-        <li><a href="<%= section('services') %>">Services</a></li>
-        <li><a href="<%= section('work') %>">Portfolio</a></li>
-        <li><a href="<%= section('experience') %>">Experience</a></li>
-        <li><a href="<%= section('skills') %>">Skills</a></li>
-        <li><a href="<%= section('education') %>">Education</a></li>
-        <li><a href="<%= section('contact') %>">Contact</a></li>
-        <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="<%= section('contact') %>">Contact me</a></li>
+        <% pages.forEach(p => { %>
+          <li><a href="<%= pageUrl(p.id) %>"<% if (p.id === pageId) { %> aria-current="page"<% } %>><%= p.label %></a></li>
+        <% }) %>
+        <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="<%= contactUrl() %>">Contact me</a></li>
       </ul>
     </nav>
   </div>

@@ -1,0 +1,9 @@
+<%# Preview of the first page of a genuine document. Expects: d, context (string) %>
+<li class="doc">
+  <button class="doc-preview gallery-open" type="button"
+          data-full="<%= asset(d.src) %>" data-title="<%= d.title %>" data-meta="<%= context %>" data-desc="<%= d.note %>">
+    <img src="<%= asset(d.src) %>" width="<%= d.width %>" height="<%= d.height %>" alt="First page of <%= d.title %>" loading="lazy">
+  </button>
+  <h3 class="doc-title"><%= d.title %></h3>
+  <p class="doc-note"><%= d.note %></p>
+</li>

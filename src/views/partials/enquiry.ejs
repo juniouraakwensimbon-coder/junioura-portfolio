@@ -1,0 +1,13 @@
+<%# Enquiry band at the end of a pathway page. Expects: e ({ title, text, subject }) %>
+<section class="enquiry" aria-labelledby="enquiry-title">
+  <div class="container enquiry-inner">
+    <div>
+      <h2 id="enquiry-title" class="enquiry-title"><%= e.title %></h2>
+      <p><%= e.text %></p>
+    </div>
+    <div class="enquiry-actions">
+      <a class="btn btn-secondary" href="<%= contactUrl(e.subject) %>">Send an enquiry</a>
+      <a class="enquiry-mail" href="mailto:<%= owner.email %>?subject=<%= encodeURIComponent(e.subject) %>"><%= owner.email %></a>
+    </div>
+  </div>
+</section>

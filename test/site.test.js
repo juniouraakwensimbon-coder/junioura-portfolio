@@ -29,8 +29,9 @@ before(() => {
 
 after(() => fs.rmSync(outDir, { recursive: true, force: true }));
 
-test('build produces index.html, 404.html and .nojekyll', () => {
-  for (const f of ['index.html', '404.html', '.nojekyll', 'css/style.css', 'js/script.js']) {
+test('build produces all five pages, 404.html and .nojekyll', () => {
+  const pages = ['index.html', 'web-development/index.html', 'digital-communications/index.html', 'education/index.html', 'about/index.html'];
+  for (const f of [...pages, '404.html', '.nojekyll', 'css/style.css', 'js/script.js']) {
     assert.ok(fs.existsSync(path.join(outDir, f)), `${f} missing`);
   }
 });
@@ -56,12 +57,17 @@ test('static contact form composes an email instead of posting to a server', () 
   assert.doesNotMatch(html, /action="[^"]*\/contact"/);
 });
 
-test('hidden project links are not rendered', () => {
-  for (const p of data.projects) {
-    for (const l of p.links.filter((x) => !x.show)) {
-      assert.ok(!html.includes(`href="${l.url}"`), `hidden link rendered: ${l.url}`);
-    }
+test('live project links point to the real site and open safely', () => {
+  const web = fs.readFileSync(path.join(outDir, 'web-development/index.html'), 'utf8');
+  for (const p of data.projects.filter((x) => x.link)) {
+    assert.ok(web.includes(`href="${p.link.url}"`), `link missing: ${p.link.url}`);
   }
+});
+
+test('private certificates are text only and the ABII certificate is not shown', () => {
+  const about = fs.readFileSync(path.join(outDir, 'about/index.html'), 'utf8');
+  for (const c of data.credentials.filter((x) => !x.image)) assert.ok(about.includes(c.title.replace(/&/g, '&amp;')) || about.includes(c.title), c.title);
+  assert.doesNotMatch(about, /abii[^"]*.(webp|jpg|png)/i);
 });
 
 test('no placeholder content, stock photos or skill percentages', () => {
@@ -71,14 +77,14 @@ test('no placeholder content, stock photos or skill percentages', () => {
 
 test('every image referenced in the data exists', () => {
   const imgs = [data.owner.photo.src, ...data.designs.map((d) => `images/designs/${d.slug}.webp`)];
-  for (const p of data.projects) if (p.image) imgs.push(p.image);
-  for (const c of data.credentials) if (c.image) imgs.push(c.image);
-  if (data.owner.aboutPhoto) imgs.push(data.owner.aboutPhoto);
+  for (const p of data.projects) for (const i of p.images || []) imgs.push(i.src);
+  for (const c of data.credentials) if (c.image) imgs.push(c.image.src);
+  for (const d of data.documents) imgs.push(d.src);
   for (const src of imgs) assert.ok(fs.existsSync(path.join(root, 'public', src)), `missing ${src}`);
 });
 
 // ---------- Express server (local development) ----------
-test('Express server serves the page, redirects old URLs and returns 404s', async () => {
+test('Express server serves the five pages, redirects old URLs and returns 404s', async () => {
   const app = require('../src/app');
   const server = app.listen(0);
   const { port } = server.address();
@@ -90,7 +96,13 @@ test('Express server serves the page, redirects old URLs and returns 404s', asyn
     assert.match(body, /Junioura/);
     assert.match(body, /action="\/contact"/);
 
-    for (const [from, to] of [['/about', '/#about'], ['/projects', '/#work'], ['/contact', '/#contact']]) {
+    for (const p of ['/web-development/', '/digital-communications/', '/education/', '/about/', '/about']) {
+      const r = await fetch(url(p));
+      assert.equal(r.status, 200, p);
+      assert.match(await r.text(), /aria-current="page"/, p);
+    }
+
+    for (const [from, to] of [['/projects', '/web-development/'], ['/contact', '/#contact']]) {
       const r = await fetch(url(from), { redirect: 'manual' });
       assert.equal(r.status, 301, from);
       assert.equal(r.headers.get('location'), to);

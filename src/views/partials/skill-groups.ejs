@@ -1,0 +1,9 @@
+<%# Grouped skills, no ratings. Expects: groups ([{ title, items }]) %>
+<div class="skill-groups">
+  <% groups.forEach(g => { %>
+    <section class="skill-group" aria-label="<%= g.title %>">
+      <h3><%= g.title %></h3>
+      <ul><% g.items.forEach(i => { %><li><%= i %></li><% }) %></ul>
+    </section>
+  <% }) %>
+</div>

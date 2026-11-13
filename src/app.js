@@ -57,7 +57,7 @@ app.use('/', portfolioRoutes);
 
 app.use((req, res) => {
   res.status(404).render('404', {
-    ...siteContext({ isHome: false }),
+    ...siteContext({ pageId: 'none' }),
     title: 'Page not found — Junioura Akwensimbom',
     metaDesc: 'This page could not be found.',
     noindex: true,

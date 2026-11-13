@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
-const { siteContext } = require('../src/lib/siteContext');
+const { siteContext, PAGES } = require('../src/lib/siteContext');
 
 const root = path.join(__dirname, '..');
 const views = path.join(root, 'src', 'views');
@@ -24,12 +24,6 @@ const outDir = path.resolve(root, process.env.OUT_DIR || 'dist');
 
 const base = process.env.BASE_PATH || '/';
 const siteUrl = process.env.SITE_URL || '';
-
-const home = {
-  title: 'Junioura Akwensimbom — Web Developer · Digital Communications · Educator',
-  metaDesc:
-    'Junioura Akwensimbom is a web developer, digital communicator and educator in Bamenda, Cameroon, building websites, creating digital content and teaching practical digital skills.',
-};
 
 async function renderPage(view, locals) {
   const opts = { views: [views] };
@@ -44,28 +38,28 @@ async function build() {
   // 1. Copy static assets (css, js, images, documents)
   fs.cpSync(path.join(root, 'public'), outDir, { recursive: true });
 
-  // 2. Render pages
-  const pages = [
-    {
-      file: 'index.html',
-      view: 'pages/home',
-      locals: { ...siteContext({ base, siteUrl, isStatic: true, isHome: true }), ...home },
+  // 2. Render the five pages (each page lives in its own folder so
+  //    "/repo/web-development/" works on GitHub Pages and on refresh)
+  const pages = PAGES.map((p) => ({
+    file: p.slug ? path.join(p.slug, 'index.html') : 'index.html',
+    view: p.view,
+    locals: { ...siteContext({ base, siteUrl, isStatic: true, pageId: p.id }), title: p.title, metaDesc: p.description },
+  }));
+  // GitHub Pages serves 404.html for unknown URLs
+  pages.push({
+    file: '404.html',
+    view: '404',
+    locals: {
+      ...siteContext({ base, siteUrl, isStatic: true, pageId: 'none' }),
+      title: 'Page not found — Junioura Akwensimbom',
+      metaDesc: 'This page could not be found.',
+      noindex: true,
     },
-    {
-      // GitHub Pages serves 404.html for unknown URLs
-      file: '404.html',
-      view: '404',
-      locals: {
-        ...siteContext({ base, siteUrl, isStatic: true, isHome: false }),
-        title: 'Page not found — Junioura Akwensimbom',
-        metaDesc: 'This page could not be found.',
-        noindex: true,
-      },
-    },
-  ];
+  });
 
   for (const p of pages) {
     const html = await renderPage(p.view, p.locals);
+    fs.mkdirSync(path.dirname(path.join(outDir, p.file)), { recursive: true });
     fs.writeFileSync(path.join(outDir, p.file), html);
   }
 

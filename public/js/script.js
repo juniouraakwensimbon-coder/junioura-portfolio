@@ -136,6 +136,13 @@
     });
   });
 
+  // Enquiry links from other pages arrive as /?subject=...#contact
+  if (form && form.elements.subject && !form.elements.subject.value.trim()) {
+    var qsSubject = null;
+    try { qsSubject = new URLSearchParams(window.location.search).get('subject'); } catch (e) { qsSubject = null; }
+    if (qsSubject) form.elements.subject.value = 'Enquiry: ' + qsSubject.slice(0, 120);
+  }
+
   if (form) {
     var errorBox = form.querySelector('.form-error');
     var fields = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));

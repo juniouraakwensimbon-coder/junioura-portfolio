@@ -1,0 +1,92 @@
+<%
+  const eduExperience = experience.filter(e => e.areas.includes('edu'));
+  const eduCreds = credentials.filter(c => c.areas.includes('edu'));
+  const programmeDocs = documents.filter(d => d.area === 'edu' && d.slug !== 'website-lesson');
+  const websiteLesson = documents.find(d => d.slug === 'website-lesson');
+%>
+<%- include('../partials/page-hero', { heading: 'Education', intro: edu.intro, jumps: [
+  { id: 'areas', label: 'Teaching and learning' }, { id: 'approach', label: 'My approach' },
+  { id: 'experience', label: 'Experience' }, { id: 'programme', label: 'Learning resources' }, { id: 'qualifications', label: 'Qualifications' } ] }) %>
+
+<section class="section section-white" id="areas" aria-labelledby="areas-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="areas-title" class="section-title">Teaching and learning</h2>
+      <p class="section-intro">Classroom teaching and digital education, including support for people learning digital skills and web development.</p>
+    </div>
+    <%- include('../partials/skill-groups', { groups: edu.areas }) %>
+  </div>
+</section>
+
+<section class="section approach" id="approach" aria-labelledby="approach-title">
+  <div class="container approach-inner">
+    <h2 id="approach-title" class="section-title">My approach to teaching</h2>
+    <blockquote class="approach-quote"><p><%= edu.philosophy %></p></blockquote>
+  </div>
+</section>
+
+<section class="section section-white" id="experience" aria-labelledby="experience-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="experience-title" class="section-title">Teaching experience</h2>
+      <p class="section-intro">Formal classroom teaching.</p>
+    </div>
+    <%- include('../partials/timeline', { items: eduExperience }) %>
+  </div>
+</section>
+
+<section class="section section-cool" id="programme" aria-labelledby="programme-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="programme-title" class="section-title">Learning resources</h2>
+      <p class="section-intro">Genuine materials I developed. Select a page to read it at full size.</p>
+    </div>
+
+    <article class="programme" aria-labelledby="programme-name">
+      <div class="programme-info">
+        <p class="case-label">Learning programme · <%= programme.dates %></p>
+        <h3 id="programme-name" class="case-title"><%= programme.title %></h3>
+        <p><%= programme.summary %></p>
+        <p class="case-subhead">How the programme is structured</p>
+        <ul class="phase-list"><% programme.phases.forEach(ph => { %><li><%= ph %></li><% }) %></ul>
+        <p class="case-subhead">Each two-hour lesson</p>
+        <ol class="lesson-flow"><% programme.lessonFlow.forEach(s => { %><li><%= s %></li><% }) %></ol>
+      </div>
+      <div class="programme-approach">
+        <p class="case-subhead">Teaching approach</p>
+        <dl class="approach-list">
+          <% programme.approach.forEach(a => { %><div><dt><%= a.title %></dt><dd><%= a.text %></dd></div><% }) %>
+        </dl>
+      </div>
+    </article>
+
+    <ul class="doc-grid doc-grid-3">
+      <% programmeDocs.forEach(d => { %><%- include('../partials/document', { d, context: programme.title }) %><% }) %>
+    </ul>
+
+    <div class="plans">
+      <div class="plans-head">
+        <h3 class="sub-title">Educational digital content</h3>
+        <p>A plain-language lesson written for Junioura Creative WebDev.</p>
+      </div>
+      <ul class="doc-grid doc-grid-1">
+        <%- include('../partials/document', { d: websiteLesson, context: 'Educational content · Junioura Creative WebDev' }) %>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white" id="qualifications" aria-labelledby="qualifications-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="qualifications-title" class="section-title">Academic qualifications</h2>
+      <p class="section-intro">Shown in the wording of the certificates. The documents themselves are not published because they contain private details.</p>
+    </div>
+    <ul class="cred-list">
+      <% eduCreds.forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
+    </ul>
+  </div>
+</section>
+
+<%- include('../partials/enquiry', { e: edu.enquiry }) %>
+<%- include('../partials/lightbox') %>

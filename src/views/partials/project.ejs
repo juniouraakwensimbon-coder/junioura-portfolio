@@ -1,0 +1,39 @@
+<%# Project case study. Expects: p (project), featured (bool) %>
+<article class="case <%= featured ? 'case-featured' : '' %>" id="project-<%= p.slug %>" aria-labelledby="project-<%= p.slug %>-title">
+  <% if (p.images.length) { %>
+    <div class="case-media">
+      <figure class="shot shot-main"><img src="<%= asset(p.images[0].src) %>" width="<%= p.images[0].width %>" height="<%= p.images[0].height %>" alt="<%= p.images[0].alt %>" loading="lazy"></figure>
+      <% if (p.images[1]) { %>
+        <figure class="shot shot-secondary"><img src="<%= asset(p.images[1].src) %>" width="<%= p.images[1].width %>" height="<%= p.images[1].height %>" alt="<%= p.images[1].alt %>" loading="lazy"></figure>
+      <% } %>
+      <p class="shot-caption">Screenshots of the live website</p>
+    </div>
+  <% } else if (p.placeholder) { %>
+    <div class="case-media">
+      <%- include('placeholder', { label: p.placeholder, shape: 'wide', hint: 'Save it in public/images/projects/ and add it to this project in portfolioData.js', tone: 'light' }) %>
+    </div>
+  <% } %>
+
+  <div class="case-body">
+    <p class="case-label"><%= p.label %><% if (p.date) { %> · <%= p.date %><% } %></p>
+    <h3 class="case-title" id="project-<%= p.slug %>-title"><%= p.title %></h3>
+    <p class="case-org"><%= p.organisation %></p>
+
+    <dl class="case-facts">
+      <div><dt>Purpose</dt><dd><%= p.purpose %></dd></div>
+      <% if (p.role) { %><div><dt>My role</dt><dd><%= p.role %></dd></div><% } %>
+      <% if (p.tools.length) { %><div><dt>Tools</dt><dd><%= p.tools.join(', ') %></dd></div><% } %>
+    </dl>
+
+    <% if (p.work.length) { %>
+      <p class="case-subhead">What I did</p>
+      <ul class="checklist">
+        <% p.work.forEach(w => { %><li><%- include('icon', { name: 'check' }) %><%= w %></li><% }) %>
+      </ul>
+    <% } %>
+
+    <% if (p.link) { %>
+      <a class="btn btn-primary case-cta" href="<%= p.link.url %>" target="_blank" rel="noopener noreferrer"><%= p.link.label %> <%- include('icon', { name: 'external' }) %><span class="visually-hidden"> (opens <%= p.link.url.replace(/^https?:\/\//, '').replace(/\/$/, '') %> in a new tab)</span></a>
+    <% } %>
+  </div>
+</article>

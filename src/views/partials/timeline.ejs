@@ -1,0 +1,17 @@
+<%# Experience timeline, most recent first. Expects: items, compact (bool) %>
+<ol class="timeline <%= typeof compact !== 'undefined' && compact ? 'timeline-compact' : '' %>">
+  <% items.forEach(e => { %>
+    <li class="tl-item">
+      <p class="tl-meta">
+        <span class="tl-date"><%= e.date %></span>
+        <% if (e.type) { %><span class="tl-type"><%= e.type %></span><% } %>
+      </p>
+      <h3><%= e.title %></h3>
+      <p class="tl-org"><%= e.org %></p>
+      <p class="tl-desc"><%= e.summary %></p>
+      <% if (e.duties.length && !(typeof compact !== 'undefined' && compact)) { %>
+        <ul class="tl-duties"><% e.duties.forEach(d => { %><li><%= d %></li><% }) %></ul>
+      <% } %>
+    </li>
+  <% }) %>
+</ol>

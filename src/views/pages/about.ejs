@@ -1,0 +1,90 @@
+<%
+  const groups = [...new Set(credentials.map(c => c.group))];
+%>
+<section class="about-hero" aria-labelledby="page-title">
+  <div class="container about-hero-grid">
+    <div class="about-hero-copy">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="<%= pageUrl('home') %>">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">About</span>
+      </nav>
+      <h1 id="page-title" class="page-title">My professional journey</h1>
+      <% story.forEach((p, i) => { %><p class="<%= i === 0 ? 'page-intro' : 'about-para' %>"><%= p %></p><% }) %>
+    </div>
+    <figure class="about-portrait">
+      <img src="<%= asset(owner.photo.src) %>" width="<%= owner.photo.width %>" height="<%= owner.photo.height %>" alt="<%= owner.photo.alt %>" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section class="section section-cool" id="paths" aria-labelledby="paths-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="paths-title" class="section-title">Where to look next</h2>
+    </div>
+    <ul class="path-links">
+      <% pathways.forEach(p => { %>
+        <li><a href="<%= pageUrl(p.id) %>"><span><%= p.title %></span><span class="path-links-text"><%= p.summary %></span><%- include('../partials/icon', { name: 'arrow' }) %></a></li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-white" id="experience" aria-labelledby="experience-title">
+  <div class="container split">
+    <div class="split-head">
+      <h2 id="experience-title" class="section-title">Experience</h2>
+      <p class="section-intro">All roles and projects with confirmed dates, most recent first. The pathway pages give the full details.</p>
+    </div>
+    <%- include('../partials/timeline', { items: experience, compact: true }) %>
+  </div>
+</section>
+
+<section class="section section-cool" id="credentials" aria-labelledby="credentials-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="credentials-title" class="section-title">Credentials</h2>
+      <p class="section-intro">Qualifications, training and professional development. Certificates can be opened and read at full size. University documents are listed without images because they contain private details.</p>
+    </div>
+    <% groups.forEach(g => { %>
+      <div class="cred-group">
+        <h3 class="sub-title"><%= g %></h3>
+        <ul class="cred-list cred-list-wide">
+          <% credentials.filter(c => c.group === g).forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
+        </ul>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section section-white" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="process-title" class="section-title">How I work</h2>
+      <p class="section-intro">The same steps whether the work is a website, a design, a content series or a lesson.</p>
+    </div>
+    <ol class="flow">
+      <% process.forEach(p => { %>
+        <li class="flow-step">
+          <span class="flow-node"><%- include('../partials/icon', { name: p.icon }) %></span>
+          <h3><%= p.title %></h3>
+          <p><%= p.text %></p>
+        </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+
+<section class="enquiry" aria-labelledby="enquiry-title">
+  <div class="container enquiry-inner">
+    <div>
+      <h2 id="enquiry-title" class="enquiry-title">Let’s talk</h2>
+      <p>For websites, digital communications, teaching or training, I would be glad to hear from you.</p>
+    </div>
+    <div class="enquiry-actions">
+      <a class="btn btn-secondary" href="<%= contactUrl() %>">Contact me</a>
+      <a class="enquiry-mail" href="mailto:<%= owner.email %>"><%= owner.email %></a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/lightbox') %>
