@@ -9,28 +9,20 @@
 
 <section class="section section-white" id="skills" aria-labelledby="skills-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="skills-title" class="section-title">Skills and tools</h2>
-      <p class="section-intro">How I plan, write, design and manage content.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'skills-title', title: 'Skills and tools', intro: 'How I plan, write, design and manage content.' }) %>
     <%- include('../partials/skill-groups', { groups: comms.skills }) %>
   </div>
 </section>
 
 <section class="section section-cool" id="samples" aria-labelledby="samples-title">
   <div class="container">
-    <div class="section-head section-head-split">
-      <div>
-        <h2 id="samples-title" class="section-title">Work samples</h2>
-        <p class="section-intro">Flyers and social media designs. Select any design to see it larger.</p>
-      </div>
-      <div class="filters" role="group" aria-label="Filter designs">
+    <%- include('../partials/section-heading', { id: 'samples-title', title: 'Work samples', intro: 'Flyers and social media designs. Select any design to see it larger.' }) %>
+    <div class="filters filters-centred" role="group" aria-label="Filter designs">
         <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
         <% designCategories.forEach(c => { %>
           <button type="button" class="filter" data-filter="<%= c.id %>" aria-pressed="false"><%= c.label %></button>
         <% }) %>
       </div>
-    </div>
 
     <ul class="gallery" aria-label="Designs">
       <% designs.forEach(d => { const cat = designCategories.find(c => c.id === d.category); %>
@@ -65,11 +57,8 @@
 </section>
 
 <section class="section section-white" id="platforms" aria-labelledby="platforms-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="platforms-title" class="section-title">Platforms</h2>
-      <p class="section-intro">Where my content is published and where to find me professionally.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'platforms-title', title: 'Platforms', intro: 'Where my content is published and where to find me professionally.' }) %>
     <ul class="platform-list">
       <% owner.social.forEach(s => { %>
         <li>
@@ -87,21 +76,15 @@
 </section>
 
 <section class="section section-cool" id="experience" aria-labelledby="experience-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      <p class="section-intro">Content and social media work, most recent first.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'experience-title', title: 'Experience', intro: 'Content and social media work, most recent first.' }) %>
     <%- include('../partials/timeline', { items: commsExperience }) %>
   </div>
 </section>
 
 <section class="section section-white" id="certificates" aria-labelledby="certificates-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="certificates-title" class="section-title">Certificates</h2>
-      <p class="section-intro">Digital safety and professional development. Select a certificate to read it at full size.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'certificates-title', title: 'Certificates', intro: 'Digital safety and professional development. Select a certificate to read it at full size.' }) %>
     <ul class="cred-list">
       <% commsCreds.forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
     </ul>

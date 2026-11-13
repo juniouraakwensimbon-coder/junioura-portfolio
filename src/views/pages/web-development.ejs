@@ -10,20 +10,14 @@
 
 <section class="section section-white" id="skills" aria-labelledby="skills-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="skills-title" class="section-title">Skills and tools</h2>
-      <p class="section-intro">What I use to build and look after websites, grouped by the job it does.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'skills-title', title: 'Skills and tools', intro: 'What I use to build and look after websites, grouped by the job it does.' }) %>
     <%- include('../partials/skill-groups', { groups: web.skills }) %>
   </div>
 </section>
 
 <section class="section section-cool" id="projects" aria-labelledby="projects-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="projects-title" class="section-title">Projects</h2>
-      <p class="section-intro">Real websites and real training work, with what I actually did on each.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'projects-title', title: 'Projects', intro: 'Real websites and real training work, with what I actually did on each.' }) %>
     <%- include('../partials/project', { p: featured, featured: true }) %>
     <div class="case-pair">
       <% others.forEach(p => { %><%- include('../partials/project', { p, featured: false }) %><% }) %>
@@ -32,21 +26,15 @@
 </section>
 
 <section class="section section-white" id="experience" aria-labelledby="experience-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      <p class="section-intro">Website work, most recent first.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'experience-title', title: 'Experience', intro: 'Website work, most recent first.' }) %>
     <%- include('../partials/timeline', { items: webExperience }) %>
   </div>
 </section>
 
 <section class="section section-cool" id="certificates" aria-labelledby="certificates-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="certificates-title" class="section-title">Certificates</h2>
-      <p class="section-intro">Select the certificate to read it at full size.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'certificates-title', title: 'Certificates', intro: 'Select the certificate to read it at full size.' }) %>
     <ul class="cred-list">
       <% webCreds.forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
     </ul>

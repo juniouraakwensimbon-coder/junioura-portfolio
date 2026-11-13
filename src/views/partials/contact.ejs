@@ -1,9 +1,9 @@
 <%# Contact section with the enquiry form (home page) %>
 <section class="section contact" id="contact" aria-labelledby="contact-title">
-  <div class="container contact-grid">
+  <div class="container">
+    <%- include('section-heading', { id: 'contact-title', title: 'Contact me', intro: 'I welcome conversations about professional opportunities, website projects, digital communications work, teaching and training. Email or call me, or send a message with the form.' }) %>
+    <div class="contact-grid">
     <div class="contact-intro">
-      <h2 id="contact-title" class="section-title">Contact me</h2>
-      <p>I welcome conversations about professional opportunities, website projects, digital communications work, teaching and training. Email or call me, or send a message with the form.</p>
 
       <ul class="contact-list">
         <li><%- include('icon', { name: 'mail' }) %><div><span>Email</span><a href="mailto:<%= owner.email %>"><%= owner.email %></a></div></li>
@@ -64,5 +64,6 @@
         </form>
       <% } %>
     </div>
+  </div>
   </div>
 </section>

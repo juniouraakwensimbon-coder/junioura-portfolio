@@ -10,37 +10,28 @@
 
 <section class="section section-white" id="areas" aria-labelledby="areas-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="areas-title" class="section-title">Teaching and learning</h2>
-      <p class="section-intro">Classroom teaching and digital education, including support for people learning digital skills and web development.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'areas-title', title: 'Teaching and learning', intro: 'Classroom teaching and digital education, including support for people learning digital skills and web development.' }) %>
     <%- include('../partials/skill-groups', { groups: edu.areas }) %>
   </div>
 </section>
 
 <section class="section approach" id="approach" aria-labelledby="approach-title">
   <div class="container approach-inner">
-    <h2 id="approach-title" class="section-title">My approach to teaching</h2>
+    <%- include('../partials/section-heading', { id: 'approach-title', title: 'My approach to teaching' }) %>
     <blockquote class="approach-quote"><p><%= edu.philosophy %></p></blockquote>
   </div>
 </section>
 
 <section class="section section-white" id="experience" aria-labelledby="experience-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="experience-title" class="section-title">Teaching experience</h2>
-      <p class="section-intro">Formal classroom teaching.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'experience-title', title: 'Teaching experience', intro: 'Formal classroom teaching.' }) %>
     <%- include('../partials/timeline', { items: eduExperience }) %>
   </div>
 </section>
 
 <section class="section section-cool" id="programme" aria-labelledby="programme-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="programme-title" class="section-title">Learning resources</h2>
-      <p class="section-intro">Genuine materials I developed. Select a page to read it at full size.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'programme-title', title: 'Learning resources', intro: 'Genuine materials I developed. Select a page to read it at full size.' }) %>
 
     <article class="programme" aria-labelledby="programme-name">
       <div class="programme-info">
@@ -77,11 +68,8 @@
 </section>
 
 <section class="section section-white" id="qualifications" aria-labelledby="qualifications-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="qualifications-title" class="section-title">Academic qualifications</h2>
-      <p class="section-intro">Shown in the wording of the certificates. The documents themselves are not published because they contain private details.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'qualifications-title', title: 'Academic qualifications', intro: 'Shown in the wording of the certificates. The documents themselves are not published because they contain private details.' }) %>
     <ul class="cred-list">
       <% eduCreds.forEach(c => { %><%- include('../partials/credential', { c }) %><% }) %>
     </ul>

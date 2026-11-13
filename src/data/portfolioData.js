@@ -40,9 +40,9 @@ const owner = {
 /* The three professional pathways                                     */
 /* ------------------------------------------------------------------ */
 const pathways = [
-  { id: 'web', slug: 'web-development', icon: 'browser', title: 'Web Development', summary: 'Building, managing and improving websites and practical digital experiences.', cta: 'Explore Web Development' },
-  { id: 'comms', slug: 'digital-communications', icon: 'chat', title: 'Digital Communications', summary: 'Creating useful digital content, communicating ideas and managing digital platforms.', cta: 'Explore Digital Communications' },
-  { id: 'edu', slug: 'education', icon: 'learn', title: 'Education', summary: 'Teaching, developing learning resources and making knowledge easier to understand.', cta: 'Explore Education' },
+  { id: 'web', slug: 'web-development', icon: 'browser', title: 'Web Development', summary: 'Build, manage and improve websites and digital experiences.', cta: 'Explore Web Development' },
+  { id: 'comms', slug: 'digital-communications', icon: 'chat', title: 'Digital Communications', summary: 'Create useful content and visual materials that communicate ideas clearly.', cta: 'Explore Digital Communications' },
+  { id: 'edu', slug: 'education', icon: 'learn', title: 'Education', summary: 'Teach, support learning and make knowledge accessible.', cta: 'Explore Education' },
 ];
 
 /* ------------------------------------------------------------------ */

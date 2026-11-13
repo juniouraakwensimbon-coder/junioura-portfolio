@@ -1,0 +1,8 @@
+<%#
+  Shared section heading: a centred colour box with an optional centred
+  description underneath. Content after it keeps its own layout.
+  Expects: id (heading id), title. Optional: intro.
+%><div class="section-heading">
+  <h2 id="<%= id %>" class="heading-box"><%= title %></h2>
+  <% if (typeof intro !== 'undefined' && intro) { %><p class="section-lead"><%= intro %></p><% } %>
+</div>

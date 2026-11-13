@@ -18,9 +18,7 @@
 
 <section class="section section-cool" id="paths" aria-labelledby="paths-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="paths-title" class="section-title">Where to look next</h2>
-    </div>
+    <%- include('../partials/section-heading', { id: 'paths-title', title: 'Where to look next' }) %>
     <ul class="path-links">
       <% pathways.forEach(p => { %>
         <li><a href="<%= pageUrl(p.id) %>"><span><%= p.title %></span><span class="path-links-text"><%= p.summary %></span><%- include('../partials/icon', { name: 'arrow' }) %></a></li>
@@ -30,21 +28,15 @@
 </section>
 
 <section class="section section-white" id="experience" aria-labelledby="experience-title">
-  <div class="container split">
-    <div class="split-head">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      <p class="section-intro">All roles and projects with confirmed dates, most recent first. The pathway pages give the full details.</p>
-    </div>
+  <div class="container section-narrow">
+    <%- include('../partials/section-heading', { id: 'experience-title', title: 'Experience', intro: 'All roles and projects with confirmed dates, most recent first. The pathway pages give the full details.' }) %>
     <%- include('../partials/timeline', { items: experience, compact: true }) %>
   </div>
 </section>
 
 <section class="section section-cool" id="credentials" aria-labelledby="credentials-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="credentials-title" class="section-title">Credentials</h2>
-      <p class="section-intro">Qualifications, training and professional development. Certificates can be opened and read at full size. University documents are listed without images because they contain private details.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'credentials-title', title: 'Credentials', intro: 'Qualifications, training and professional development. Certificates can be opened and read at full size. University documents are listed without images because they contain private details.' }) %>
     <% groups.forEach(g => { %>
       <div class="cred-group">
         <h3 class="sub-title"><%= g %></h3>
@@ -58,10 +50,7 @@
 
 <section class="section section-white" id="process" aria-labelledby="process-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="process-title" class="section-title">How I work</h2>
-      <p class="section-intro">The same steps whether the work is a website, a design, a content series or a lesson.</p>
-    </div>
+    <%- include('../partials/section-heading', { id: 'process-title', title: 'How I work', intro: 'The same steps whether the work is a website, a design, a content series or a lesson.' }) %>
     <ol class="flow">
       <% process.forEach(p => { %>
         <li class="flow-step">
