@@ -177,9 +177,17 @@
     <% const [pAagyw, pJcw, pNex] = projects; %>
 
     <article class="proj proj-aagyw" id="project-<%= pAagyw.slug %>" aria-labelledby="project-<%= pAagyw.slug %>-title">
-      <div class="proj-media">
+      <div class="proj-media proj-shots">
         <% if (pAagyw.image) { %>
-          <img src="<%= asset(pAagyw.image) %>" alt="Screenshot of the AAGYW-CAM website" loading="lazy">
+          <figure class="shot shot-main">
+            <img src="<%= asset(pAagyw.image) %>" width="<%= pAagyw.imageSize[0] %>" height="<%= pAagyw.imageSize[1] %>" alt="<%= pAagyw.imageAlt %>" loading="lazy">
+          </figure>
+          <% if (pAagyw.secondaryImage) { %>
+            <figure class="shot shot-secondary">
+              <img src="<%= asset(pAagyw.secondaryImage) %>" width="<%= pAagyw.secondaryImageSize[0] %>" height="<%= pAagyw.secondaryImageSize[1] %>" alt="<%= pAagyw.secondaryImageAlt %>" loading="lazy">
+            </figure>
+          <% } %>
+          <p class="shot-caption">From the live homepage, aagyw-cam.org</p>
         <% } else { %>
           <%- include('../partials/placeholder', { label: pAagyw.placeholder, shape: 'wide', hint: 'Save as public/images/projects/ and set image in portfolioData.js', tone: 'light' }) %>
         <% } %>
@@ -195,7 +203,7 @@
         </ul>
         <p class="proj-tools"><%= pAagyw.tools.join(' · ') %></p>
         <% pAagyw.links.filter(l => l.show).forEach(l => { %>
-          <a class="text-link" href="<%= l.url %>" target="_blank" rel="noopener noreferrer"><%= l.label %> <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="btn btn-primary proj-cta" href="<%= l.url %>" target="_blank" rel="noopener noreferrer"><%= l.label %> <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens aagyw-cam.org in a new tab)</span></a>
         <% }) %>
       </div>
     </article>

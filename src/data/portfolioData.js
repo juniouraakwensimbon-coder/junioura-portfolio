@@ -133,18 +133,22 @@ const services = [
 const projects = [
   {
     slug: 'aagyw-cam',
-    title: 'AAGYW-CAM Website',
-    category: 'Website development and management',
+    title: 'AAGYW Cameroon Website',
+    category: 'Website Development & Management',
     organisation: 'Association of Adolescent Girls and Young Women, Cameroon',
     desc: 'The association’s website, which I developed and currently manage.',
     contribution: ['Organised the website content', 'Structured the navigation', 'Set up the forms', 'Responsive presentation on phones and computers', 'Ongoing updates and management'],
     tools: ['WordPress', 'Elementor'],
-    image: null, // e.g. 'images/projects/aagyw-cam-home.jpg'
+    // Genuine screenshots of https://aagyw-cam.org/ (captured 13 Nov 2026)
+    image: 'images/projects/aagyw-cam/aagyw-cam-homepage.webp',
+    imageSize: [1600, 1000],
+    imageAlt: 'AAGYW Cameroon homepage: navigation, hero with the headline “Born from a generation that refused to be defined by crisis.” and the Our Purpose section',
+    secondaryImage: 'images/projects/aagyw-cam/aagyw-cam-why-we-exist.webp',
+    secondaryImageSize: [1600, 1333],
+    secondaryImageAlt: 'AAGYW Cameroon homepage, Why We Exist section with three illustrated cards and a statement panel',
     placeholder: 'Replace with project screenshot: AAGYW-CAM home page',
     links: [
-      // Hidden while aagyw-cam.org is serving a hacked page.
-      // Change show to true once the association's site is restored.
-      { label: 'Visit aagyw-cam.org', url: 'https://aagyw-cam.org/', show: false },
+      { label: 'Visit Live Website', url: 'https://aagyw-cam.org/', show: true },
     ],
   },
   {

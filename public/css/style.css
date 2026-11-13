@@ -521,3 +521,12 @@ html:not(.js) .header-inner { flex-wrap: wrap; }
 }
 /* on teal surfaces the navy button inverts on hover so it stays visible */
 :where(.svc-split-main, .contact) .btn-secondary:hover { background: var(--white); color: var(--navy); }
+
+/* ---------- AAGYW project: genuine homepage screenshots ---------- */
+.proj-shots { display: grid; gap: var(--s3); align-self: start; }
+.shot { border: 1px solid var(--line); border-radius: var(--r-sm); overflow: hidden; background: var(--cool); }
+.shot img { width: 100%; height: auto; }
+.shot-secondary img { aspect-ratio: 16 / 8; object-fit: cover; object-position: top center; }
+.shot-caption { margin: 0; font-size: var(--fs-xs); color: var(--muted); }
+.proj-cta { margin-top: var(--s2); }
+@media (max-width: 599px) { .shot-secondary { display: none; } }
