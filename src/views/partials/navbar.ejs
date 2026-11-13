@@ -16,10 +16,22 @@
 
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
-        <% pages.forEach(p => { %>
-          <li><a href="<%= pageUrl(p.id) %>"<% if (p.id === pageId) { %> aria-current="page"<% } %>><%= p.label %></a></li>
+<%
+  const navLinks = [
+    { label: 'Home', href: section('home'), page: 'home' },
+    { label: 'About', href: pageUrl('about'), page: 'about' },
+    { label: 'Services', href: section('pathways') },
+    { label: 'Portfolio', href: section('selected-work') },
+    { label: 'Experience', href: pageUrl('about', 'experience') },
+    { label: 'Skills', href: pageUrl('web', 'skills') },
+    { label: 'Education', href: pageUrl('edu'), page: 'edu' },
+    { label: 'Contact', href: section('contact') },
+  ];
+%>
+        <% navLinks.forEach(l => { %>
+          <li><a href="<%= l.href %>"<% if (l.page && l.page === pageId && l.page !== 'home') { %> aria-current="page"<% } %>><%= l.label %></a></li>
         <% }) %>
-        <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="<%= contactUrl() %>">Contact me</a></li>
+        <li class="nav-cta-item"><a class="btn btn-primary btn-sm" href="<%= section('contact') %>">Contact me</a></li>
       </ul>
     </nav>
   </div>

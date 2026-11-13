@@ -128,7 +128,7 @@ main:focus { outline: none; }
 }
 .text-link:hover { color: var(--navy); }
 
-/* ---------- Navigation ---------- */
+/* ---------- Navigation (collapses below 1180px) ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--on-dark); border-bottom: 1px solid rgba(255, 255, 255, .08); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--header-h); }
 .wordmark { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; min-width: 0; }
@@ -140,7 +140,7 @@ main:focus { outline: none; }
 .wordmark-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
 .wordmark-name { font-family: var(--head); font-weight: 700; font-size: 1rem; letter-spacing: -.01em; white-space: nowrap; color: var(--white); }
 .wordmark-role { font-size: .75rem; color: var(--on-dark-muted); white-space: nowrap; }
-@media (max-width: 420px), (min-width: 1100px) and (max-width: 1299px) { .wordmark-role { display: none; } }
+@media (max-width: 420px), (min-width: 1180px) and (max-width: 1379px) { .wordmark-role { display: none; } }
 
 .nav-toggle { display: inline-grid; place-items: center; width: 46px; height: 46px; border: 1px solid var(--on-dark-line); border-radius: var(--r-sm); background: transparent; color: var(--white); }
 .nav-toggle .icon { width: 22px; height: 22px; }
@@ -160,10 +160,10 @@ html:not(.js) .site-nav { position: static; display: block; }
 html:not(.js) .nav-toggle { display: none; }
 html:not(.js) .header-inner { flex-wrap: wrap; }
 
-@media (min-width: 1100px) {
+@media (min-width: 1180px) {
   .nav-toggle { display: none; }
   .site-nav, .js .site-nav { position: static; display: block; background: none; border: 0; max-height: none; overflow: visible; }
-  .site-nav ul { display: flex; align-items: center; gap: clamp(1rem, 1.8vw, 1.75rem); padding: 0; }
+  .site-nav ul { display: flex; align-items: center; gap: clamp(1rem, 1.6vw, 1.6rem); padding: 0; }
   .site-nav a:not(.btn) {
     padding: .4rem 0; border: 0; font-size: .9375rem; color: var(--on-dark-muted);
     text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: 8px;
@@ -182,6 +182,10 @@ html:not(.js) .header-inner { flex-wrap: wrap; }
 .hero-kicker { font-weight: 500; color: var(--on-dark-muted); margin-bottom: var(--s3); }
 .hero-title { font-size: var(--fs-hero); letter-spacing: -.035em; line-height: 1.02; color: var(--white); margin-bottom: var(--s4); }
 .hero-intro { font-size: clamp(1.0625rem, 1rem + .25vw, 1.2rem); line-height: 1.65; color: var(--on-dark); max-width: 54ch; margin-bottom: var(--s5); }
+.hero-areas { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: .6rem clamp(1rem, 3vw, 2rem); margin-bottom: var(--s5); }
+@media (max-width: 380px) { .hero-areas { grid-template-columns: 1fr; } }
+.hero-areas li { display: inline-flex; align-items: center; gap: .5rem; font-size: var(--fs-small); font-weight: 500; color: var(--on-dark-muted); }
+.hero-areas .icon { color: var(--soft-teal); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .hero-figure img { width: 100%; border-radius: var(--r); }
 .hero-figure figcaption { display: flex; align-items: center; gap: .4rem; margin-top: .75rem; font-size: var(--fs-xs); color: var(--on-dark-muted); }

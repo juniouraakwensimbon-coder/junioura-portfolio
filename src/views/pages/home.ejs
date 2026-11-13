@@ -11,9 +11,16 @@
     <div class="hero-copy">
       <p class="hero-kicker"><%= owner.roles.join(' · ') %></p>
       <h1 id="hero-title" class="hero-title"><%= owner.name %></h1>
-      <p class="hero-intro"><%= owner.intro %></p>
+      <p class="hero-intro"><%= owner.heroIntro %></p>
+
+      <ul class="hero-areas" aria-label="Professional areas">
+        <% owner.heroAreas.forEach(h => { %>
+          <li><%- include('../partials/icon', { name: h.icon }) %><%= h.title %></li>
+        <% }) %>
+      </ul>
+
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#pathways">Explore my work</a>
+        <a class="btn btn-primary" href="#selected-work">View my work</a>
         <a class="btn btn-ghost" href="#contact">Contact me</a>
       </div>
     </div>

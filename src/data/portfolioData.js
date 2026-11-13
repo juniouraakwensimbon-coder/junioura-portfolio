@@ -33,6 +33,14 @@ const owner = {
     { name: 'TikTok', handle: '@juniouracreativewebdev', url: 'https://www.tiktok.com/@juniouracreativewebdev' },
   ],
   intro: 'I am Junioura Akwensimbom, a web developer, digital communications professional and educator based in Bamenda, Cameroon. My work brings together technology, communication and learning. I build and manage websites, create digital content and visual materials, and help make information and digital tools easier to understand. I keep learning through practical work and share what I learn in clear, useful ways.',
+  // Hero content restored from the version before the five-page restructure
+  heroIntro: 'I am Junioura Akwensimbom, a web developer and educator based in Bamenda, Cameroon. I create digital content, manage websites, design visual materials, and help people build practical digital skills.',
+  heroAreas: [
+    { icon: 'browser', title: 'Web Development' },
+    { icon: 'chat', title: 'Digital Communications' },
+    { icon: 'pen', title: 'Graphic Design' },
+    { icon: 'learn', title: 'Education' },
+  ],
   closing: 'Websites, content and learning that make digital tools easier to understand and use.',
 };
 
