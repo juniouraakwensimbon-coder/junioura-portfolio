@@ -52,3 +52,39 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # After publishing, open the live site from GitHub's servers and fail if a page or key file does not load.
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the published website
+        env:
+          SITE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: |
+          sleep 20
+          fail=0
+          check() { # $1 = path, $2 = text that must appear (optional)
+            body=$(curl -sS -L --retry 5 --retry-delay 10 -w '\n%{http_code}' "$SITE$1") || { echo "FAIL $1: no response"; fail=1; return; }
+            code=$(printf '%s' "$body" | tail -n1)
+            if [ "$code" != "200" ]; then echo "FAIL $1: HTTP $code"; fail=1; return; fi
+            if [ -n "$2" ] && ! printf '%s' "$body" | grep -qF "$2"; then echo "FAIL $1: '$2' not found"; fail=1; return; fi
+            echo "OK   $1 (HTTP $code)${2:+, contains \"$2\"}"
+          }
+          check ""                         "Junioura Akwensimbom"
+          check "web-development/"         "Web Development"
+          check "digital-communications/"  "Digital Communications"
+          check "education/"               "Beginner HTML and CSS Learning Program"
+          check "about/"                   "My professional journey"
+          check "education/lessons/lesson-4-your-first-html-file/" "Creating Your First HTML File"
+          check "css/style.css"
+          check "js/script.js"
+          check "images/branding/ja-logo.png"
+          check "images/branding/hero-background-clean.webp"
+          check "images/profile/junioura-akwensimbom.jpg"
+          check "images/designs/who-needs-a-website-design.webp"
+          check "images/education/html-css-learning-program-card.webp"
+          check "images/projects/aagyw-cam/aagyw-cam-homepage-card.webp"
+          code=$(curl -s -o /dev/null -w '%{http_code}' "${SITE}images/certificates/nexinch-web-application-development-certificate.webp")
+          if [ "$code" = "404" ]; then echo "OK   certificate scans are not published (HTTP 404)"; else echo "FAIL certificate scan returned HTTP $code"; fail=1; fi
+          exit $fail
