@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const { validationResult } = require('express-validator');
-const { siteContext, PAGES } = require('../lib/siteContext');
+const { siteContext, PAGES, lessonView } = require('../lib/siteContext');
 
 function renderPage(res, pageId, extra = {}, status = 200) {
   const page = PAGES.find((p) => p.id === pageId);
@@ -19,6 +19,14 @@ const escapeHtml = (s) =>
 
 // GET /, /web-development/, /digital-communications/, /education/, /about/
 exports.page = (pageId) => (req, res) => renderPage(res, pageId);
+
+// GET /education/lessons/:slug/
+exports.lesson = (req, res, next) => {
+  const ctx = siteContext({ pageId: 'edu', subpage: true });
+  const view = lessonView(ctx, req.params.slug);
+  if (!view) return next(); // falls through to the 404 page
+  res.render('pages/lesson', { ...ctx, ...view });
+};
 
 // Old URLs from the earlier versions of the site
 exports.redirectTo = (target) => (req, res) => res.redirect(301, target);

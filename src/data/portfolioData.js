@@ -96,12 +96,14 @@ const edu = {
   enquiry: { title: 'Planning lessons or digital skills training?', text: 'Schools, organisations and learners are welcome to get in touch about teaching, training and digital literacy.', subject: 'Teaching or digital skills training' },
 };
 
-/* The Beginner HTML and CSS Learning Programme (developed by Junioura) */
+/* The Beginner HTML and CSS Learning Program (developed by Junioura).
+   The lesson calendar and lesson pages are in src/data/lessons.js. */
 const programme = {
-  title: 'Beginner HTML and CSS Learning Programme',
+  title: 'Beginner HTML and CSS Learning Program',
   dates: '13 October – 11 November 2026',
-  summary: 'A 30-lesson programme I developed for complete beginners with no assumed computer knowledge. Each lesson lasts two hours. Learners start with essential computer and VS Code skills, build a simple website in HTML, and then learn how CSS changes its appearance.',
+  summary: 'A 30-lesson program I developed for complete beginners with no assumed computer knowledge. Each lesson lasts two hours. Learners start with essential computer and VS Code skills, build a simple website in HTML, and then learn how CSS changes its appearance.',
   phases: ['Phase 1: Computer confidence and HTML', 'Phase 2: CSS foundations and styling'],
+  audience: 'Complete beginners with no assumed computer knowledge. Lessons begin with essential computer and VS Code skills, then move through HTML before introducing CSS.',
   approach: [
     { title: 'Explain in plain language', text: 'Define every new technical word and connect it to a familiar, real-life example.' },
     { title: 'Demonstrate, then practise', text: 'Model each task in VS Code; learners repeat it and explain what they did.' },
@@ -142,20 +144,7 @@ const projects = [
     role: 'Web Development Intern / Trainee',
     work: ['Built and customised WordPress websites and page layouts using Elementor', 'Organised sections, navigation, content and forms', 'Used HTML, CSS and JavaScript for interface customisation and interactive elements, including responsive presentation', 'Updated and maintained content, tested pages and functionality, and troubleshot issues', 'Used Git and GitHub for version control'],
     tools: ['WordPress', 'Elementor', 'HTML', 'CSS', 'JavaScript', 'Git', 'GitHub'],
-    images: [],
-    placeholder: 'Replace with project screenshot: a website from the Nexinch training',
-  },
-  {
-    slug: 'gbhs-website', area: 'web',
-    title: 'G.B.H.S Bamendakwe Website',
-    label: 'Website development and management project',
-    date: '', // not yet confirmed
-    organisation: 'G.B.H.S Bamendakwe',
-    purpose: 'Website development and management for the school, carried out separately from my teaching role.',
-    role: '',
-    work: [], // specific responsibilities not yet confirmed
-    tools: [],
-    images: [],
+    images: [], // no screenshot yet: the card shows the details only. Add images here when one is available.
   },
 ];
 
@@ -277,14 +266,14 @@ const credentials = [
 
 /* About page */
 const story = [
-  'My professional journey brings together education and technology. I studied Biochemistry at the University of Bamenda and then trained as a Biology teacher. Through teaching, I became increasingly interested in how digital tools help people find information, communicate and learn.',
+  'My professional journey brings together education and technology. I studied Biochemistry at the University of Bamenda and then trained as a teacher. Through teaching, I became increasingly interested in how digital tools help people find information, communicate and learn.',
   'That interest led me to a year of intensive web and application development training at Nexinch, where I built practical skills in website development and management. I also create digital content and visual materials through Junioura Creative WebDev.',
   'Today I work across these connected areas: building and managing websites, communicating ideas through content and design, and helping people understand technology. I value practical learning, clear communication and work that makes digital information easier to access.',
 ];
 
 const facts = [
   { term: 'Based in', detail: 'Bamenda, Cameroon' },
-  { term: 'Studied', detail: 'BSc Biochemistry and DIPES 2 in Biology, University of Bamenda' },
+  { term: 'Studied', detail: 'BSc Biochemistry and DIPES II, University of Bamenda' },
   { term: 'Trained', detail: 'Web and Application Development, Nexinch' },
 ];
 

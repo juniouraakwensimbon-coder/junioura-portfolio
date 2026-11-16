@@ -1,26 +1,28 @@
 <%
   const aagyw = projects.find(p => p.slug === 'aagyw-cam');
   const featuredDesign = designs.find(d => d.slug === 'who-needs-a-website');
-  const calendarDoc = documents.find(d => d.slug === 'lesson-calendar');
-  const selectedCreds = credentials.filter(c => ['dipes', 'bsc', 'nexinch-certificate', 'youth-digital-safety'].includes(c.slug));
+  // Newest first. Nexinch has only "September 2025 – 2026", so the dated June 2026 attestation leads.
+  const credOrder = ['youth-digital-safety', 'nexinch-certificate', 'dipes', 'bsc'];
+  const selectedCreds = credOrder.map(slug => credentials.find(c => c.slug === slug));
+  const credIcon = { 'youth-digital-safety': 'people', 'nexinch-certificate': 'laptop', dipes: 'certificate', bsc: 'learn' };
 %>
 
 <%# ============================== HERO ============================== %>
 <section class="hero" id="home" aria-labelledby="hero-title">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="hero-kicker"><%= owner.roles.join(' · ') %></p>
-      <h1 id="hero-title" class="hero-title"><%= owner.name %></h1>
+      <% const nameParts = owner.name.split(' '); %>
+      <h1 id="hero-title" class="hero-title"><span class="hero-first"><%= nameParts[0] %></span> <span class="hero-surname"><%= nameParts.slice(1).join(' ') %></span></h1>
       <p class="hero-intro"><%= owner.heroIntro %></p>
 
       <ul class="hero-areas" aria-label="Professional areas">
         <% owner.heroAreas.forEach(h => { %>
-          <li><%- include('../partials/icon', { name: h.icon }) %><%= h.title %></li>
+          <li><span class="hero-area-icon"><%- include('../partials/icon', { name: h.icon }) %></span><%= h.title %></li>
         <% }) %>
       </ul>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#selected-work">View my work</a>
+        <a class="btn btn-primary" href="#selected-work">View my work <%- include('../partials/icon', { name: 'arrow' }) %></a>
         <a class="btn btn-ghost" href="#contact">Contact me</a>
       </div>
     </div>
@@ -56,35 +58,38 @@
     <div class="selected-grid">
       <article class="sel sel-web">
         <a class="sel-media" href="<%= pageUrl('web', 'project-aagyw-cam') %>">
-          <img src="<%= asset(aagyw.images[0].src) %>" width="<%= aagyw.images[0].width %>" height="<%= aagyw.images[0].height %>" alt="<%= aagyw.images[0].alt %>" loading="lazy">
+          <%# 16:9 display copy of the homepage screenshot (thin contact strip and bottom margin trimmed); the original file is unchanged %>
+          <img src="<%= asset('images/projects/aagyw-cam/aagyw-cam-homepage-card.webp') %>" width="1600" height="900" alt="<%= aagyw.images[0].alt %>" loading="lazy">
         </a>
         <div class="sel-body">
           <p class="sel-area">Web Development</p>
           <h3><a href="<%= pageUrl('web', 'project-aagyw-cam') %>"><%= aagyw.title %></a></h3>
           <p><%= aagyw.role %> Built with <%= aagyw.tools.join(' and ') %>.</p>
-          <a class="text-link" href="<%= aagyw.link.url %>" target="_blank" rel="noopener noreferrer">aagyw-cam.org <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="text-link sel-action" href="<%= aagyw.link.url %>" target="_blank" rel="noopener noreferrer">aagyw-cam.org <%- include('../partials/icon', { name: 'external' }) %><span class="visually-hidden"> (opens in a new tab)</span></a>
         </div>
       </article>
 
       <article class="sel sel-comms">
         <a class="sel-media" href="<%= pageUrl('comms', 'samples') %>">
-          <img src="<%= asset('images/designs/' + featuredDesign.slug + '.webp') %>" width="<%= featuredDesign.width %>" height="<%= featuredDesign.height %>" alt="<%= featuredDesign.title %>, <%= featuredDesign.format.toLowerCase() %>" loading="lazy">
+          <img src="<%= asset('images/designs/' + featuredDesign.slug + '-design.webp') %>" width="1600" height="900" alt="<%= featuredDesign.title %>: graphic showing four groups that benefit from a website (businesses, professionals, schools and organisations, creators and personal brands)" loading="lazy">
         </a>
         <div class="sel-body">
           <p class="sel-area">Digital Communications</p>
           <h3><a href="<%= pageUrl('comms', 'samples') %>"><%= featuredDesign.title %></a></h3>
           <p>A post for Junioura Creative WebDev. <%= featuredDesign.purpose %>.</p>
+          <a class="text-link sel-action" href="<%= pageUrl('comms', 'samples') %>">View design samples <%- include('../partials/icon', { name: 'arrow' }) %></a>
         </div>
       </article>
 
       <article class="sel sel-edu">
         <a class="sel-media" href="<%= pageUrl('edu', 'programme') %>">
-          <img src="<%= asset(calendarDoc.src) %>" width="<%= calendarDoc.width %>" height="<%= calendarDoc.height %>" alt="First page of the lesson calendar for the <%= programme.title %>" loading="lazy">
+          <img src="<%= asset('images/education/html-css-learning-program-card.webp') %>" width="1672" height="941" alt="<%= programme.title %>: a laptop showing an HTML file in a code editor, beside the points clear explanations, live demonstrations and hands-on exercises" loading="lazy">
         </a>
         <div class="sel-body">
           <p class="sel-area">Education</p>
           <h3><a href="<%= pageUrl('edu', 'programme') %>"><%= programme.title %></a></h3>
           <p>A 30-lesson course I developed for complete beginners, <%= programme.dates %>.</p>
+          <a class="text-link sel-action" href="<%= pageUrl('edu', 'programme') %>">View the program <%- include('../partials/icon', { name: 'arrow' }) %></a>
         </div>
       </article>
     </div>
@@ -96,14 +101,15 @@
   <div class="container">
     <%- include('../partials/section-heading', { id: 'background-title', title: 'Professional background' }) %>
     <div class="background-grid">
-    <div>
+    <div class="background-story">
       <p class="lead"><%= story[0] %></p>
       <p><%= story[1] %></p>
       <a class="text-link" href="<%= pageUrl('about') %>">Read my story <%- include('../partials/icon', { name: 'arrow' }) %></a>
     </div>
     <dl class="facts">
-      <% facts.forEach(f => { %><div><dt><%= f.term %></dt><dd><%= f.detail %></dd></div><% }) %>
-      <div><dt>Works with</dt><dd>WordPress, Elementor, HTML, CSS, JavaScript, Canva, Adobe Illustrator, Adobe Photoshop, Figma</dd></div>
+      <% const factIcon = { 'Based in': 'pin', 'Studied': 'learn', 'Trained': 'briefcase', 'Works with': 'laptop' }; %>
+      <% facts.forEach(f => { %><div><dt><span class="fact-icon"><%- include('../partials/icon', { name: factIcon[f.term] }) %></span><%= f.term %></dt><dd><%= f.detail %></dd></div><% }) %>
+      <div><dt><span class="fact-icon"><%- include('../partials/icon', { name: factIcon['Works with'] }) %></span>Works with</dt><dd>WordPress, Elementor, HTML, CSS, JavaScript, Canva, Adobe Illustrator, Adobe Photoshop, Figma</dd></div>
     </dl>
     </div>
   </div>
@@ -113,12 +119,15 @@
 <section class="section home-creds" id="credentials" aria-labelledby="home-creds-title">
   <div class="container">
     <%- include('../partials/section-heading', { id: 'home-creds-title', title: 'Education and professional development', intro: 'Selected qualifications and certificates.' }) %>
-    <ul class="cred-rows">
+    <ul class="cred-cards">
       <% selectedCreds.forEach(c => { %>
         <li>
-          <p class="cred-kind"><%= c.kind %></p>
-          <h3><%= c.title %></h3>
-          <p class="cred-org"><%= c.org %> · <%= c.date %></p>
+          <span class="cred-card-icon"><%- include('../partials/icon', { name: credIcon[c.slug] }) %></span>
+          <div class="cred-card-body">
+            <p class="cred-kind"><%= c.kind %></p>
+            <h3><%= c.title %></h3>
+            <p class="cred-org"><%= c.org %> · <%= c.date %></p>
+          </div>
         </li>
       <% }) %>
     </ul>

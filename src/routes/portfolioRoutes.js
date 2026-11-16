@@ -10,6 +10,9 @@ for (const p of PAGES) {
   router.get(p.slug ? `/${p.slug}/` : '/', controller.page(p.id));
 }
 
+// Lesson pages of the Beginner HTML and CSS Learning Program
+router.get('/education/lessons/:slug/', controller.lesson);
+
 // Older URLs
 router.get('/projects', controller.redirectTo('/web-development/'));
 router.get('/contact', controller.redirectTo('/#contact'));

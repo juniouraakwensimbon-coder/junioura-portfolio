@@ -1,0 +1,170 @@
+<%# Lesson 2. Source: Desktop/HTML LESSONS/Lesson 2.docx %>
+<section aria-labelledby="introduction">
+  <h2 id="introduction">Introduction</h2>
+  <p>Imagine 100 examination papers piled on one table with no order. Finding the paper of one particular student would take a long time. A computer has the same problem: without organisation, your work is hard to find.</p>
+  <p>This lesson matters for everything that follows. When you start writing HTML, you must know where your work is saved and how to find it again. Otherwise you may write correct code and then lose the file, or be unable to open it. By the end of this lesson you will have created the folder you will use for the whole course.</p>
+</section>
+
+<section aria-labelledby="learn">
+  <h2 id="learn">What you will learn</h2>
+  <ul class="tick-list">
+    <li>Explain what a file, a folder, the desktop and a file path are.</li>
+    <li>Recognise common places where files are stored.</li>
+    <li>Create, open, rename and organise folders.</li>
+    <li>Create and save a simple text file, then find it and open it again.</li>
+    <li>Tell the difference between a file name and a file extension.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="explanation">
+  <h2 id="explanation">Explanation</h2>
+
+  <h3>The desktop</h3>
+  <p>The <strong>desktop</strong> is the main workspace you see after signing in to Windows. Think of it as your digital office desk. It may contain:</p>
+  <dl class="term-list">
+    <div><dt>Icon</dt><dd>A small picture representing an application, file or folder.</dd></div>
+    <div><dt>Shortcut</dt><dd>A link that opens an item quickly. It is not the original item itself.</dd></div>
+    <div><dt>Taskbar</dt><dd>The bar, usually at the bottom of the screen, with app icons and system controls.</dd></div>
+    <div><dt>Start menu</dt><dd>The Windows menu for finding applications and settings.</dd></div>
+    <div><dt>File Explorer</dt><dd>The Windows application for browsing and managing files and folders.</dd></div>
+  </dl>
+  <p class="note">The desktop is not the monitor. The monitor is the physical screen (hardware). The desktop is the digital workspace displayed on it.</p>
+
+  <h3>Files</h3>
+  <p>A <strong>file</strong> is a named collection of information stored on a computer. It may hold text, a photograph, music, a video, or code. A school might keep each student’s report card as a separate file, with a name that identifies it, such as <code>John_Report.docx</code>.</p>
+  <p>Most file names end with a <strong>file extension</strong>: the part after the last full stop. It tells you, and the computer, what type of file it is.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Extension</th><th scope="col">What it usually contains</th><th scope="col">Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>.txt</code></td><td>Plain text</td><td><code>notes.txt</code></td></tr>
+        <tr><td><code>.docx</code></td><td>A Microsoft Word document</td><td><code>assignment.docx</code></td></tr>
+        <tr><td><code>.pdf</code></td><td>A document in PDF format</td><td><code>exam.pdf</code></td></tr>
+        <tr><td><code>.jpg</code> or <code>.png</code></td><td>An image</td><td><code>school.jpg</code></td></tr>
+        <tr><td><code>.html</code></td><td>The structure and content of a webpage</td><td><code>index.html</code></td></tr>
+        <tr><td><code>.css</code></td><td>Styling instructions for a webpage</td><td><code>style.css</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>In <code>Science_Notes.txt</code>, <code>Science_Notes</code> is the file name and <code>.txt</code> is the extension. You will use <code>.html</code> and <code>.css</code> files throughout this course, so get used to seeing them.</p>
+
+  <h3>Folders</h3>
+  <p>A <strong>folder</strong> groups files and other folders together, just as a teacher keeps separate paper folders for Mathematics, English and Chemistry. A folder inside another folder is called a <strong>subfolder</strong>. Folders help you keep related work together, find things quickly and keep one project separate from another.</p>
+
+  <h3>Where files are stored, and file paths</h3>
+  <p>Common locations include <strong>Desktop</strong>, <strong>Documents</strong>, <strong>Downloads</strong>, <strong>Pictures</strong> and a <strong>USB flash drive</strong>. These are places, not kinds of file: a PDF is still a PDF whether it is saved in Documents or on a flash drive.</p>
+  <p>A <strong>file path</strong> is the address of a file, like directions to a classroom: school gate, main building, first floor, classroom three. For example:</p>
+  <%- code(String.raw`C:\Users\Student\Documents\Science_Notes.txt`, 'An example file path') %>
+  <p><code>C:</code> is the drive, <code>Users</code>, <code>Student</code> and <code>Documents</code> are folders, and <code>Science_Notes.txt</code> is the file. Your own path will be slightly different.</p>
+</section>
+
+<section aria-labelledby="demonstration">
+  <h2 id="demonstration">Demonstration</h2>
+  <h3>Step 1: Open File Explorer</h3>
+  <p>Click the yellow folder icon on the taskbar. If you cannot see it, click <strong>Start</strong>, type <em>File Explorer</em> and select it. On the left you will see locations such as Desktop, Documents and Downloads.</p>
+
+  <h3>Step 2: Create the course folder</h3>
+  <ol>
+    <li>Select <strong>Documents</strong> on the left.</li>
+    <li>Right-click an empty area of the main window.</li>
+    <li>Choose <strong>New</strong>, then <strong>Folder</strong>. (On some versions of Windows, <strong>New</strong> is in the toolbar.)</li>
+    <li>Type <code>Web_Development</code> and press <kbd>Enter</kbd> to confirm the name.</li>
+  </ol>
+
+  <h3>Step 3: Create three subfolders</h3>
+  <p>Double-click <code>Web_Development</code> to open it, then create three folders inside it in the same way: <code>HTML_Lessons</code>, <code>CSS_Lessons</code> and <code>Practice_Exercises</code>. You will not start CSS until the HTML part of the course is finished, but the folder will be ready.</p>
+  <%- code(`
+Web_Development
+├── HTML_Lessons
+├── CSS_Lessons
+└── Practice_Exercises`, 'Your folders should now look like this') %>
+
+  <h3>Step 4: Rename a folder</h3>
+  <p>To <strong>rename</strong> means to change the name of an existing file or folder. Right-click <code>Practice_Exercises</code>, choose <strong>Rename</strong>, type <code>HTML_Practice</code> and press <kbd>Enter</kbd>. Renaming changes the name only; it does not change what is inside.</p>
+
+  <h3>Step 5: Save a text file in the right place</h3>
+  <p><strong>Saving</strong> means storing your work so you can open it again later.</p>
+  <ol>
+    <li>Click <strong>Start</strong>, type <em>Notepad</em> and open it.</li>
+    <li>Type: <em>My name is [your name]. I am learning computer studies.</em></li>
+    <li>Click <strong>File</strong>, then <strong>Save As</strong>.</li>
+    <li>Go to <strong>Documents</strong> → <strong>Web_Development</strong> → <strong>HTML_Lessons</strong>.</li>
+    <li>In the <strong>File name</strong> box, type <code>My_First_Note.txt</code> and click <strong>Save</strong>.</li>
+  </ol>
+  <p>The sentence is the file’s <em>content</em>. <code>My_First_Note</code> is its name, <code>.txt</code> is its extension, and <code>HTML_Lessons</code> is the folder it is saved in.</p>
+
+  <h3>Step 6: Find it and open it again</h3>
+  <p>Close Notepad. In File Explorer, go to Documents → Web_Development → HTML_Lessons and double-click <code>My_First_Note.txt</code>. It opens in Notepad with your sentence inside. Use the <strong>Back</strong> arrow at the top of File Explorer to return to the previous folder.</p>
+</section>
+
+<section aria-labelledby="practice">
+  <h2 id="practice">Hands-on practice</h2>
+  <div class="practice">
+    <p class="practice-title">Exercise: Find your work without help</p>
+    <ol>
+      <li>Close every window.</li>
+      <li>Open File Explorer and go to your <code>Web_Development</code> folder.</li>
+      <li>Open <code>HTML_Lessons</code> and open <code>My_First_Note.txt</code>.</li>
+      <li>Add a second sentence, save it, and close it.</li>
+      <li>Return to the main <code>Web_Development</code> folder.</li>
+      <li>Explain to someone else, in your own words, how you found the file.</li>
+    </ol>
+  </div>
+  <div class="practice">
+    <p class="practice-title">Extra practice</p>
+    <p>Create a folder called <code>Computer_Studies</code> with a subfolder called <code>Lesson_Notes</code>, and save a text file inside it.</p>
+  </div>
+</section>
+
+<section aria-labelledby="check">
+  <h2 id="check">Check your understanding</h2>
+  <ol class="check-list">
+    <li>What is the difference between a file and a folder?</li>
+    <li>What is the difference between the desktop and the monitor?</li>
+    <li>What does a file extension tell you?</li>
+    <li>What is a file path?</li>
+    <li>What is the difference between saving a file and renaming it?</li>
+  </ol>
+  <details>
+    <summary>Show the answers</summary>
+    <ol>
+      <li>A file contains stored information; a folder organises files and other folders.</li>
+      <li>The monitor is the physical screen; the desktop is the digital workspace displayed on it.</li>
+      <li>The type of file, such as <code>.txt</code> for plain text or <code>.html</code> for a webpage.</li>
+      <li>The location of a file or folder on the computer.</li>
+      <li>Saving stores your work; renaming changes the name used to identify the file.</li>
+    </ol>
+  </details>
+</section>
+
+<section aria-labelledby="mistakes">
+  <h2 id="mistakes">Common mistakes</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Mistake</th><th scope="col">How to correct it</th></tr></thead>
+      <tbody>
+        <tr><td>Forgetting where a file was saved.</td><td>Always save in your course folder, and check the location in the Save As window.</td></tr>
+        <tr><td>Giving folders unclear names.</td><td>Use short, meaningful names such as <code>HTML_Lessons</code>.</td></tr>
+        <tr><td>Thinking a file and a folder are the same thing.</td><td>A folder organises items; a file contains information.</td></tr>
+        <tr><td>Changing or deleting the extension while renaming.</td><td>Change only the part before the full stop.</td></tr>
+        <tr><td>Double-clicking when one click is enough.</td><td>One click selects an item; a double-click opens it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="summary">
+  <h2 id="summary">Lesson summary</h2>
+  <ul>
+    <li>A file stores information; a folder organises files and other folders.</li>
+    <li>The desktop is your digital workspace; File Explorer helps you find and manage files.</li>
+    <li>The extension, such as <code>.txt</code> or <code>.html</code>, identifies the type of file.</li>
+    <li>A file path shows exactly where a file is.</li>
+    <li>Your <code>Web_Development</code> folder will hold all your work for this course.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="next">
+  <h2 id="next">What comes next</h2>
+  <p>Notepad is fine for a sentence, but web developers use a <strong>code editor</strong>. In <a href="<%= lessonUrl(next.slug) %>">Lesson 3</a>, you will open your <code>Web_Development</code> folder in Visual Studio Code, the editor you will use to write HTML and CSS.</p>
+</section>

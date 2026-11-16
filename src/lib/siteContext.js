@@ -5,6 +5,26 @@
  * render exactly the same page.
  */
 const data = require('../data/portfolioData');
+const course = require('../data/lessons');
+
+const escapeHtml = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/** A code example for the lesson pages: escaped, with an optional label such as "index.html". */
+const code = (src, label) =>
+  '<figure class="code-block">' + (label ? '<figcaption>' + escapeHtml(label) + '</figcaption>' : '') +
+  '<pre tabindex="0"><code>' + escapeHtml(String(src).replace(/^\n+|\s+$/g, '')) + '</code></pre></figure>';
+
+/**
+ * What the browser shows for an example. One string per line:
+ * "# text" is a large heading, [[text]] a link, **text** bold.
+ */
+const output = (lines, label = 'What you should see in the browser') =>
+  '<figure class="browser-output"><figcaption>' + escapeHtml(label) + '</figcaption><div class="browser-output-page">' +
+  lines.map((l) => (l.startsWith('# ')
+    ? '<p class="out-h1">' + escapeHtml(l.slice(2)) + '</p>'
+    : '<p>' + escapeHtml(l).replace(/\[\[(.+?)\]\]/g, '<span class="out-link">$1</span>').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</p>')).join('') +
+  '</div></figure>';
 
 /** Ensure a base path looks like "/" or "/repo-name/". */
 function normaliseBase(base) {
@@ -38,7 +58,7 @@ const PAGES = [
     description: 'Digital content, social media and visual communication by Junioura Akwensimbom, including Junioura Creative WebDev.' },
   { id: 'edu', slug: 'education', label: 'Education', view: 'pages/education',
     title: 'Education — Junioura Akwensimbom',
-    description: 'Teaching, digital literacy and the Beginner HTML and CSS Learning Programme developed by Junioura Akwensimbom.' },
+    description: 'Teaching, digital literacy and the Beginner HTML and CSS Learning Program developed by Junioura Akwensimbom.' },
   { id: 'about', slug: 'about', label: 'About', view: 'pages/about',
     title: 'About — Junioura Akwensimbom',
     description: 'The professional journey, experience and credentials of Junioura Akwensimbom.' },
@@ -50,8 +70,9 @@ const PAGES = [
  * @param {boolean} [opts.isStatic]     true for the GitHub Pages build
  * @param {string} [opts.siteUrl]       absolute public URL, used for social previews
  * @param {string} [opts.pageId='home'] which page is being rendered
+ * @param {boolean} [opts.subpage]      true for pages under another page (lesson pages under Education)
  */
-function siteContext({ base = '/', isStatic = false, siteUrl = '', pageId = 'home' } = {}) {
+function siteContext({ base = '/', isStatic = false, siteUrl = '', pageId = 'home', subpage = false } = {}) {
   const b = normaliseBase(base);
   const site = normaliseSiteUrl(siteUrl);
   const isHome = pageId === 'home';
@@ -59,11 +80,17 @@ function siteContext({ base = '/', isStatic = false, siteUrl = '', pageId = 'hom
     const p = PAGES.find((x) => x.id === id);
     if (!p) throw new Error(`Unknown page "${id}"`);
     const path = b + (p.slug ? p.slug + '/' : '');
-    return hash ? (id === pageId ? '#' + hash : path + '#' + hash) : path;
+    // On the page itself a section link is just "#hash"; lesson pages (subpage) always use the full path
+    return hash ? (id === pageId && !subpage ? '#' + hash : path + '#' + hash) : path;
   };
   return {
     ...data,
     pages: PAGES,
+    course,
+    code,
+    output,
+    /** Link to a lesson page: lessonUrl('lesson-1-understanding-the-computer') */
+    lessonUrl: (slug) => b + 'education/lessons/' + slug + '/',
     pageId,
     base: b,
     isStatic,
@@ -84,4 +111,19 @@ function siteContext({ base = '/', isStatic = false, siteUrl = '', pageId = 'hom
   };
 }
 
-module.exports = { siteContext, normaliseBase, PAGES };
+/** Locals for one lesson page (title, neighbours, calendar entry), or null if the slug is unknown. */
+function lessonView(ctx, slug) {
+  const i = course.lessons.findIndex((l) => l.slug === slug);
+  if (i < 0) return null;
+  const lesson = course.lessons[i];
+  return {
+    lesson,
+    prev: course.lessons[i - 1] || null,
+    next: course.lessons[i + 1] || null,
+    nextPlanned: course.calendar.find((c) => c.n === lesson.n + 1) || null,
+    title: `Lesson ${lesson.n}: ${lesson.title} — Beginner HTML and CSS Learning Program`,
+    metaDesc: lesson.summary,
+  };
+}
+
+module.exports = { siteContext, normaliseBase, PAGES, lessonView };

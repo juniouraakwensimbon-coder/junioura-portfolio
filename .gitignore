@@ -29,3 +29,6 @@ desktop.ini
 ~$*
 .cache/
 coverage/
+
+# Certificate scans: kept on this computer only, never published
+public/images/certificates/

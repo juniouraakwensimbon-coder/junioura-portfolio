@@ -4,9 +4,6 @@
 <section class="about-hero" aria-labelledby="page-title">
   <div class="container about-hero-grid">
     <div class="about-hero-copy">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="<%= pageUrl('home') %>">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">About</span>
-      </nav>
       <h1 id="page-title" class="page-title">My professional journey</h1>
       <% story.forEach((p, i) => { %><p class="<%= i === 0 ? 'page-intro' : 'about-para' %>"><%= p %></p><% }) %>
     </div>
@@ -36,7 +33,7 @@
 
 <section class="section section-cool" id="credentials" aria-labelledby="credentials-title">
   <div class="container">
-    <%- include('../partials/section-heading', { id: 'credentials-title', title: 'Credentials', intro: 'Qualifications, training and professional development. Certificates can be opened and read at full size. University documents are listed without images because they contain private details.' }) %>
+    <%- include('../partials/section-heading', { id: 'credentials-title', title: 'Credentials', intro: 'Qualifications, training and professional development.' }) %>
     <% groups.forEach(g => { %>
       <div class="cred-group">
         <h3 class="sub-title"><%= g %></h3>
@@ -75,5 +72,3 @@
     </div>
   </div>
 </section>
-
-<%- include('../partials/lightbox') %>

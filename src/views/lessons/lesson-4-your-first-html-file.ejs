@@ -1,0 +1,185 @@
+<%# Lesson 4. Source: Desktop/HTML LESSONS/Lesson 4.docx. The "Looking ahead" box previews Lesson 6 of the calendar. %>
+<section aria-labelledby="introduction">
+  <h2 id="introduction">Introduction</h2>
+  <p>Today you create your first webpage. You will write a few lines of HTML in VS Code, save the file in the right folder, and open it in a browser. Then you will change the code and watch the page change.</p>
+  <p>Take your time. If you are still getting used to typing or finding files, that is normal. Each step below is small, and you should do every one yourself rather than only reading it.</p>
+</section>
+
+<section aria-labelledby="learn">
+  <h2 id="learn">What you will learn</h2>
+  <ul class="tick-list">
+    <li>Explain what a website and a webpage are.</li>
+    <li>Explain what HTML is, in simple language.</li>
+    <li>Create a file named <code>index.html</code> in VS Code.</li>
+    <li>Type and save a short HTML example.</li>
+    <li>Open the file in a browser.</li>
+    <li>Change the code, save it, refresh the browser and see the update.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="explanation">
+  <h2 id="explanation">Explanation</h2>
+
+  <h3>Webpages and websites</h3>
+  <p>A <strong>webpage</strong> is a single page of content that you view in a web browser. A <strong>website</strong> is a collection of related webpages under one web address. A school website might have a homepage, an About page, an Admissions page and a Contact page. If the school building is the website, each classroom is a webpage. The comparison is not exact, but it shows how several pages belong to one whole.</p>
+  <p>A <strong>web browser</strong> (Chrome, Edge, Firefox, Safari) opens and displays webpages. It can open pages from the internet, and it can also open an HTML file saved on your own computer, which is what you will do today.</p>
+
+  <h3>What is HTML?</h3>
+  <p><strong>HTML stands for HyperText Markup Language.</strong></p>
+  <dl class="term-list">
+    <div><dt>HyperText</dt><dd>Text that can connect to other pages, usually through links.</dd></div>
+    <div><dt>Markup</dt><dd>Special labels, called tags, added to content to describe what each part is.</dd></div>
+    <div><dt>Language</dt><dd>A set of rules and symbols for communicating information.</dd></div>
+  </dl>
+  <p>HTML tells the browser what each piece of content is: this is a heading, this is a paragraph, this is a link. Think of a printed school notice: the title says what it is about, and the paragraphs give the details. HTML marks up a webpage in the same way.</p>
+  <p class="note">HTML is a <em>markup</em> language, not a programming language like JavaScript. It organises content; it does not perform calculations or make decisions.</p>
+
+  <h3>The four steps you will repeat all course</h3>
+  <ol class="steps-inline">
+    <li><strong>Write</strong> the HTML in VS Code.</li>
+    <li><strong>Save</strong> it as an <code>.html</code> file in your course folder.</li>
+    <li><strong>Open</strong> it in a browser to see the result.</li>
+    <li><strong>Change</strong> it, save again, and refresh the browser.</li>
+  </ol>
+</section>
+
+<section aria-labelledby="demonstration">
+  <h2 id="demonstration">Demonstration</h2>
+
+  <h3>Step 1: Open your course folder in VS Code</h3>
+  <p>Open VS Code, click <strong>File → Open Folder…</strong>, select <code>Documents\Web_Development</code> and click <strong>Select Folder</strong>. In the Explorer, click the arrow beside <code>HTML_Lessons</code> to open it.</p>
+
+  <h3>Step 2: Create index.html</h3>
+  <p>Right-click <code>HTML_Lessons</code>, choose <strong>New File…</strong>, type exactly <code>index.html</code> and press <kbd>Enter</kbd>. <code>index</code> is the name; <code>.html</code> tells the computer it is a webpage.</p>
+  <p class="note"><strong>Check the name.</strong> It must be <code>index.html</code>, not <code>index.html.txt</code>. If Windows hides file extensions, an extra <code>.txt</code> can be added without you noticing. Creating the file in VS Code, as here, avoids this.</p>
+
+  <h3>Step 3: Type your first HTML</h3>
+  <p>Type these three lines into the empty file. Replace <em>Junioura</em> with your own name.</p>
+  <%- code(`
+<h1>Welcome to My First Webpage</h1>
+<p>My name is Junioura.</p>
+<p>I am learning HTML.</p>`, 'index.html') %>
+  <p>Save with <kbd>Ctrl</kbd> + <kbd>S</kbd>. A <strong>keyboard shortcut</strong> is a combination of keys that does something quickly.</p>
+
+  <h3>Step 4: Understand every line</h3>
+  <p>Do not copy code you do not understand. Here is what each part means.</p>
+  <dl class="term-list">
+    <div><dt><code>&lt;h1&gt;</code></dt><dd>An opening <strong>tag</strong> that starts a top-level heading. A tag is markup written inside angle brackets.</dd></div>
+    <div><dt>Welcome to My First Webpage</dt><dd>The text that appears as the heading.</dd></div>
+    <div><dt><code>&lt;/h1&gt;</code></dt><dd>The closing tag that ends the heading. Notice the forward slash <code>/</code>.</dd></div>
+    <div><dt><code>&lt;p&gt;</code> … <code>&lt;/p&gt;</code></dt><dd>A paragraph: a block of ordinary text. You can use as many paragraphs as you need.</dd></div>
+  </dl>
+  <p>The symbols <code>&lt;</code> and <code>&gt;</code> are <strong>angle brackets</strong>. Type them carefully: if one is missing, the browser cannot recognise the tag.</p>
+
+  <h3>Step 5: Open it in a browser</h3>
+  <ol>
+    <li>Open File Explorer and go to <strong>Documents → Web_Development → HTML_Lessons</strong>.</li>
+    <li>Right-click <code>index.html</code>, choose <strong>Open with</strong>, and pick Chrome or Edge.</li>
+  </ol>
+  <%- output(['# Welcome to My First Webpage', 'My name is Junioura.', 'I am learning HTML.']) %>
+  <p>The heading is larger and bolder because browsers give headings a default style. The tags themselves are not shown: the browser reads them as instructions, not as text.</p>
+
+  <h3>Step 6: Change it and see the update</h3>
+  <ol>
+    <li>Go back to VS Code and change the first line to <code>&lt;h1&gt;Welcome to Our Computer Class&lt;/h1&gt;</code>.</li>
+    <li>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save.</li>
+    <li>Go back to the browser and press <kbd>Ctrl</kbd> + <kbd>R</kbd> (or click the refresh button).</li>
+  </ol>
+  <p>The heading now reads <em>Welcome to Our Computer Class</em>. Saving stores the change in the file; refreshing tells the browser to read the file again. If you forget to save, the browser keeps showing the old version.</p>
+
+  <aside class="lookahead" aria-labelledby="lookahead-title">
+    <p class="lookahead-label">Looking ahead to Lesson 6</p>
+    <h3 id="lookahead-title">What a complete HTML page looks like</h3>
+    <p>Your three lines work because browsers are forgiving. A complete page wraps the content in a fixed structure. You will build it step by step in Lesson 6; here is a first look so you know where you are heading.</p>
+    <%- code(`
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+  </head>
+  <body>
+    <h1>Welcome to My First Webpage</h1>
+    <p>My name is Junioura.</p>
+    <p>I am learning HTML.</p>
+  </body>
+</html>`, 'index.html (complete version)') %>
+    <dl class="term-list">
+      <div><dt><code>&lt;!DOCTYPE html&gt;</code></dt><dd>The document declaration. It tells the browser this is a modern HTML page. It always goes on the first line.</dd></div>
+      <div><dt><code>&lt;html lang="en"&gt;</code></dt><dd>Wraps the whole page. <code>lang="en"</code> says the page is in English.</dd></div>
+      <div><dt><code>&lt;head&gt;</code></dt><dd>Information <em>about</em> the page that is not shown in the page itself.</dd></div>
+      <div><dt><code>&lt;meta charset="UTF-8"&gt;</code></dt><dd>Makes sure letters and symbols display correctly.</dd></div>
+      <div><dt><code>&lt;title&gt;</code></dt><dd>The text shown on the browser tab.</dd></div>
+      <div><dt><code>&lt;body&gt;</code></dt><dd>Everything visitors see: your headings and paragraphs go here.</dd></div>
+    </dl>
+  </aside>
+</section>
+
+<section aria-labelledby="practice">
+  <h2 id="practice">Hands-on practice</h2>
+  <div class="practice">
+    <p class="practice-title">Exercise: Make the page about you</p>
+    <p>Change <code>index.html</code> so the browser shows the following, with your own name:</p>
+    <%- code(`
+<h1>My Name Is Your Name</h1>
+<p>I am a student learning web development.</p>
+<p>Today I created my first webpage.</p>`, 'index.html') %>
+    <p>Save, refresh the browser and check the result. Then explain to someone what <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code> do, why the file ends in <code>.html</code>, and why you need both VS Code and a browser.</p>
+  </div>
+</section>
+
+<section aria-labelledby="check">
+  <h2 id="check">Check your understanding</h2>
+  <ol class="check-list">
+    <li>HTML stands for __________.</li>
+    <li>The application we use to write HTML is __________.</li>
+    <li>The application we use to view a webpage is a __________.</li>
+    <li>The file extension of an HTML document is __________.</li>
+    <li>The keyboard shortcut that saves a file is __________.</li>
+    <li>You changed your code but the browser still shows the old text. What two things should you check?</li>
+  </ol>
+  <details>
+    <summary>Show the answers</summary>
+    <ol>
+      <li>HyperText Markup Language.</li>
+      <li>Visual Studio Code (VS Code).</li>
+      <li>Web browser.</li>
+      <li><code>.html</code></li>
+      <li><kbd>Ctrl</kbd> + <kbd>S</kbd>.</li>
+      <li>That you saved the file, and that you refreshed the browser.</li>
+    </ol>
+  </details>
+</section>
+
+<section aria-labelledby="mistakes">
+  <h2 id="mistakes">Common mistakes</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Mistake</th><th scope="col">How to correct it</th></tr></thead>
+      <tbody>
+        <tr><td>The file is saved as <code>index.html.txt</code>.</td><td>Check the full file name; the extension must be <code>.html</code>.</td></tr>
+        <tr><td>Writing <code>h1</code> without angle brackets.</td><td>Write the complete tag: <code>&lt;h1&gt;</code>.</td></tr>
+        <tr><td>Forgetting a closing tag.</td><td>Check every opening tag has its closing tag, such as <code>&lt;/p&gt;</code>.</td></tr>
+        <tr><td>Editing a different file from the one open in the browser.</td><td>Check the tab in VS Code says <code>index.html</code>.</td></tr>
+        <tr><td>Forgetting to save, or to refresh.</td><td>Press <kbd>Ctrl</kbd> + <kbd>S</kbd>, then refresh the browser.</td></tr>
+        <tr><td>Expecting to see the webpage inside VS Code.</td><td>Open the file in a browser to see the result.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>When something does not work, check the file name, the spelling, the brackets and whether you saved, before assuming the computer is at fault.</p>
+</section>
+
+<section aria-labelledby="summary">
+  <h2 id="summary">Lesson summary</h2>
+  <ul>
+    <li>HTML structures the content of a webpage.</li>
+    <li>You write HTML in VS Code and view the result in a browser.</li>
+    <li><code>&lt;h1&gt;</code> marks a top-level heading; <code>&lt;p&gt;</code> marks a paragraph.</li>
+    <li><kbd>Ctrl</kbd> + <kbd>S</kbd> saves; refreshing the browser shows the latest saved version.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="next">
+  <h2 id="next">What comes next</h2>
+  <p>You have used tags without looking at them closely. In <a href="<%= lessonUrl(next.slug) %>">Lesson 5</a>, you will learn exactly what tags, elements and attributes are, and add your first link to your page.</p>
+</section>

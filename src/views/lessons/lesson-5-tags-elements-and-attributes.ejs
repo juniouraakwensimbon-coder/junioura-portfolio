@@ -1,0 +1,203 @@
+<%# Lesson 5. Source: Desktop/HTML LESSONS/LESSON 5.docx %>
+<section aria-labelledby="introduction">
+  <h2 id="introduction">Introduction</h2>
+  <p>In Lesson 4 you wrote a heading and two paragraphs and opened them in a browser. You used tags without looking at them closely. Today you look closely.</p>
+  <p>Three words come up in every HTML lesson from now on: <strong>tag</strong>, <strong>element</strong> and <strong>attribute</strong>. Once you can tell them apart, reading and correcting HTML becomes much easier. You will keep working in the same <code>index.html</code> file inside <code>Web_Development/HTML_Lessons</code>.</p>
+</section>
+
+<section aria-labelledby="learn">
+  <h2 id="learn">What you will learn</h2>
+  <ul class="tick-list">
+    <li>Explain what an HTML tag is, and identify opening and closing tags.</li>
+    <li>Explain what an HTML element is, and how it differs from a tag.</li>
+    <li>Explain what an attribute is, and identify its name and value.</li>
+    <li>Write and correct basic HTML elements in VS Code.</li>
+    <li>Create a link with the <code>href</code> attribute.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="explanation">
+  <h2 id="explanation">Explanation</h2>
+
+  <h3>Tags</h3>
+  <p>An <strong>HTML tag</strong> is a piece of code written inside angle brackets, <code>&lt;</code> and <code>&gt;</code>, that says what kind of content is being marked. The letters inside are not random; they describe the purpose:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Tag</th><th scope="col">Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>&lt;h1&gt;</code></td><td>Heading level 1 (the main heading)</td></tr>
+        <tr><td><code>&lt;h2&gt;</code></td><td>Heading level 2</td></tr>
+        <tr><td><code>&lt;p&gt;</code></td><td>Paragraph</td></tr>
+        <tr><td><code>&lt;a&gt;</code></td><td>Link</td></tr>
+        <tr><td><code>&lt;img&gt;</code></td><td>Image</td></tr>
+        <tr><td><code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code></td><td>A bulleted list and one item in it</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The number in a heading tag gives its level of importance, not simply its size. For now, you only need to recognise these tags; later lessons cover each one.</p>
+
+  <h3>Opening and closing tags</h3>
+  <p>Most elements have two tags. The <strong>opening tag</strong> marks where the element begins; the <strong>closing tag</strong> marks where it ends and has a forward slash before the name.</p>
+  <%- code(`<p>I am learning HTML.</p>`) %>
+  <p><code>&lt;p&gt;</code> is the opening tag, <em>I am learning HTML.</em> is the content, and <code>&lt;/p&gt;</code> is the closing tag. Without the closing tag, the browser has to guess where the paragraph ends and may not display it as you intended.</p>
+  <p class="note">Not every element has a closing tag. An image is written as <code>&lt;img&gt;</code> and a line break as <code>&lt;br&gt;</code>; these are called <strong>void elements</strong>. You will meet them in later lessons.</p>
+
+  <h3>Elements</h3>
+  <p>An <strong>HTML element</strong> is the complete unit: the opening tag, the content and the closing tag together. In <code>&lt;p&gt;Computer studies is interesting.&lt;/p&gt;</code>, the whole line is one paragraph element.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Term</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Tag</th><td>The markup that begins or ends an element</td><td><code>&lt;p&gt;</code> or <code>&lt;/p&gt;</code></td></tr>
+        <tr><th scope="row">Element</th><td>The complete unit, including its tags and content</td><td><code>&lt;p&gt;Hello.&lt;/p&gt;</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>An easy way to remember it: a tag is one part; an element is the whole thing.</p>
+
+  <h3>Nesting</h3>
+  <p><strong>Nesting</strong> means putting one element inside another. Close them in the reverse order you opened them: the inner one first.</p>
+  <%- code(`<p>I am learning <strong>HTML</strong>.</p>`) %>
+  <%- output(['I am learning **HTML**.'], 'In the browser') %>
+
+  <h3>Attributes</h3>
+  <p>An <strong>attribute</strong> gives extra information about an element or controls how it behaves. It is always written inside the opening tag, as <code>name="value"</code>.</p>
+  <%- code(`<a href="https://www.w3schools.com/">Visit W3Schools</a>`) %>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Part</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>&lt;a</code></td><td>Begins a link (an “anchor”)</td></tr>
+        <tr><td><code>href</code></td><td>The attribute name: where the link goes</td></tr>
+        <tr><td><code>=</code></td><td>Connects the name to its value</td></tr>
+        <tr><td><code>"https://www.w3schools.com/"</code></td><td>The attribute value: the destination</td></tr>
+        <tr><td><code>&gt;</code></td><td>Ends the opening tag</td></tr>
+        <tr><td>Visit W3Schools</td><td>The link text the visitor sees and clicks</td></tr>
+        <tr><td><code>&lt;/a&gt;</code></td><td>The closing tag</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Other common attributes are <code>src</code> (where an image file is), <code>alt</code> (a text description of an image), <code>title</code> (extra information, often shown as a tooltip), <code>id</code> and <code>class</code>. You do not need to memorise them today. Put quotation marks around attribute values; it is a reliable habit.</p>
+  <%- code(`<img src="school.jpg" alt="Students in a classroom">`, 'An image with two attributes') %>
+  <p><code>src</code> says where the image file is and <code>alt</code> describes it. The image only appears if the browser can find <code>school.jpg</code>; you will learn about images and file paths in Lesson 10.</p>
+</section>
+
+<section aria-labelledby="demonstration">
+  <h2 id="demonstration">Demonstration</h2>
+  <h3>Step 1: Open index.html</h3>
+  <p>In VS Code, open your <code>Web_Development</code> folder (<strong>File → Open Folder…</strong>), then click <code>index.html</code> inside <code>HTML_Lessons</code>. If you cannot find it, check where you saved it in Lesson 4.</p>
+
+  <h3>Step 2: A heading and a paragraph</h3>
+  <p>Replace the contents of the file with:</p>
+  <%- code(`
+<h1>My Computer Class</h1>
+<p>We are learning how HTML works.</p>`, 'index.html') %>
+  <p>Save with <kbd>Ctrl</kbd> + <kbd>S</kbd>, check the tab still says <code>index.html</code>, and open the file in your browser.</p>
+  <%- output(['# My Computer Class', 'We are learning how HTML works.']) %>
+
+  <h3>Step 3: Add an attribute</h3>
+  <p>Change the paragraph line to:</p>
+  <%- code(`<p title="A note about our lesson">We are learning how HTML works.</p>`) %>
+  <p>Save, refresh the browser with <kbd>Ctrl</kbd> + <kbd>R</kbd>, and rest the mouse pointer on the paragraph. Many browsers show the title as a small tooltip. The attribute adds information; it does not replace the paragraph text.</p>
+
+  <h3>Step 4: Add a link</h3>
+  <p>Under the paragraph, add a link. Your whole file should now be:</p>
+  <%- code(`
+<h1>My Computer Class</h1>
+<p title="A note about our lesson">We are learning how HTML works.</p>
+<a href="https://www.w3schools.com/">Visit W3Schools</a>`, 'index.html') %>
+  <%- output(['# My Computer Class', 'We are learning how HTML works.', '[[Visit W3Schools]]']) %>
+  <p>Save and refresh. If the computer is connected to the internet, clicking the link opens the W3Schools website. Without internet, you can still practise writing and reading the code.</p>
+</section>
+
+<section aria-labelledby="practice">
+  <h2 id="practice">Hands-on practice</h2>
+  <div class="practice">
+    <p class="practice-title">Task 1: Write a heading and a paragraph</p>
+    <p>Write a heading that shows <em>Welcome to My School</em> and a paragraph that shows <em>I am learning to create webpages.</em></p>
+    <details><summary>Show a correct answer</summary>
+      <%- code(`
+<h1>Welcome to My School</h1>
+<p>I am learning to create webpages.</p>`) %>
+    </details>
+  </div>
+  <div class="practice">
+    <p class="practice-title">Task 2: Add a link</p>
+    <p>Write a link with the text <em>Learn HTML</em> that goes to <code>https://www.w3schools.com/html/</code>.</p>
+    <details><summary>Show a correct answer</summary>
+      <%- code(`<a href="https://www.w3schools.com/html/">Learn HTML</a>`) %>
+    </details>
+  </div>
+  <div class="practice">
+    <p class="practice-title">Task 3: Correct the mistakes</p>
+    <p>This code has two mistakes. Rewrite it correctly and explain what was wrong.</p>
+    <%- code(`
+<p>Welcome to the lesson.
+<h1>HTML Basics<h1>`, 'Code with mistakes') %>
+    <details><summary>Show the corrected code</summary>
+      <%- code(`
+<p>Welcome to the lesson.</p>
+<h1>HTML Basics</h1>`) %>
+      <p>The paragraph had no closing tag, and the heading’s closing tag was missing its forward slash.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="check">
+  <h2 id="check">Check your understanding</h2>
+  <p>Study this line, then answer the questions.</p>
+  <%- code(`<a href="https://www.w3schools.com/">Study HTML</a>`) %>
+  <ol class="check-list">
+    <li>What is the opening tag?</li>
+    <li>What is the closing tag?</li>
+    <li>What is the element’s content?</li>
+    <li>What is the attribute name, and what is its value?</li>
+    <li>In which part of an element is an attribute written?</li>
+    <li>In one sentence, what is the difference between a tag and an element?</li>
+  </ol>
+  <details>
+    <summary>Show the answers</summary>
+    <ol>
+      <li><code>&lt;a href="https://www.w3schools.com/"&gt;</code></li>
+      <li><code>&lt;/a&gt;</code></li>
+      <li>Study HTML</li>
+      <li>The name is <code>href</code>; the value is <code>https://www.w3schools.com/</code>.</li>
+      <li>Inside the opening tag.</li>
+      <li>A tag is one part of the markup; an element is the complete unit, including its tags and content.</li>
+    </ol>
+  </details>
+</section>
+
+<section aria-labelledby="mistakes">
+  <h2 id="mistakes">Common mistakes</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Mistake</th><th scope="col">Correction</th></tr></thead>
+      <tbody>
+        <tr><td>Forgetting a closing tag.</td><td>Check each element that needs one has it.</td></tr>
+        <tr><td>Writing <code>&lt; p&gt;</code> with a space.</td><td>Write <code>&lt;p&gt;</code> with no space.</td></tr>
+        <tr><td>Closing with <code>&lt;p&gt;</code> instead of <code>&lt;/p&gt;</code>.</td><td>Include the forward slash.</td></tr>
+        <tr><td>Putting <code>href</code> outside the opening tag.</td><td>Attributes go inside the opening tag: <code>&lt;a href=&quot;…&quot;&gt;</code>.</td></tr>
+        <tr><td>Forgetting the equals sign or the quotation marks.</td><td>Write <code>name="value"</code>.</td></tr>
+        <tr><td>Saving but not refreshing the browser.</td><td>Save with <kbd>Ctrl</kbd> + <kbd>S</kbd>, then refresh.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Browsers are forgiving and often display a page even when the code has mistakes. Aim to write correct HTML rather than relying on the browser to guess what you meant.</p>
+</section>
+
+<section aria-labelledby="summary">
+  <h2 id="summary">Lesson summary</h2>
+  <ul>
+    <li>A <strong>tag</strong> is markup such as <code>&lt;p&gt;</code> or <code>&lt;/p&gt;</code>.</li>
+    <li>An <strong>opening tag</strong> starts an element; a <strong>closing tag</strong> ends it, when one is needed.</li>
+    <li>An <strong>element</strong> is the complete unit: tags plus content.</li>
+    <li>An <strong>attribute</strong> adds information inside the opening tag, as <code>name="value"</code>.</li>
+    <li><code>href</code> gives a link its destination; <code>src</code> gives an image its file.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="next">
+  <h2 id="next">What comes next</h2>
+  <p>Your page works, but it is missing the structure every complete HTML document has. The next lesson in the calendar, <strong>Lesson 6: HTML document structure</strong>, builds a full page with <code>&lt;!DOCTYPE html&gt;</code>, <code>html</code>, <code>head</code>, <code>title</code> and <code>body</code>. You had a first look at it in Lesson 4. See the <a href="<%= pageUrl('edu', 'lessons') %>">full lesson sequence</a> for everything that follows.</p>
+</section>

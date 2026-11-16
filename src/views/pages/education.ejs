@@ -6,7 +6,7 @@
 %>
 <%- include('../partials/page-hero', { heading: 'Education', intro: edu.intro, jumps: [
   { id: 'areas', label: 'Teaching and learning' }, { id: 'approach', label: 'My approach' },
-  { id: 'experience', label: 'Experience' }, { id: 'programme', label: 'Learning resources' }, { id: 'qualifications', label: 'Qualifications' } ] }) %>
+  { id: 'experience', label: 'Experience' }, { id: 'programme', label: 'Learning program' }, { id: 'qualifications', label: 'Qualifications' } ] }) %>
 
 <section class="section section-white" id="areas" aria-labelledby="areas-title">
   <div class="container">
@@ -31,29 +31,87 @@
 
 <section class="section section-cool" id="programme" aria-labelledby="programme-title">
   <div class="container">
-    <%- include('../partials/section-heading', { id: 'programme-title', title: 'Learning resources', intro: 'Genuine materials I developed. Select a page to read it at full size.' }) %>
+    <%- include('../partials/section-heading', { id: 'programme-title', title: 'Learning program', intro: 'A beginner course I planned from the first click to a finished, styled webpage, with full lessons that anyone can study.' }) %>
 
-    <article class="programme" aria-labelledby="programme-name">
-      <div class="programme-info">
-        <p class="case-label">Learning programme · <%= programme.dates %></p>
+    <%# 1. Program introduction, audience and outcomes %>
+    <article class="program" aria-labelledby="programme-name">
+      <div class="program-intro">
+        <p class="case-label">30 lessons · 2 hours each · <%= programme.dates %></p>
         <h3 id="programme-name" class="case-title"><%= programme.title %></h3>
         <p><%= programme.summary %></p>
-        <p class="case-subhead">How the programme is structured</p>
-        <ul class="phase-list"><% programme.phases.forEach(ph => { %><li><%= ph %></li><% }) %></ul>
-        <p class="case-subhead">Each two-hour lesson</p>
-        <ol class="lesson-flow"><% programme.lessonFlow.forEach(s => { %><li><%= s %></li><% }) %></ol>
+        <p><a class="btn btn-primary" href="<%= lessonUrl(course.lessons[0].slug) %>">Start with Lesson 1 <%- include('../partials/icon', { name: 'arrow' }) %></a></p>
       </div>
-      <div class="programme-approach">
-        <p class="case-subhead">Teaching approach</p>
-        <dl class="approach-list">
-          <% programme.approach.forEach(a => { %><div><dt><%= a.title %></dt><dd><%= a.text %></dd></div><% }) %>
-        </dl>
+      <div class="program-facts">
+        <div>
+          <h4 class="program-sub">Who it is for</h4>
+          <p><%= programme.audience %></p>
+        </div>
+        <div>
+          <h4 class="program-sub">What learners will be able to do</h4>
+          <ul class="tick-list">
+            <li>Organise project files and work in VS Code</li>
+            <li>Create a simple HTML page and explain the main tags they use</li>
+            <li>Connect an external CSS file and apply basic styling</li>
+            <li>Make a small page more readable on different screen sizes</li>
+          </ul>
+        </div>
       </div>
     </article>
 
-    <ul class="doc-grid doc-grid-3">
-      <% programmeDocs.forEach(d => { %><%- include('../partials/document', { d, context: programme.title }) %><% }) %>
-    </ul>
+    <%# 2. How the teaching works %>
+    <div class="program-method">
+      <div>
+        <h3 class="sub-title">How each lesson is taught</h3>
+        <p class="program-method-lead">Every two-hour lesson follows the same rhythm.</p>
+        <ol class="lesson-flow"><% programme.lessonFlow.forEach(s => { %><li><%= s %></li><% }) %></ol>
+        <p class="program-method-lead">The lesson pages follow it too: an introduction, what you will learn, an explanation, a step-by-step demonstration, hands-on practice, questions with answers, common mistakes, a summary and what comes next.</p>
+      </div>
+      <dl class="approach-list">
+        <% programme.approach.forEach(a => { %><div><dt><%= a.title %></dt><dd><%= a.text %></dd></div><% }) %>
+      </dl>
+    </div>
+
+    <%# 3. The lesson sequence (from the lesson calendar) %>
+    <div class="program-sequence" id="lessons">
+      <h3 class="sub-title">The lesson sequence</h3>
+      <p class="program-method-lead">Lessons 1 to 5 have full lesson pages. Lessons 6 to 30 are shown as planned in the lesson calendar.</p>
+      <% course.phases.forEach(ph => { %>
+        <section class="phase" aria-labelledby="phase-<%= ph.id %>">
+          <header class="phase-head">
+            <h4 id="phase-<%= ph.id %>"><%= ph.title %></h4>
+            <p><%= ph.range %>. <%= ph.note %></p>
+          </header>
+          <ol class="lesson-list">
+            <% course.calendar.filter(c => c.phase === ph.id).forEach(c => { const full = course.lessons.find(l => l.n === c.n); %>
+              <li class="<%= full ? 'has-page' : '' %>">
+                <span class="lesson-num" aria-hidden="true"><%= c.n %></span>
+                <div>
+                  <% if (full) { %>
+                    <a class="lesson-link" href="<%= lessonUrl(full.slug) %>"><span class="visually-hidden">Lesson <%= c.n %>: </span><%= full.title %></a>
+                    <p><%= full.summary %></p>
+                  <% } else { %>
+                    <p class="lesson-focus"><span class="visually-hidden">Lesson <%= c.n %>: </span><%= c.focus %></p>
+                    <p><%= c.goal %></p>
+                  <% } %>
+                </div>
+                <% if (full) { %><span class="lesson-tag">Full lesson</span><% } %>
+              </li>
+            <% }) %>
+          </ol>
+        </section>
+      <% }) %>
+    </div>
+
+    <%# 4. Original materials %>
+    <div class="plans">
+      <div class="plans-head">
+        <h3 class="sub-title">Original planning documents</h3>
+        <p>The first pages of the lesson calendar and two of my lesson plans, as I wrote them. Select a page to read it at full size.</p>
+      </div>
+      <ul class="doc-grid doc-grid-3">
+        <% programmeDocs.forEach(d => { %><%- include('../partials/document', { d, context: programme.title }) %><% }) %>
+      </ul>
+    </div>
 
     <div class="plans">
       <div class="plans-head">

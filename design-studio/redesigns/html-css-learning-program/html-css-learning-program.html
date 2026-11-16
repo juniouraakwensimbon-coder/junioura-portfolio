@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="artboard" content="1920x1080">
+<title>Beginner HTML and CSS Learning Program (16:9 portfolio card)</title>
+<link rel="stylesheet" href="../../shared.css">
+<style>
+  /* Thumbnail for the Education card in the portfolio's Selected Work section.
+     Portfolio palette only. The code shown is the first example from Lesson 4. */
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  :root { --navy: #142B45; --teal: #245B68; --soft-teal: #55A6A0; --yellow: #FFC928; --cool: #F3F6F8; --white: #FFFFFF; }
+  .artboard { width: 1920px; height: 1080px; background: var(--navy); color: var(--white); }
+
+  /* Left column */
+  .kicker { position: absolute; left: 112px; top: 100px; display: flex; align-items: center; gap: 28px; }
+  .pill { background: var(--yellow); color: var(--navy); font: 800 27px/1 'Manrope'; letter-spacing: .06em; text-transform: uppercase; padding: 16px 28px 15px; border-radius: 40px; }
+  .kicker .line { width: 170px; height: 4px; background: var(--yellow); border-radius: 2px; }
+  h1 { position: absolute; left: 108px; top: 200px; width: 860px; font: 800 106px/1.02 'Manrope'; letter-spacing: -.045em; }
+  h1 .hl { color: var(--yellow); }
+  .sub { position: absolute; left: 112px; top: 588px; width: 800px; font: 600 40px/1.3 'Inter'; color: #DCE7EC; letter-spacing: -.01em; }
+  .sub strong { color: var(--white); font-weight: 700; }
+
+  /* Right: editor and browser */
+  .editor { position: absolute; left: 1010px; top: 112px; width: 800px; height: 470px; background: #0E1F33; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 2px rgba(85,166,160,.35); }
+  .ed-bar { height: 62px; background: var(--teal); display: flex; align-items: center; padding: 0 26px; gap: 12px; }
+  .ed-bar i { width: 15px; height: 15px; border-radius: 50%; background: rgba(255,255,255,.45); }
+  .ed-bar i:first-child { background: var(--yellow); }
+  .ed-tab { margin-left: 22px; padding: 10px 20px; background: #0E1F33; border-radius: 10px 10px 0 0; align-self: flex-end; font: 600 22px/1 'Inter'; color: var(--white); }
+  .code { padding: 34px 0 0; font: 500 30px/1.75 'Consolas', 'Courier New', monospace; }
+  .code div { display: flex; }
+  .code .ln { width: 74px; text-align: right; padding-right: 26px; color: rgba(255,255,255,.35); }
+  .t { color: var(--soft-teal); }
+  .b { color: var(--white); }
+  .cursor { display: inline-block; width: 3px; height: 34px; background: var(--yellow); vertical-align: -6px; margin-left: 2px; }
+
+  .browser { position: absolute; left: 1250px; top: 470px; width: 600px; height: 330px; background: var(--white); border-radius: 18px; overflow: hidden; color: #000; box-shadow: 0 0 0 10px var(--navy); }
+  .br-bar { height: 54px; background: var(--cool); border-bottom: 2px solid #DCE3E9; display: flex; align-items: center; padding: 0 20px; gap: 10px; }
+  .br-bar i { width: 12px; height: 12px; border-radius: 50%; background: #C9D3DC; }
+  .br-url { margin-left: 14px; flex: 1; height: 32px; border-radius: 16px; background: var(--white); border: 2px solid #DCE3E9; display: flex; align-items: center; padding: 0 16px; font: 600 17px/1 'Inter'; color: var(--teal); }
+  .page { padding: 30px 34px; font-family: 'Times New Roman', Times, serif; }
+  .page .h { font-size: 44px; font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+  .page p { font-size: 27px; line-height: 1.5; }
+  .arrow { position: absolute; left: 1120px; top: 610px; width: 110px; height: 110px; color: var(--yellow); }
+
+  /* Bottom: the two phases */
+  .phases { position: absolute; left: 112px; right: 112px; top: 828px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .phase { background: var(--white); color: var(--navy); border-radius: 18px; border-top: 8px solid var(--yellow); padding: 26px 32px; display: grid; grid-template-columns: 92px 1fr; column-gap: 26px; align-items: center; height: 152px; }
+  .num { width: 92px; height: 92px; border-radius: 50%; background: var(--teal); color: var(--white); display: grid; place-items: center; font: 800 40px/1 'Manrope'; }
+  .phase h2 { font: 800 34px/1.1 'Manrope'; letter-spacing: -.02em; margin-bottom: 8px; }
+  .phase p { font: 600 25px/1.2 'Inter'; color: var(--teal); }
+</style>
+</head>
+<body>
+<div class="artboard">
+  <div class="kicker"><span class="pill">Education</span><span class="line"></span></div>
+  <h1>Beginner HTML <span class="hl">&amp;</span> CSS Learning <span class="hl">Program</span></h1>
+  <p class="sub"><strong>30 lessons</strong> for complete beginners, from the first click to a finished, styled webpage.</p>
+
+  <div class="editor" aria-hidden="true">
+    <div class="ed-bar"><i></i><i></i><i></i><span class="ed-tab">index.html</span></div>
+    <div class="code">
+      <div><span class="ln">1</span><span><span class="t">&lt;h1&gt;</span><span class="b">Welcome to My First Webpage</span><span class="t">&lt;/h1&gt;</span></span></div>
+      <div><span class="ln">2</span><span><span class="t">&lt;p&gt;</span><span class="b">My name is Junioura.</span><span class="t">&lt;/p&gt;</span></span></div>
+      <div><span class="ln">3</span><span><span class="t">&lt;p&gt;</span><span class="b">I am learning HTML.</span><span class="t">&lt;/p&gt;</span><span class="cursor"></span></span></div>
+    </div>
+  </div>
+
+  <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5c0 7 3 11 11 12M12.5 13.5 16.2 17l-3.7 3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  <div class="browser" aria-hidden="true">
+    <div class="br-bar"><i></i><i></i><i></i><div class="br-url">index.html</div></div>
+    <div class="page">
+      <div class="h">Welcome to My First Webpage</div>
+      <p>My name is Junioura.</p>
+      <p>I am learning HTML.</p>
+    </div>
+  </div>
+
+  <div class="phases">
+    <div class="phase"><div class="num">1</div><div><h2>Computer confidence and HTML</h2><p>Lessons 1–18</p></div></div>
+    <div class="phase"><div class="num">2</div><div><h2>CSS foundations and styling</h2><p>Lessons 19–30</p></div></div>
+  </div>
+</div>
+</body>
+</html>

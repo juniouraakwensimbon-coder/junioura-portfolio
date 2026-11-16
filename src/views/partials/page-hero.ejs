@@ -2,9 +2,6 @@
 <section class="page-hero" aria-labelledby="page-title">
   <div class="container page-hero-grid">
     <div class="page-hero-copy">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="<%= pageUrl('home') %>">Home</a> <span aria-hidden="true">/</span> <span aria-current="page"><%= heading %></span>
-      </nav>
       <h1 id="page-title" class="page-title"><%= heading %></h1>
       <% intro.forEach(p => { %><p class="page-intro"><%= p %></p><% }) %>
     </div>

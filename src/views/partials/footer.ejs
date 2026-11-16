@@ -2,7 +2,7 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="footer-logo" href="<%= pageUrl('home') %>" aria-label="<%= owner.name %>, home">
-        <span class="wordmark-mark" aria-hidden="true"><%= owner.initials %></span>
+        <img class="logo-mark" src="<%= asset('images/branding/ja-logo.png') %>" width="196" height="192" alt="">
         <span class="footer-name"><%= owner.name %></span>
       </a>
       <p class="footer-role"><%= owner.roles.join(' · ') %></p>

@@ -46,6 +46,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// Certificate scans stay on disk but are never served publicly
+app.use('/images/certificates', (req, res) => res.sendStatus(404));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(expressLayouts);

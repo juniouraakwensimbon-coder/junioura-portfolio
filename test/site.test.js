@@ -64,10 +64,37 @@ test('live project links point to the real site and open safely', () => {
   }
 });
 
-test('private certificates are text only and the ABII certificate is not shown', () => {
+test('credentials are text only: every title listed, no certificate images published', () => {
   const about = fs.readFileSync(path.join(outDir, 'about/index.html'), 'utf8');
-  for (const c of data.credentials.filter((x) => !x.image)) assert.ok(about.includes(c.title.replace(/&/g, '&amp;')) || about.includes(c.title), c.title);
-  assert.doesNotMatch(about, /abii[^"]*.(webp|jpg|png)/i);
+  for (const c of data.credentials) assert.ok(about.includes(c.title.replace(/&/g, '&amp;')) || about.includes(c.title.replace(/“/g, '&#8220;')) || about.includes(c.title), c.title);
+  for (const f of ['index.html', 'about/index.html', 'web-development/index.html', 'digital-communications/index.html', 'education/index.html']) {
+    assert.doesNotMatch(fs.readFileSync(path.join(outDir, f), 'utf8'), /images\/certificates\/|abii[^"]*\.(webp|jpg|png)/i, f);
+  }
+  assert.ok(!fs.existsSync(path.join(outDir, 'images', 'certificates')), 'certificate scans copied into the build');
+});
+
+test('learning program: lesson pages are built, linked and use "Program"', () => {
+  const { lessons, calendar } = require('../src/data/lessons');
+  assert.equal(calendar.length, 30);
+  const edu = fs.readFileSync(path.join(outDir, 'education/index.html'), 'utf8');
+  assert.match(edu, /Beginner HTML and CSS Learning Program</);
+  assert.match(edu, /id="programme"/); // existing links to #programme keep working
+  for (const l of lessons) {
+    const file = path.join(outDir, 'education', 'lessons', l.slug, 'index.html');
+    assert.ok(fs.existsSync(file), `missing ${l.slug}`);
+    assert.ok(edu.includes(`href="${BASE}education/lessons/${l.slug}/"`), `not linked from Education: ${l.slug}`);
+    const page = fs.readFileSync(file, 'utf8');
+    for (const id of ['introduction', 'learn', 'explanation', 'demonstration', 'practice', 'check', 'mistakes', 'summary', 'next']) {
+      assert.match(page, new RegExp(`<h2 id="${id}"`), `${l.slug} is missing #${id}`);
+    }
+    assert.match(page, /<h1 id="page-title"/);
+  }
+  // Lesson 3 was developed from an outline and must say so
+  assert.match(fs.readFileSync(path.join(outDir, 'education/lessons', lessons[2].slug, 'index.html'), 'utf8'), /Developed from the lesson outline/);
+  // The project title is spelled "Program" everywhere it appears
+  for (const f of ['index.html', 'education/index.html']) {
+    assert.doesNotMatch(fs.readFileSync(path.join(outDir, f), 'utf8'), /Learning Programme/, f);
+  }
 });
 
 test('no placeholder content, stock photos or skill percentages', () => {
@@ -78,7 +105,7 @@ test('no placeholder content, stock photos or skill percentages', () => {
 test('every image referenced in the data exists', () => {
   const imgs = [data.owner.photo.src, ...data.designs.map((d) => `images/designs/${d.slug}.webp`)];
   for (const p of data.projects) for (const i of p.images || []) imgs.push(i.src);
-  for (const c of data.credentials) if (c.image) imgs.push(c.image.src);
+  // certificate scans are private: not in Git and never published, so they are not required here
   for (const d of data.documents) imgs.push(d.src);
   for (const src of imgs) assert.ok(fs.existsSync(path.join(root, 'public', src)), `missing ${src}`);
 });
@@ -99,8 +126,14 @@ test('Express server serves the five pages, redirects old URLs and returns 404s'
     for (const p of ['/web-development/', '/digital-communications/', '/education/', '/about/', '/about']) {
       const r = await fetch(url(p));
       assert.equal(r.status, 200, p);
-      assert.match(await r.text(), /aria-current="page"/, p);
+      const text = await r.text();
+      assert.match(text, /<h1 id="page-title"/, p);
+      assert.doesNotMatch(text, /class="breadcrumb"/, p);
+      // pages with their own nav link are marked as the current page
+      if (/about|education/.test(p)) assert.match(text, /aria-current="page"/, p);
     }
+
+    assert.equal((await fetch(url('/images/certificates/bloom-summit-2026-certificate-of-participation.webp'))).status, 404);
 
     for (const [from, to] of [['/projects', '/web-development/'], ['/contact', '/#contact']]) {
       const r = await fetch(url(from), { redirect: 'manual' });

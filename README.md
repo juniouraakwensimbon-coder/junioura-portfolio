@@ -2,14 +2,18 @@
 
 Personal portfolio of **Junioura Akwensimbom**, Web Developer · Digital Communications · Educator, based in Bamenda, Cameroon.
 
-The site presents my web development work (including the AAGYW-CAM website), my digital literacy content and designs for Junioura Creative WebDev, my web and application development training at Nexinch, my teaching, and my education and certifications.
+The site presents my web development work (including the AAGYW-CAM website), my digital literacy content and designs for Junioura Creative WebDev, my web and application development training at Nexinch, my teaching (including the Beginner HTML and CSS Learning Program and its lesson pages), and my education and certifications.
+
+Pages: **Home**, **Web Development**, **Digital Communications**, **Education** (with five lesson pages under `/education/lessons/`) and **About**.
+
+**Hosting:** the public site is published with **GitHub Pages** only. Netlify is not used for hosting or deployment. (This project contains no Netlify configuration.)
 
 ## Technologies
 
 - **Node.js + Express**: local development server
 - **EJS** templates with `express-ejs-layouts`
 - Plain **HTML, CSS and JavaScript** (no front-end framework)
-- **Manrope** and **Inter** fonts from Google Fonts
+- **Manrope** and **Inter** fonts from Google Fonts (the site falls back to system fonts if Google Fonts cannot load)
 - A small build script that exports the site as static HTML for **GitHub Pages**
 - Tests use Node's built-in test runner, so there are no extra testing packages
 
@@ -58,65 +62,99 @@ $env:BASE_PATH="/junioura-akwensimbom-portfolio/"; npm run build; npm run previe
 ├── server.js                    # starts the local Express server
 ├── src/
 │   ├── app.js                   # Express setup, security headers, routes
-│   ├── data/portfolioData.js    # ← ALL portfolio text lives here
+│   ├── data/portfolioData.js    # ← almost ALL portfolio text lives here
+│   ├── data/lessons.js          # learning program: 30-lesson calendar and lesson list
 │   ├── lib/siteContext.js       # shared template variables (server + build)
 │   ├── controllers/             # page + contact-form handlers
 │   ├── middleware/              # form validation, error handler
 │   ├── routes/
-│   └── views/                   # EJS templates (layout, partials, home page, 404)
+│   └── views/                   # EJS templates (layout, partials, pages, 404)
+│       └── lessons/             # the text of each lesson page (one .ejs file per lesson)
 ├── public/                      # files served as-is
 │   ├── css/style.css
 │   ├── js/script.js
-│   ├── images/
-│   │   ├── profile/             # profile photograph
-│   │   ├── designs/             # web versions of the graphic design gallery
-│   │   ├── projects/            # project screenshots (add here)
-│   │   ├── certificates/        # certificate images (add here)
-│   │   └── branding/            # favicon / logo
-│   └── documents/               # e.g. a CV PDF (add here)
+│   └── images/
+│       ├── profile/             # profile photograph
+│       ├── branding/            # JA logo, favicon, hero background
+│       ├── designs/             # flyers / graphic design gallery (web versions)
+│       ├── communications/      # content calendar pages
+│       ├── education/           # lesson plan pages, learning program thumbnail
+│       ├── projects/            # project screenshots (AAGYW Cameroon)
+│       ├── certificates/        # certificate scans: kept locally, NEVER published (not in Git, not in the build)
+│       └── professional-background-bg.png   # Professional Background section background
 ├── scripts/
 │   ├── build.js                 # static export → dist/
 │   ├── preview.js               # serve dist/ like GitHub Pages
 │   └── check.js                 # link and HTML checker
 ├── design-studio/               # editable flyer sources, PNG + vector PDF exports (see its README)
+│   └── logo/ja-logo-original.png  # full-size original JA logo
+├── recovered-backgrounds/       # full-quality copies of the hero and Professional Background images
 ├── test/site.test.js
-└── deployment/github-pages.yml  # prepared GitHub Actions workflow (inactive)
+└── .github/workflows/deploy.yml # GitHub Actions: test, build and publish to GitHub Pages
 ```
 
 ## Updating the content
 
-Almost everything is edited in **`src/data/portfolioData.js`**. Every missing image currently shows a clearly labelled placeholder. To replace one, save the real file and set its path:
+Almost everything is edited in **`src/data/portfolioData.js`**. Lesson pages are edited in `src/views/lessons/<lesson>.ejs`, and the lesson list and calendar in `src/data/lessons.js`.
 
-| Placeholder | Save the file in | Then set |
-| --- | --- | --- |
-| Personal Portrait – Replace with Approved Photograph (About) | `public/images/profile/` | `owner.aboutPhoto: 'images/profile/<file>.jpg'` |
-| Replace with project screenshot: Nexinch | `public/images/projects/` | `image:` on the `nexinch` project |
-| Certificate Image – Replace with Original Certificate | `public/images/certificates/` | `image:` on that entry in `credentials` |
+### Where each image lives
+
+| On the website | File |
+| --- | --- |
+| Logo (navbar and footer) | `public/images/branding/ja-logo.png` (full-size original: `design-studio/logo/ja-logo-original.png`) |
+| Hero background | `public/images/branding/hero-background-clean.webp` (set in `public/css/style.css`, `.hero`) |
+| Professional Background background | `public/images/professional-background-bg.png` (`.background-section` in the CSS) |
+| Profile photograph | `public/images/profile/junioura-akwensimbom.jpg` |
+| Selected Work cards (Home) | `projects/aagyw-cam/aagyw-cam-homepage-card.webp`, `designs/who-needs-a-website-design.webp`, `education/html-css-learning-program-card.webp` |
+| AAGYW Cameroon screenshots | `public/images/projects/aagyw-cam/` |
+| Flyers / design gallery | `public/images/designs/<slug>.webp` (editable sources in `design-studio/`) |
+| Content calendars, lesson plan pages | `public/images/communications/`, `public/images/education/` |
+
+To replace an image, save the new file over the old one with the same name (or change the path in the data file, template or CSS), then run `npm test`.
+
+**Certificates** are shown as text only. The scans in `public/images/certificates/` stay on your computer: the build does not copy them and the local server refuses to serve them.
+
+**Nexinch:** no project screenshot yet, so its card shows the details only. To add one, save it in `public/images/projects/` and add it to `images:` on the `nexinch` project.
 
 Other updates:
 
 - **AAGYW Cameroon project:** shows two genuine homepage screenshots in `public/images/projects/aagyw-cam/` (captured 13 Nov 2026) and a **Visit Live Website** button linking to https://aagyw-cam.org/. To refresh them, replace the two `.webp` files with new screenshots of the same names.
-- **Experience:** entries are listed most recent first. The G.B.H.S website project has no date yet, so add it in `date:`.
+- **Experience:** entries are listed most recent first.
 - **Design gallery:** add a web-sized image (about 1000 px wide, `.webp`) named `<slug>.webp` to `public/images/designs/` and add an entry to `designs`. Editable flyer sources are in `design-studio/`.
 
 Run `npm test` after any change to catch broken links or missing images.
 
 ## Publishing to GitHub Pages
 
-> Nothing has been published yet. Only do these steps once you have reviewed the site locally and decided to publish.
+The workflow in `.github/workflows/deploy.yml` runs on every push to `main`: it installs, runs the tests, builds the site with the correct base path, checks it and publishes `dist/` to GitHub Pages.
 
-1. Create an **empty public** repository named `junioura-akwensimbom-portfolio` on GitHub (no README, no .gitignore).
-2. Activate the workflow by copying `deployment/github-pages.yml` to `.github/workflows/deploy.yml`, then commit.
-3. Connect and push:
+**First-time setup** (once):
+
+1. On GitHub, create an **empty public** repository named `junioura-akwensimbom-portfolio` (no README, no .gitignore, no licence).
+2. Connect this project to it and push:
    ```bash
    git remote add origin https://github.com/<your-username>/junioura-akwensimbom-portfolio.git
    git push -u origin main
    ```
-4. On GitHub, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
-5. Open the **Actions** tab and wait for "Deploy portfolio to GitHub Pages" to finish. The site will be at
+   Windows opens a GitHub sign-in window the first time.
+3. In the repository, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+4. Open the **Actions** tab and wait for "Deploy portfolio to GitHub Pages" to finish. The site is then at
    `https://<your-username>.github.io/junioura-akwensimbom-portfolio/`
 
-To publish later changes, run `git add -A`, then `git commit -m "Describe the change"`, then `git push`. The workflow rebuilds the site automatically.
+If you name the repository differently, the address changes with it; the workflow adapts automatically.
+
+**Publishing later changes:**
+
+```bash
+npm test                              # check everything still works
+git add -A
+git commit -m "Describe the change"
+git push                              # the site updates a minute or two later
+```
+
+### What works on GitHub Pages
+
+GitHub Pages hosts static files only. Everything on the site works there, except that the **contact form cannot send email by itself**: on the published site it checks the fields and then opens the visitor's own email app with the message addressed to you. Sending directly from the form only works on the local Node server, with mail settings in `.env`. To send directly from the published site later, a form service (for example Formspree) would be needed.
 
 ## Contact
 

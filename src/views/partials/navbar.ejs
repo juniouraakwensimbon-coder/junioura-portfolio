@@ -1,7 +1,7 @@
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a class="wordmark" href="<%= pageUrl('home') %>" aria-label="<%= owner.name %>, home">
-      <span class="wordmark-mark" aria-hidden="true"><%= owner.initials %></span>
+      <img class="logo-mark" src="<%= asset('images/branding/ja-logo.png') %>" width="196" height="192" alt="">
       <span class="wordmark-text">
         <span class="wordmark-name"><%= owner.name %></span>
       </span>
@@ -20,11 +20,10 @@
     { label: 'Home', href: section('home'), page: 'home' },
     { label: 'About', href: pageUrl('about'), page: 'about' },
     { label: 'Services', href: section('pathways') },
-    { label: 'Portfolio', href: section('selected-work') },
+    { label: 'Projects', href: section('selected-work') },
     { label: 'Experience', href: pageUrl('about', 'experience') },
     { label: 'Skills', href: pageUrl('web', 'skills') },
     { label: 'Education', href: pageUrl('edu'), page: 'edu' },
-    { label: 'Contact', href: section('contact') },
   ];
 %>
         <% navLinks.forEach(l => { %>

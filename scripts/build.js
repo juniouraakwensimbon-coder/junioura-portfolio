@@ -16,7 +16,8 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
-const { siteContext, PAGES } = require('../src/lib/siteContext');
+const { siteContext, PAGES, lessonView } = require('../src/lib/siteContext');
+const { lessons } = require('../src/data/lessons');
 
 const root = path.join(__dirname, '..');
 const views = path.join(root, 'src', 'views');
@@ -36,7 +37,9 @@ async function build() {
   fs.mkdirSync(outDir, { recursive: true });
 
   // 1. Copy static assets (css, js, images, documents)
-  fs.cpSync(path.join(root, 'public'), outDir, { recursive: true });
+  //    Certificate scans stay in public/images/certificates but are not published.
+  const certDir = path.join(root, 'public', 'images', 'certificates');
+  fs.cpSync(path.join(root, 'public'), outDir, { recursive: true, filter: (src) => !src.startsWith(certDir) });
 
   // 2. Render the five pages (each page lives in its own folder so
   //    "/repo/web-development/" works on GitHub Pages and on refresh)
@@ -45,6 +48,11 @@ async function build() {
     view: p.view,
     locals: { ...siteContext({ base, siteUrl, isStatic: true, pageId: p.id }), title: p.title, metaDesc: p.description },
   }));
+  // Lesson pages: education/lessons/<slug>/index.html
+  for (const l of lessons) {
+    const ctx = siteContext({ base, siteUrl, isStatic: true, pageId: 'edu', subpage: true });
+    pages.push({ file: path.join('education', 'lessons', l.slug, 'index.html'), view: 'pages/lesson', locals: { ...ctx, ...lessonView(ctx, l.slug) } });
+  }
   // GitHub Pages serves 404.html for unknown URLs
   pages.push({
     file: '404.html',
