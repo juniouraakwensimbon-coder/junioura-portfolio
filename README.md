@@ -128,20 +128,13 @@ Run `npm test` after any change to catch broken links or missing images.
 
 The workflow in `.github/workflows/deploy.yml` runs on every push to `main`: it installs, runs the tests, builds the site with the correct base path, checks it and publishes `dist/` to GitHub Pages.
 
-**First-time setup** (once):
+**Where it lives**
 
-1. On GitHub, create an **empty public** repository named `junioura-akwensimbom-portfolio` (no README, no .gitignore, no licence).
-2. Connect this project to it and push:
-   ```bash
-   git remote add origin https://github.com/<your-username>/junioura-akwensimbom-portfolio.git
-   git push -u origin main
-   ```
-   Windows opens a GitHub sign-in window the first time.
-3. In the repository, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
-4. Open the **Actions** tab and wait for "Deploy portfolio to GitHub Pages" to finish. The site is then at
-   `https://<your-username>.github.io/junioura-akwensimbom-portfolio/`
+- Website: **https://juniouraakwensimbon-coder.github.io/junioura-portfolio/**
+- Repository: https://github.com/juniouraakwensimbon-coder/junioura-portfolio
+- GitHub Pages source: **GitHub Actions** (Settings → Pages)
 
-If you name the repository differently, the address changes with it; the workflow adapts automatically.
+This computer is already connected to the repository (remote `origin`) and signed in to GitHub, so `git push` works directly. On a new computer, clone the repository and sign in when Git asks.
 
 **Publishing later changes:**
 
